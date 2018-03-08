@@ -93,9 +93,12 @@
      <Compile Include="Assets\Script\MainGameScript\TrailCollider.cs" />
      <Compile Include="Assets\Script\MainGameScript\UIManager.cs" />
      <Compile Include="Assets\Script\MainGameScript\WheelAttack.cs" />
+     <Compile Include="Assets\Script\MenuScript\StageInfo\StageInfoManager.cs" />
+     <Compile Include="Assets\Script\MenuScript\StageSelect\StageInfoRelayer.cs" />
      <Compile Include="Assets\Script\MenuScript\StageSelect\StageObject.cs" />
      <Compile Include="Assets\Script\MenuScript\StageSelect\StageSelectManager.cs" />
      <Compile Include="Assets\Script\SpriteContainer.cs" />
+     <Compile Include="Assets\Script\WorldDatabase.cs" />
      <Compile Include="Assets\Script\~EditScript\BulletLineMarker.cs" />
      <Compile Include="Assets\Script\~EditScript\BulletScript.cs" />
      <Compile Include="Assets\Script\~EditScript\CamControll.cs" />
@@ -130,6 +133,7 @@
      <Compile Include="Assets\Script\~EditScript\PathEdit\PointMarker.cs" />
      <Compile Include="Assets\Script\~EditScript\PathPointInfoUi.cs" />
      <None Include="Assets\StageData\TestStageForGame.txt" />
+     <None Include="Assets\StageData\TestStage_1_ForGame.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

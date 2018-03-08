@@ -37,8 +37,6 @@ public class GameObjectManager : MonoBehaviour {
 
     private void Start()
     {
-		Application.targetFrameRate = 20;
-
 		data = GetComponent<DataManager>().PlayerInfoLoad();
 
 		MobileDebugger.instance.AddLine(data.ToString());

@@ -39,10 +39,10 @@ public class GameRunningTest : ObjectBase {
 
         LoadData(stageData.text.Split('\n'));
 
-        Init();
+        InitEvent();
 
-        button.interactable = true;
-        progressCheck = false;
+        // button.interactable = true;
+        // progressCheck = false;
     }
 
     public void SpawnTestEnemy()
@@ -51,7 +51,7 @@ public class GameRunningTest : ObjectBase {
         EnemyManager.instance.ObjectActive(new Vector3(10f,0f,0f),1,0);
     }
 
-    public void Init()
+    public void InitEvent()
     {
         MobileDebugger.instance.AddLine("이벤트 초기화");
 

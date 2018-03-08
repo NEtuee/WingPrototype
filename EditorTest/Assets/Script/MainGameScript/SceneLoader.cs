@@ -22,6 +22,7 @@ public class SceneLoader : MonoBehaviour {
 	}
 
 	public bool SceneLoading() {return sceneLoad;}
+	public int GetCurrScene() {return currSceneNum;}
 
 	public void LoadScene(int level)
 	{

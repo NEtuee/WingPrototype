@@ -25,7 +25,12 @@ public class StageSelectManager : MonoBehaviour {
 
 		if(stage != null)
 		{
-			
+			GameObject obj = new GameObject();
+			StageInfoRelayer re = obj.AddComponent<StageInfoRelayer>();
+
+			re.Set(world,stage.stage);
+
+			SceneLoader.instance.LoadScene(4);
 		}
 	}
 
@@ -49,7 +54,7 @@ public class StageSelectManager : MonoBehaviour {
 
 	public StageObject ClickCheck()
 	{
-		if(Input.GetMouseButtonDown(0))
+		if(Input.GetMouseButtonUp(0))
 		{
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			mousePos.z = 0f;
