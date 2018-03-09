@@ -367,6 +367,11 @@ public class Test : MonoBehaviour {
 		SaveDialog(new SaveCallBack(DataSave));
 	}
 
+    public void DataSaveForStageInfo(string path = "0")
+    {
+
+    }
+
 	public void DataSaveForGame(string path = "0")
 	{
 		List<string> data = new List<string>();

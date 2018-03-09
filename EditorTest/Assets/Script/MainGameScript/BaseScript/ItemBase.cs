@@ -27,21 +27,21 @@ public class ItemBase : ObjectBase {
 
 	public override void Progress()
 	{
-		if(!collisionReady)
-		{
-			if(time <= 0f)
-				collisionReady = true;
-			else
-				time -= Time.deltaTime;
-		}
-		else
-		{
-			aliveTime -= Time.deltaTime;
-			if(aliveTime <= 0f)
-				Disable();
-		}
+        Movement();
 
-		Movement();
+        if (!collisionReady)
+        {
+            if (time <= 0f)
+                collisionReady = true;
+            else
+                time -= Time.deltaTime;
+        }
+        else
+        {
+            aliveTime -= Time.deltaTime;
+            if (aliveTime <= 0f)
+                Disable();
+        }
 	}
 
 	public override void Release()
@@ -87,27 +87,27 @@ public class ItemBase : ObjectBase {
 	{
 		if(tp.position.x > 23f && collisionPoint != 2)
 		{
-			dir.x *= -1;
+			dir.x *= -1f;
 
 			collisionPoint = 2;
 		}
-		else if(tp.position.x < -23f && collisionPoint != 0)
+		if(tp.position.x < -23f && collisionPoint != 0)
 		{
-			dir.x *= -1;
+            dir.x *= -1f;
 
 			collisionPoint = 0;
 		}
-		else if(tp.position.y > 13f && collisionPoint != 1)
+		if(tp.position.y > 13f && collisionPoint != 1)
 		{
-			dir.y *= -1;
+			dir.y *= -1f;
 
 			collisionPoint = 1;
 		}
-		else if(tp.position.y < -13f && collisionPoint != 3)
+		if(tp.position.y < -13f && collisionPoint != 3)
 		{
-			dir.y *= -1;
+			dir.y *= -1f;
 
-			collisionPoint = 3;
+            collisionPoint = 3;
 		}
 	}
 
@@ -121,8 +121,10 @@ public class ItemBase : ObjectBase {
 		aliveTime = 3f;
 
 		collisionReady = false;
+        collisionPoint = -1;
 
-		dir = new Vector3(Random.Range(-1f,1f),Random.Range(-1f,1f)).normalized;
+        dir = new Vector3(Random.Range(-1f,1f),Random.Range(-1f,1f)).normalized;
+        //dir = new Vector3(0f, -1f);
 
 		speed = Random.Range(7f,10f);
 	}

@@ -93,7 +93,7 @@ public class ItemManager : ObjectBase {
 	{
 		instance = this;
 
-		CreateObjects(10);
+		CreateObjects(20);
 	}
 
 	public override void Progress()
