@@ -21,6 +21,12 @@ public class TestEvent : EventBase
 	{
 		return 0 + ">" + name;	
 	}
+
+	public override string DataToStringForGame()
+	{
+		return DataToString();
+	}
+
 	public override void StringToData(string s)
 	{
 		//Debug.Log(s);

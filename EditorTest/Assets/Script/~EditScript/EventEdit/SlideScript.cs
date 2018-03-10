@@ -110,6 +110,11 @@ public class SlideScript : MonoBehaviour {
 		}
 	}
 
+	public void ButtonClicked(int code)
+	{
+		select.ButtonClicked(code);
+	}
+
 	public void EventListUpdate()
 	{
 		DisableEventList();
@@ -117,6 +122,11 @@ public class SlideScript : MonoBehaviour {
 		for(int i = 0; i < count; ++i)
 		{
 			Test.instance.eventList[i].transform.GetComponentInChildren<Text>().text = ((Test.Events)select.GetFrame().events[i].code).ToString();
+			
+			Test.instance.eventList[i].onClick.RemoveAllListeners();
+			int j = i;
+			Test.instance.eventList[i].onClick.AddListener(delegate{ButtonClicked(j);});
+
 			Test.instance.eventList[i].gameObject.SetActive(true);
 		}
 		
@@ -165,11 +175,22 @@ public class SlideScript : MonoBehaviour {
 		Debug.Log(time);
 		while(true)
 		{
-			frames[i].Progress();
-			yield return new WaitForSeconds(time);
-			frames[i++].ProgressEnd();
-			if(i == 60)
-				break;
+			if(!Test.instance.waitExtinc)
+			{
+				frames[i].Progress();
+				yield return new WaitForSeconds(time);
+				if(!Test.instance.waitExtinc)
+					frames[i++].ProgressEnd();
+				else
+					++i;
+				if(i == 60)
+					break;
+			}
+			else
+			{
+				Test.instance.waitExtinc = Test.instance.enemyCount == 0 ? false : true;
+				yield return null;
+			}
 		}
 
 		Test.instance.DeleteAllGameObject();
@@ -183,17 +204,29 @@ public class SlideScript : MonoBehaviour {
 		int p = 0;
 		while(true)
 		{
-			frames[i].Progress();
-			yield return new WaitForSeconds(time);
-			frames[i++].ProgressEnd();
-			if(i == 60)
+			if(!Test.instance.waitExtinc)
 			{
-				if(p == page - 1)
-					break;
-				i = 0;
-				++p;
-				nextPage();
+				frames[i].Progress();
+				yield return new WaitForSeconds(time);
+				if(!Test.instance.waitExtinc)
+					frames[i++].ProgressEnd();
+				else
+					++i;
+				if(i == 60)
+				{
+					if(p == page - 1)
+						break;
+					i = 0;
+					++p;
+					nextPage();
+				}
 			}
+			else
+			{
+				Test.instance.waitExtinc = Test.instance.enemyCount == 0 ? false : true;
+				yield return null;
+			}
+
 		}
 
 		Test.instance.DeleteAllGameObject();

@@ -31,6 +31,12 @@ public class ObjectCreateEvent : EventBase {
 		//Debug.Log(s);
 		return s;
 	}
+
+	public override string DataToStringForGame()
+	{
+		return DataToString();
+	}
+	
 	public override void StringToData(string s)
 	{
 		string[] split = s.Split('/');

@@ -30,6 +30,12 @@ public class AddEventManager : MonoBehaviour {
 			string[] s = infoManager.GetCreateEnemyInfo().Split('/');
 			Debug.Log(infoManager.GetCreateEnemyInfo());
 			return new EnemyCreateEvent(frameCode,int.Parse(s[0]),int.Parse(s[1]));
+		case Test.Events.Dialog:
+			return new DialogEvent();
+		case Test.Events.Static:
+			return new StaticEvent();
+		case Test.Events.WaitExtinc:
+			return new WaitExtinc();
 		default:
 			return null;
 		}

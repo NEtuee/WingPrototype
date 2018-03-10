@@ -18,6 +18,9 @@ public class Test : MonoBehaviour {
 		Test = 0,
 		ObjectCreate,
 		EnemyCreate,
+		Dialog,
+		Static,
+		WaitExtinc,
 		End,
 	}
 
@@ -91,6 +94,7 @@ public class Test : MonoBehaviour {
 	public InputField frameText;
 
 	public GameObject[] markers;
+	public TextEditScript TextEdit;
 
 	public GameObject enemyBase;
 	public GameObject bulletBase;
@@ -100,8 +104,12 @@ public class Test : MonoBehaviour {
 
 	private int currPage = 0;
 	public int currFrame = -1;
+	public int enemyCount = 0;
 
 	public bool showAllMarker = false;
+
+	public bool staticEvent = false;
+	public bool waitExtinc = false;
 
 	public float width;
 	public float height;
@@ -305,6 +313,12 @@ public class Test : MonoBehaviour {
 
 	public void ProgressStop()
 	{
+		Time.timeScale = 1f;
+
+		staticEvent = false;
+		waitExtinc = false;
+
+		DialogTest.instance.gameObject.SetActive(false);
 		slide.ProgressStop();
 		DeleteAllGameObject();
 		MarkerEnable();
@@ -312,12 +326,18 @@ public class Test : MonoBehaviour {
 
 	public void ProgressThisPage(int frame)
 	{
+		staticEvent = false;
+		waitExtinc = false;
+
 		MarkerDisable();
 		slide.ProgressThisPage(frame,frameContainer.time);
 	}
 
 	public void ProgressAll()
 	{
+		staticEvent = false;
+		waitExtinc = false;
+
 		currPage = 0;
 		LinkFrame();
 		PageUiUpdate();
@@ -387,7 +407,7 @@ public class Test : MonoBehaviour {
 					data.Add((j + (i * 60)).ToString());
 					for(int k = 0; k < frameContainer.frames[i][j].events.Count; ++k)
 					{
-						data.Add(frameContainer.frames[i][j].events[k].DataToString());
+						data.Add(frameContainer.frames[i][j].events[k].DataToStringForGame());
 					}
 					data.Add("*");
 				}
@@ -397,9 +417,15 @@ public class Test : MonoBehaviour {
 		dataManager.WriteStringToFile(data.ToArray(),path);
 	}
 
+	public void DialogDataSaveForGame(string path = "0")
+	{
+		dataManager.WriteStringToFile(TextEdit.saveOptions.ToArray(),path);
+	}
+
 	public void DataSaveForGame()
 	{
 		SaveDialog(new SaveCallBack(DataSaveForGame));
+		SaveDialog(new SaveCallBack(DialogDataSaveForGame));
 	}
 
 	public EventBase GetEvent(int code,int frameCode)
@@ -415,6 +441,15 @@ public class Test : MonoBehaviour {
 			break;
 		case Events.EnemyCreate:
 			eventBase = new EnemyCreateEvent(frameCode);
+			break;
+		case Events.Dialog:
+			eventBase = new DialogEvent();
+			break;
+		case Events.Static:
+			eventBase = new StaticEvent();
+			break;
+		case Events.WaitExtinc:
+			eventBase = new WaitExtinc();
 			break;
 		default:
 			eventBase = null;

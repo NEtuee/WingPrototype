@@ -12,6 +12,7 @@ public class WorldDatabase : ScriptableObject {
 	{
 		public TextAsset stageInfo;
 		public TextAsset stageEventData;
+		public TextAsset stageDialog;
 	}
 
 	[System.Serializable]

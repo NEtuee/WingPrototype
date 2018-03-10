@@ -19,6 +19,7 @@ public class EnemyCreateEvent : EventBase {
 		enemy.Init(Test.instance.enemy.data[enemyCode].patternRate,marker.path.speed, marker.path.constantSpeed, pos ,Test.instance.enemy.data[enemyCode].sprite,
 					Test.instance.enemy.data[enemyCode].bullet,marker.path,Test.instance.enemy.data[enemyCode].shotPoint.ToArray());
 		enemy.gameObject.transform.SetParent(Test.instance.inGameObjects);
+		Test.instance.enemyCount++;
 	}
 	public override void PickEvent()
 	{
@@ -30,6 +31,7 @@ public class EnemyCreateEvent : EventBase {
 		if(!Test.instance.showAllMarker)
 			marker.gameObject.SetActive(false);
 	}
+
 	public override string DataToString()
 	{
 		string data = "";
@@ -39,6 +41,12 @@ public class EnemyCreateEvent : EventBase {
 
 		return data;
 	}
+
+	public override string DataToStringForGame()
+	{
+		return DataToString();
+	}
+
 	public override void StringToData(string s)
 	{
 		string[] data = s.Split('/');

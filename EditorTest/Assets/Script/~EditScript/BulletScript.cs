@@ -17,12 +17,15 @@ public class BulletScript : MonoBehaviour {
 
 	public void Update()
 	{
-		if(tp.position.x < -25f || tp.position.x > 25f
-		|| tp.position.y < -15f || tp.position.y > 15f)
+		if(!Test.instance.staticEvent)
 		{
-			Destroy(gameObject);
-		}
+			if(tp.position.x < -25f || tp.position.x > 25f
+				|| tp.position.y < -15f || tp.position.y > 15f)
+			{
+				Destroy(gameObject);
+			}
 
-		tp.position += dir * speed * Time.deltaTime;
+			tp.position += dir * speed * Time.deltaTime;
+		}
 	}
 }

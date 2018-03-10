@@ -12,6 +12,15 @@ public abstract class EventBase
 	public abstract void Progress();
 	public abstract void PickEvent();
 	public abstract void ReleasePick();
+	public virtual void ButtonClicked() 
+	{
+//		Debug.Log("click");
+	}
+	public virtual void ButtonRelease()
+	{
+//		Debug.Log("release");
+	}
 	public abstract string DataToString();
+	public abstract string DataToStringForGame();
 	public abstract void StringToData(string s);
 }

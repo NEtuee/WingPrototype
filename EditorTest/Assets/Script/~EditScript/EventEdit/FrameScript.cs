@@ -37,6 +37,11 @@ public class FrameScript : MonoBehaviour {
 
 	}
 
+	public void ButtonClicked(int code)
+	{
+		frame.events[code].ButtonClicked();
+	}
+
 	public void Pick()
 	{
 		pick = true;
@@ -57,6 +62,7 @@ public class FrameScript : MonoBehaviour {
 		for(int i = 0; i < count; ++i)
 		{
 			frame.events[i].ReleasePick();
+			frame.events[i].ButtonRelease();
 		}
 	}
 

@@ -58,17 +58,20 @@ public class EnemyBaseScript : MonoBehaviour {
 
 	void Update () 
 	{
-		if(stayTime != 0f)
+		if(!Test.instance.staticEvent)
 		{
-			stayTime -= Time.deltaTime;
-			if(stayTime <= 0f)
+			if(stayTime != 0f)
+			{
+				stayTime -= Time.deltaTime;
+				if(stayTime <= 0f)
 				stayTime = 0f;
+			}
+			else
+			{
+				Movement();
+			}
+			Shot();
 		}
-		else
-		{
-			Movement();
-		}
-		Shot();
 	}
 
 	public void Shot()
@@ -118,6 +121,7 @@ public class EnemyBaseScript : MonoBehaviour {
 			if(lineCode >= path.lines.Count)
 			{
 				tp.gameObject.SetActive(false);
+				Test.instance.enemyCount--;
 				return;
 			}
 			//tp.position = Vector3.Lerp(posOrigin,targetPos,1);
