@@ -44,6 +44,7 @@ public class GameObjectManager : MonoBehaviour {
 		Instantiate(players[data],Vector3.zero,Quaternion.identity);
 
         FindObjects();
+
 		//Screen.SetResolution(1280,720,true);
 
 		bulletManager.CreateObjects(bulletCount);
@@ -76,7 +77,7 @@ public class GameObjectManager : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.S))
 		{
-			bulletManager.ObjectActive(Vector2.zero,3f,1f,0f);
+			DialogScript.instance.Active(0,3);
 		}
 		if(Input.GetKeyDown(KeyCode.D))
 		{
@@ -85,6 +86,12 @@ public class GameObjectManager : MonoBehaviour {
 
 		Progress();
 
+		if(GameRunningTest.instance.IsStaticEvent() && GameRunningTest.instance.dialogActive)
+		{
+			return;
+		}
+
+		PlayerManager.instance.PlayerProgress();
 		bulletManager.Progress();
 		effectManager.Progress();
 		//EnemyManager.instance.Progress();
@@ -202,6 +209,9 @@ public class GameObjectManager : MonoBehaviour {
 
 		for(int i = 0; i < objs.Length; ++i)
 		{
+			if(objs[i].tag == "Player")
+				continue;
+
 			bases = objs[i].GetComponents<ObjectBase>() as ObjectBase[];
 
 			if(bases.Length > 0)

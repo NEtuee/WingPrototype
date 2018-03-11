@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameRunningTest : ObjectBase {
 
+    public static GameRunningTest instance;
+
 	public float fps = 0f;
     public List<FrameInfo> events = new List<FrameInfo>();
 
@@ -14,6 +16,11 @@ public class GameRunningTest : ObjectBase {
     private bool stageStart = false;
     private bool stageEnd = false;
 
+    private bool waitExtinc = false;
+    private bool staticEvent = false;
+
+    public bool dialogActive = false;
+
     private float gameTime = 0f;
     private float progressTime = 0f;
 
@@ -22,9 +29,11 @@ public class GameRunningTest : ObjectBase {
     private int eventEnd = 0;
 
     public TextAsset stageData;
+    public TextAsset stageScript;
 
     public override void Initialize()
     {
+        instance = this;
         DataManager datam = GetComponent<DataManager>();
         // string[] s = datam.ReadStringFromFile();
         // if(datam.ReadStringFromFile() != null)
@@ -80,6 +89,17 @@ public class GameRunningTest : ObjectBase {
             return;
         }
 
+        if(waitExtinc)
+        {
+            if(EnemyManager.instance.count == 0)
+                waitExtinc = false;
+            else
+                return;
+        }
+
+        if(dialogActive)
+            return;
+
         gameTime += delta;
 
         progressTime += delta;
@@ -123,6 +143,10 @@ public class GameRunningTest : ObjectBase {
     {
 
     }
+
+    public void SetStaticEvent(bool value) {staticEvent = value;}
+    public void SetWaitExtinc() {waitExtinc = true;}
+    public bool IsStaticEvent() {return staticEvent;}
 
     [System.Serializable]
     public class FrameInfo
@@ -190,6 +214,18 @@ public class GameRunningTest : ObjectBase {
         else if(code == 2)
         {
             return new GameEnemySpawnEvent(data);
+        }
+        else if(code == 3)
+        {
+            return new GameDialog(data);
+        }
+        else if(code == 4)
+        {
+            return new GameStaticEvent();
+        }
+        else if(code == 5)
+        {
+            return new GameWaitExtinc();
         }
 
         return null;

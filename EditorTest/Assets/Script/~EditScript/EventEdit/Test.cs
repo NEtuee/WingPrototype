@@ -315,6 +315,8 @@ public class Test : MonoBehaviour {
 	{
 		Time.timeScale = 1f;
 
+		enemyCount = 0;
+
 		staticEvent = false;
 		waitExtinc = false;
 

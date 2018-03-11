@@ -32,6 +32,7 @@ public class StageInfoManager : MonoBehaviour {
 		{
 			GameRunningTest manager = GameObject.Find("GameObjectManager").GetComponent<GameRunningTest>();
 			manager.stageData = worldDatabase.data[world].stageData[stage].stageEventData;
+			manager.stageScript = worldDatabase.data[world].stageData[stage].stageDialog;
 		}
 
 		SceneManager.sceneLoaded -= OnSceneLoaded;

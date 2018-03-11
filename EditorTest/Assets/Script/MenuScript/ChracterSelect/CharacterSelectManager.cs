@@ -34,7 +34,7 @@ public class CharacterSelectManager : MonoBehaviour {
         selected = num;
         selectButtons[selected].interactable = false;
 
-        ChracterSelect();
+        //ChracterSelect();
     }
 
     public void ChracterSelect()

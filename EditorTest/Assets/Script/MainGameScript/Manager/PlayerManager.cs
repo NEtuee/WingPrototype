@@ -12,16 +12,22 @@ public class PlayerManager : ObjectBase {
 	{
 		instance = this;
 		target = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBase>();
+		target.Initialize();
 	}
 
 	public override void Progress()
 	{
-		
+
 	}
 
 	public override void Release()
 	{
 
+	}
+
+	public void PlayerProgress()
+	{
+		target.Progress();
 	}
 
 	public void SetAttack(bool value) {target.SetAttack(value);}

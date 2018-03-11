@@ -25,6 +25,11 @@ public class EnemyManager : ObjectBase {
 
 	public override void Progress()
 	{
+		if(GameRunningTest.instance.IsStaticEvent() || GameRunningTest.instance.dialogActive)
+		{
+			return;
+		}
+
 		ProgressingAllEnemy();
 	}
 

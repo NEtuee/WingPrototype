@@ -98,6 +98,11 @@ public class ItemManager : ObjectBase {
 
 	public override void Progress()
 	{
+		if(GameRunningTest.instance.IsStaticEvent() && GameRunningTest.instance.dialogActive)
+		{
+			return;
+		}
+
 		if(Input.GetKeyDown(KeyCode.A))
 		{
 			ObjectActive(0,Vector3.zero);

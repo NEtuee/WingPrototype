@@ -61,8 +61,9 @@ public class DialogEvent : EventBase {
 	{
 		string s = code + ">";
 		s += start;
-		
 		start += options.Count;
+		s += '/';
+		s += start - 1;
 
 		MainDataToString();
 
