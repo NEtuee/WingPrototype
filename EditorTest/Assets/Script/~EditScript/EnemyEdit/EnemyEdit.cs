@@ -155,7 +155,7 @@ public class EnemyEdit : MonoBehaviour {
 	{
 		SetCurrShotPoint(code);
 
-		shotPointUi[0].text = "코드 : " + code;
+		shotPointUi[0].text = "Code : " + code;
 		shotPointUi[1].text = pos.ToString();
 	}
 
@@ -166,7 +166,7 @@ public class EnemyEdit : MonoBehaviour {
 	
 	public void InfoUiUpdate()
 	{
-		nameUi.text = "이름 : " + currInfo.name;
+		nameUi.text = "Name : " + currInfo.name;
 		hpUi.text = "hp : " + currInfo.hp.ToString();
 		fpsUi.text = "fps : " + currInfo.fps.ToString();
 		firerateUi.text = "patternRate : " + currInfo.patternRate.ToString();

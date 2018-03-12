@@ -50,7 +50,7 @@ public class ItemManager : ObjectBase {
 			ItemBase b = GameObject.Instantiate(origin,Vector3.zero,Quaternion.identity).GetComponent<ItemBase>();
 
 			b.Initialize();
-			b.gameObject.name = "item " + i;
+			b.gameObject.name = "item_" + i;
 
 			ObjectLink link = new ObjectLink(b);
 			if(i == 0)

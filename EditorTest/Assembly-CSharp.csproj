@@ -56,6 +56,7 @@
      <Compile Include="Assets\Script\MainGameScript\BaseScript\BulletBase.cs" />
      <Compile Include="Assets\Script\MainGameScript\BaseScript\ButtonPressing.cs" />
      <Compile Include="Assets\Script\MainGameScript\BaseScript\EnemyBase.cs" />
+     <Compile Include="Assets\Script\MainGameScript\BaseScript\GoldBase.cs" />
      <Compile Include="Assets\Script\MainGameScript\BaseScript\ItemBase.cs" />
      <Compile Include="Assets\Script\MainGameScript\BaseScript\ItemEffectBase.cs" />
      <Compile Include="Assets\Script\MainGameScript\BaseScript\ObjectBase.cs" />
@@ -68,6 +69,7 @@
      <Compile Include="Assets\Script\MainGameScript\Manager\EffectManager.cs" />
      <Compile Include="Assets\Script\MainGameScript\Manager\EnemyManager.cs" />
      <Compile Include="Assets\Script\MainGameScript\Manager\GameObjectManager.cs" />
+     <Compile Include="Assets\Script\MainGameScript\Manager\GoldManager.cs" />
      <Compile Include="Assets\Script\MainGameScript\Manager\ItemManager.cs" />
      <Compile Include="Assets\Script\MainGameScript\Manager\PlayerManager.cs" />
      <Compile Include="Assets\Script\MainGameScript\Manager\SoundManager.cs" />

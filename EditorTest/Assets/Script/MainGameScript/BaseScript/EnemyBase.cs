@@ -95,9 +95,16 @@ public abstract class EnemyBase : ObjectBase {
 
 	public void ItemDrop()
 	{
-		if(MathEx.GetRandom(100))
+		if(MathEx.GetRandom(20))
 		{
 			ItemManager.instance.ObjectActive(0,tp.position);
+		}
+
+		if(MathEx.GetRandom(50))
+		{
+			int count = Random.Range(4,10);
+			for(int i = 0; i < count; ++i)
+				GoldManager.instance.ObjectActive(tp.position);
 		}
 	}
 

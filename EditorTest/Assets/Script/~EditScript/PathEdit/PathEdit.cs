@@ -178,15 +178,15 @@ public class PathEdit : MonoBehaviour {
 
 	public void PointUiUpdate()
 	{
-		pointCount.text = "포인트 : " + currPath.lines.Count + "개";
+		pointCount.text = "Point : " + currPath.lines.Count;
 	}
 
 	public void AllUiUpdate()
 	{
 		PointUiUpdate();
-		nameDisplay.text = "이름 : " + currPath.name;
-		speedDisplay.text = "속도 : " + currPath.speed.ToString();
-		constantDisplay.text = currPath.constantSpeed ? "등속 : O" : "등속 : X";
+		nameDisplay.text = "Name : " + currPath.name;
+		speedDisplay.text = "Speed : " + currPath.speed.ToString();
+		constantDisplay.text = currPath.constantSpeed ? "Const : O" : "Const : X";
 	}
 
 	public void SetEnablePointMarker()

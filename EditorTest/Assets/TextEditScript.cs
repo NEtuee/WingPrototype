@@ -28,8 +28,8 @@ public class TextEditScript : MonoBehaviour {
 		public float speed = 1f;
 		public int talker = 0;//0 = 좌 1 = 우 2 = 둘 다 3 = 아무도
 
-		public string name = "이름";
-		public string mainText = "내용";
+		public string name = "";
+		public string mainText = "";
 	}
 
 	public List<string> saveOptions = new List<string>();
