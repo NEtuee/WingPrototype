@@ -17,7 +17,7 @@ public class TestPlayer : PlayerBase {
 		GetTransform();
 		GetChildCollider();
 
-		SetFire(0.1f);
+		SetFire(0.07f);
 		SetFever(100f);
 		SetMaxHp(10);
 		SetSpecial(10f);

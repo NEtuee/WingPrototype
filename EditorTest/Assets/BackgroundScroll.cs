@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BackgroundScroll : ObjectBase {
 
 	public class Back
 	{
 		public List<Transform> targets = new List<Transform>();
+		public List<SpriteRenderer> sprites = new List<SpriteRenderer>();
 		public float dist;
 		public float distHelper;
 		public float speed = 0;
@@ -16,6 +18,15 @@ public class BackgroundScroll : ObjectBase {
 
 		public void Set(float s) {speed = s;}
 		public void SetRand() {rand = true;}
+
+		public void SetGloom(float value)
+		{
+			int count = sprites.Count;
+			for(int i = 0; i < count; ++i)
+			{
+				sprites[i].color = new Color(value,value,value,1f);
+			}
+		}
 
 		public void Progress()
 		{
@@ -59,6 +70,7 @@ public class BackgroundScroll : ObjectBase {
 			dist = spr.sprite.texture.width * spr.transform.localScale.x / spr.sprite.pixelsPerUnit;
 
 			targets.Add(spr.transform);
+			sprites.Add(spr);
 
 			for(int i = 1; i < count; ++i)
 			{
@@ -66,6 +78,7 @@ public class BackgroundScroll : ObjectBase {
 				t.position = new Vector3(t.position.x + i * dist + distHelper - 0.05f,t.position.y);
 
 				targets.Add(t);
+				sprites.Add(t.GetComponent<SpriteRenderer>());
 			}
 		}
 	}
@@ -74,6 +87,10 @@ public class BackgroundScroll : ObjectBase {
 	public GameObject middle;
 	public GameObject near;
 	public GameObject near_1;
+
+	public Slider farSlider;
+	public Slider middleSlider;
+	public Slider nearSlider;
 
 	public float farSpeed;
 	public float middleSpeed;
@@ -110,5 +127,21 @@ public class BackgroundScroll : ObjectBase {
 	public override void Release()
 	{
 
+	}
+
+	public void SetFarColor()
+	{
+		farBack.SetGloom(farSlider.value);
+	}
+
+	public void SetMiddleColor()
+	{
+		middleBack.SetGloom(middleSlider.value);
+	}
+
+	public void SetNearColor()
+	{
+		nearBack_0.SetGloom(nearSlider.value);
+		nearBack_1.SetGloom(nearSlider.value);
 	}
 }
