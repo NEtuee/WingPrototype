@@ -8,6 +8,7 @@ public class PlayerManager : ObjectBase {
 	public static PlayerManager instance;
 	public PlayerBase target;
 
+
 	public override void Initialize()
 	{
 		instance = this;
@@ -29,6 +30,8 @@ public class PlayerManager : ObjectBase {
 	{
 		target.Progress();
 	}
+
+	public bool PlayerIsDead() {return target.IsDead();}
 
 	public void SetAttack(bool value) {target.SetAttack(value);}
 	public void SetAttackType(PlayerBase.AttackType type) {target.SetAttackType(type);}

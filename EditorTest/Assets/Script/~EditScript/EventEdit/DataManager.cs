@@ -56,6 +56,24 @@ public class DataManager : MonoBehaviour {
 #endif
 	}
 
+	public static void WriteStringToFile_NoMark(string[] str,string fileName)
+	{
+#if !WEB_BUILD
+		string path = PathForDocumentsFile(fileName);
+		FileStream file = new FileStream ( path, FileMode.Create, FileAccess.Write );
+		StreamWriter sw = new StreamWriter( file );
+		int line = str.Length;
+
+		for(int i = 0; i < line; ++i)
+		{
+			sw.WriteLine(str[i]);
+		}
+
+		sw.Close();
+		file.Close();
+#endif
+	}
+
 	public string[] ReadStringFromFile(string p = "0")
 	{
 #if !WEB_BUILD
@@ -92,7 +110,42 @@ public class DataManager : MonoBehaviour {
 #endif
 	}
 
-	public string PathForDocumentsFile(string str)
+	public static string ReadStringFromFile_NoSplit(string fileName)
+	{
+#if !WEB_BUILD
+
+		string path = PathForDocumentsFile(fileName);
+
+		if(File.Exists(path))
+		{
+			FileStream file = new FileStream(path,FileMode.Open,FileAccess.Read);
+			StreamReader st = new StreamReader(file);
+
+			if(file == null || st == null)
+			{
+				Debug.Log("file is null");
+				return null;
+			}
+
+			string s = null;
+			s = st.ReadToEnd();
+
+			st.Close();
+			file.Close();
+
+			return s;
+		}
+		else
+		{
+			Debug.Log("file is empty");
+			return null;
+		}
+#else
+		return null;
+#endif
+	}
+
+	public static string PathForDocumentsFile(string str)
 	{
 		string path = "";
 		if(Application.platform == RuntimePlatform.IPhonePlayer)

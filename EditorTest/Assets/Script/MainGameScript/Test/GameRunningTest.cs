@@ -12,6 +12,8 @@ public class GameRunningTest : ObjectBase {
 
     public Button button;
 
+    public bool testMode = false;
+
     private float startTime = 1f;
     private bool stageStart = false;
     private bool stageEnd = false;
@@ -35,23 +37,10 @@ public class GameRunningTest : ObjectBase {
     {
         instance = this;
         DataManager datam = GetComponent<DataManager>();
-        // string[] s = datam.ReadStringFromFile();
-        // if(datam.ReadStringFromFile() != null)
-        // {
-        //     MobileDebugger.instance.AddLine(s[0]);
-        // }
-        // else
-        // {
-        //     MobileDebugger.instance.AddLine("Fail");
-        // }
-        // LoadData(datam.ReadStringFromFile(datam.PathForDocumentsFile("TestStageForGame.dat")));
 
         LoadData(stageData.text.Split('\n'));
 
         InitEvent();
-
-        // button.interactable = true;
-        // progressCheck = false;
     }
 
     public void SpawnTestEnemy()
@@ -86,6 +75,12 @@ public class GameRunningTest : ObjectBase {
         {
             progressCheck = false;
             button.interactable = true;
+
+            if(!testMode)
+            {
+                StageClearInfo.instance.SetInfo(true,gameTime);
+                SceneLoader.instance.LoadScene(6);
+            }
             return;
         }
 

@@ -82,6 +82,8 @@ public class GoldManager : ObjectBase {
 		if(activeLink == null)
 			activeLink = disableFront;
 
+		StageClearInfo.instance.increaseObtainGold(disableFront.me.gold);
+
 		disableFront = save;
 	}
 

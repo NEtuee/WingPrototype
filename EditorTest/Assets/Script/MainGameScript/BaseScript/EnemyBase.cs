@@ -18,6 +18,7 @@ public abstract class EnemyBase : ObjectBase {
 	private float moveTime = 0f;
 	private float stayTime = 0f;
 	private int lineCode = 0;
+	private float exp = 10f;
 
 	public override void Initialize()
 	{
@@ -83,12 +84,15 @@ public abstract class EnemyBase : ObjectBase {
 		{
 			GameObjectManager.instance.effectManager.ObjectActive(tp.position,GameObjectManager.instance.effectManager.spriteContainer.aniSet[1]);
 			if(!PlayerManager.instance.target.GetFeverEnabled() && !bullet.feverAttack)
+			{
 				PlayerManager.instance.target.IncreaseFever(1f);
+			}
 		}
 		if(isDead)
 		{
 			bullet.KillWish(tp.position);
 			ItemDrop();
+			StageClearInfo.instance.IncreaseObtainExp(exp);
 			DisableEnemy();
 		}
 	}
@@ -137,5 +141,5 @@ public abstract class EnemyBase : ObjectBase {
 	{
 
 	}
-	
+	public void SetExp(float e) {exp = e;}
 }
