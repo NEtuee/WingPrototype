@@ -14,6 +14,9 @@ public class GameRunningTest : ObjectBase {
 
     public bool testMode = false;
 
+    public int world;
+    public int stage;
+
     private float startTime = 1f;
     private bool stageStart = false;
     private bool stageEnd = false;
@@ -71,6 +74,9 @@ public class GameRunningTest : ObjectBase {
     {
         float delta = Time.deltaTime;
 
+        if(Input.GetKeyDown(KeyCode.C))
+            stageEnd = true;
+
         if(stageEnd)
         {
             progressCheck = false;
@@ -78,9 +84,20 @@ public class GameRunningTest : ObjectBase {
 
             if(!testMode)
             {
-                StageClearInfo.instance.SetInfo(true,gameTime);
+				StageClearInfo.instance.SetInfo(true,gameTime,world,stage);
                 SceneLoader.instance.LoadScene(6);
             }
+            return;
+        }
+
+        if(PlayerManager.instance.target.IsDead())
+        {
+            progressCheck = false;
+            button.interactable = true;
+
+			StageClearInfo.instance.SetInfo(false,gameTime,world,stage);
+            SceneLoader.instance.LoadScene(6);
+            
             return;
         }
 

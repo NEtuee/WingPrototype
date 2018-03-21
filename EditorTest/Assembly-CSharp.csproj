@@ -151,6 +151,7 @@
      <Compile Include="Assets\Script\~EditScript\PathEdit\PathEdit.cs" />
      <Compile Include="Assets\Script\~EditScript\PathEdit\PointMarker.cs" />
      <Compile Include="Assets\Script\~EditScript\PathPointInfoUi.cs" />
+     <Compile Include="Assets\SetScreen.cs" />
      <Compile Include="Assets\TextEditScript.cs" />
      <Compile Include="Assets\TitleManager.cs" />
      <Compile Include="Assets\UIParticlePlacer.cs" />
@@ -158,6 +159,7 @@
      <None Include="Assets\StageData\check1_data.txt" />
      <None Include="Assets\StageData\gameStage.txt" />
      <None Include="Assets\StageData\TestStageForGame.txt" />
+     <None Include="Assets\StageData\test.txt" />
      <None Include="Assets\StageData\TestStage_1_ForGame.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
@@ -181,7 +183,7 @@
  <HintPath>C:/Program Files/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
  <Reference Include="System.Windows.Forms">
- <HintPath>C:/Users/309-8/Downloads/180315_wingProto/EditorTest/Assets/~Plugins/System.Windows.Forms.dll</HintPath>
+ <HintPath>C:/Users/309-8/Downloads/20180321학교/EditorTest/Assets/~Plugins/System.Windows.Forms.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity_5.6.0f3/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

@@ -26,6 +26,6 @@ public class StageInfoRelayer : MonoBehaviour {
 
 		SceneManager.sceneLoaded -= OnSceneLoaded;
 
-		Destroy(GameObject.Find("Gold"));
+		//Destroy(GameObject.Find("Gold"));
     }
 }

@@ -48,6 +48,13 @@ public class StageSelectManager : MonoBehaviour {
 
 		for(int i = 0; i < num; ++i)
 		{
+			SaveDataInfo.StageSaveInfo info = SaveDataContainer.instance.saveData.FindStageSave(world,objs[i].stage);
+			if(info != null)
+			{
+				objs[i].SetClear(true);
+//				objs[i].stageSave = info;
+			}
+			objs[i].Init();
 			stageObjects.Add(objs[i]);
 		}
 	}

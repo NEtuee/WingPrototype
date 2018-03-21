@@ -92,8 +92,6 @@ public class GoldManager : ObjectBase {
 		instance = this;
 
 		CreateObjects(100);
-
-		Debug.Log("check");
 	}
 
 	public override void Progress()

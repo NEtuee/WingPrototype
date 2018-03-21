@@ -11,6 +11,12 @@ public class StageClearInfo : MonoBehaviour {
 
 	public bool clear = false;
 
+	public int world;
+	public int stage;
+
+	public int min;
+	public int sec;
+	public int rest;
 	public string claerTime = "";
 
 	public void Start()
@@ -18,13 +24,16 @@ public class StageClearInfo : MonoBehaviour {
 		instance = this;
 	}
 
-	public void SetInfo(bool c, float t)
+	public void SetInfo(bool c, float t, int w, int s)
 	{
 		clear = c;
 
-		int min = (int)t / 60;
-		int sec = (int)t - (min * 60);
-		int rest = (int)((t - (int)t) * 100f);
+		world = w;
+		stage = s;
+
+		min = (int)t / 60;
+		sec = (int)t - (min * 60);
+		rest = (int)((t - (int)t) * 100f);
 
 		claerTime = ValueToString(min,sec,rest);
 	}

@@ -14,6 +14,8 @@ public class StageInfoManager : MonoBehaviour {
 
 	public Text test;
 
+	public Text clearTime;
+
 	public void Set(int w,int s)
 	{
 		world = w;
@@ -24,6 +26,12 @@ public class StageInfoManager : MonoBehaviour {
 	{
 		SceneManager.sceneLoaded += OnSceneLoaded;
 		test.text = "world : " + world + ", stage : " + stage;
+
+		SaveDataInfo.StageSaveInfo info = SaveDataContainer.instance.saveData.FindStageSave(world,stage);
+		if(info != null)
+		{
+			clearTime.text = info.ValueToString();
+		}
 	}
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -33,6 +41,8 @@ public class StageInfoManager : MonoBehaviour {
 			GameRunningTest manager = GameObject.Find("GameObjectManager").GetComponent<GameRunningTest>();
 			manager.stageData = worldDatabase.data[world].stageData[stage].stageEventData;
 			manager.stageScript = worldDatabase.data[world].stageData[stage].stageDialog;
+			manager.stage = stage;
+			manager.world = world;
 		}
 
 		SceneManager.sceneLoaded -= OnSceneLoaded;
