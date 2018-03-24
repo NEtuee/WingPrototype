@@ -14,13 +14,16 @@ public class EnemyDatabase : ScriptableObject {
 		public int shotPoint;
 		public float speed;
 		public float angle;
+		public bool guided;
 
 		public BulletInfo(){}
-		public BulletInfo(int sp,float s,float a)
+		public BulletInfo(int sp,float s,float a,bool g)
 		{
 			shotPoint = sp;
 			speed = s;
 			angle = a;
+
+			guided = g;
 		}
 	}
 

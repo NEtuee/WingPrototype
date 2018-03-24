@@ -154,7 +154,7 @@ public class BulletManager : MonoBehaviour {
 		}
 	}
 
-	public BulletBase ObjectActive(Vector2 pos,float speed,float attack,float angle,BulletBase.BulletTeam team = BulletBase.BulletTeam.Enemy)
+	public BulletBase ObjectActive(Vector2 pos,float speed,float attack,float angle, bool guided = false,BulletBase.BulletTeam team = BulletBase.BulletTeam.Enemy)
 	{
 		if(disableFront == null)
 		{
@@ -163,7 +163,37 @@ public class BulletManager : MonoBehaviour {
 
 		++bulletCount;
 
-		disableFront.me.SetBullet(pos,speed,attack,angle,team).SetRadius(0.1f);
+		disableFront.me.SetBullet(pos,speed,attack,angle,guided, team).SetRadius(0.1f);
+
+		ObjectLink save = disableFront.back;
+		disableFront.back = null;
+
+		if(activeFront == null)
+		{
+			activeFront = disableFront;
+			activeBack = activeFront;
+		}
+		else
+		{
+			activeBack.back = disableFront;
+			activeBack = disableFront;
+		}
+
+		disableFront = save;
+
+		return activeBack.me;
+	}
+
+	public BulletBase ObjectActive(EnemyDatabase.EnemyInfo enemyInfo,float attack, EnemyDatabase.BulletInfo info, Vector2 pos,bool guided, BulletBase.BulletTeam team = BulletBase.BulletTeam.Enemy)
+	{
+		if(disableFront == null)
+		{
+			return null;
+		}
+
+		++bulletCount;
+
+		disableFront.me.SetBullet(pos + enemyInfo.shotPoint[info.shotPoint],info.speed,attack,info.angle,guided,team).SetRadius(0.1f);
 
 		ObjectLink save = disableFront.back;
 		disableFront.back = null;

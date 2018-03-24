@@ -240,4 +240,58 @@ public class MathEx {
 		return (point.x - circlePos.x) * (point.x - circlePos.x) +
 				(point.y - circlePos.y) * (point.y - circlePos.y) < radius * radius;
 	}
+
+	public static bool IntersectRectCircle(Vector2 circlePos, Vector2 rectPos, float radius, Define.RectF rect)
+	{
+		int zone = GetRectZone(circlePos,rectPos,rect);
+
+		// if(PointInRect(circlePos,rectPos,rect))
+		// {
+		// 	Debug.Log(zone);
+		// 	return true;
+		// }
+
+		if(zone == 1)
+		{
+			return rect.min.y - radius + rectPos.y <= circlePos.y;
+		}
+		else if(zone == 3)
+		{
+			return rect.min.x - radius + rectPos.x <= circlePos.x;
+		}
+		else if(zone == 4)
+		{
+			return true;
+		}
+		else if(zone == 5)
+		{
+			return rect.max.x + radius + rectPos.x >= circlePos.x;
+		}
+		else if(zone == 7)
+		{
+			return rect.max.y + radius + rectPos.y >= circlePos.y;
+		}
+		else
+		{
+			Vector2 vec = new Vector2(zone == 0 || zone == 6 ? rect.min.x : rect.max.x,
+					zone == 0 || zone == 2 ? rect.min.y : rect.max.y);
+
+			return PointInCircle(vec,circlePos,radius);
+		}
+	}
+
+	public static bool PointInRect(Vector2 point, Vector2 rectPos, Define.RectF rect)
+	{
+		return point.x >= rectPos.x + rect.min.x && point.x <= rectPos.x + rect.max.x &&
+				point.y >= rectPos.y + rect.min.y && point.y <= rectPos.y + rect.max.y;
+	}
+
+	public static int GetRectZone( Vector2 circlePos, Vector2 rectPos ,Define.RectF rect)
+	{
+    	int xZone = ( circlePos.x <  rect.min.x + rectPos.x ) ? 0 : ( circlePos.x >  rect.max.x + rectPos.x ) ? 2 : 1;
+    	int yZone = ( circlePos.y <  rect.min.y + rectPos.y ) ? 0 : ( circlePos.y >  rect.max.y + rectPos.y ) ? 2 : 1;
+    	int nZone = xZone + 3*yZone;
+
+    	return nZone;
+	}
 }

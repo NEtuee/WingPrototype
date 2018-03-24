@@ -99,6 +99,15 @@ public abstract class ObjectBase : MonoBehaviour {
 		return false;
 	}
 
+	public bool RectCircleIntersect(Define.RectF rect)
+	{
+		
+
+		return true;
+	}
+
+	
+
 	// public CircleCollider2D coll;
 
 	// public void GetCollider() {coll = GetComponent<CircleCollider2D>();}

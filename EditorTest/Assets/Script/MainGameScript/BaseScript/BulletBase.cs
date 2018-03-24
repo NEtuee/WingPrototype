@@ -14,6 +14,7 @@ public class BulletBase : ObjectBase {
 	public float speed;
 	public float attack;
 	public float angle;
+	public bool guided;
 	public float lifeTime;
 
 	public SpriteContainer.AnimationSet animationSet;
@@ -147,7 +148,7 @@ public class BulletBase : ObjectBase {
 		}
 	}
 
-	public BulletBase SetBullet(Vector2 pos, float s,float a,float ang ,BulletTeam t = BulletTeam.Enemy) //스프라이트 번호 etc
+	public BulletBase SetBullet(Vector2 pos, float s,float a,float ang, bool g ,BulletTeam t = BulletTeam.Enemy) //스프라이트 번호 etc
 	{
 		tp.position = pos;
 		speed = s;
@@ -158,10 +159,14 @@ public class BulletBase : ObjectBase {
 		feverAttack = false;
 		penetrate = false;
 		anime = false;
+		guided = g;
 
 		active = false;
 
-		direction = new Vector3(Mathf.Cos((angle * Mathf.Deg2Rad)),Mathf.Sin((angle * Mathf.Deg2Rad)));
+		if(guided)
+			direction = PlayerManager.instance.GetDirection(tp.position);
+		else
+			direction = new Vector3(Mathf.Cos((angle * Mathf.Deg2Rad)),Mathf.Sin((angle * Mathf.Deg2Rad)));
 
 		tp.localRotation = Quaternion.Euler(new Vector3(0f,0f,angle));
 

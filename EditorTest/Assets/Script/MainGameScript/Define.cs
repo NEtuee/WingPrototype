@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class Define {
 
+	[System.Serializable]
 	public class RectF
 	{
-		float left;
-		float up;
-		float right;
-		float down;
+		public Vector2 min;
+		public Vector2 max;
+
 
 		public RectF() {}
-		public RectF(float l,float u,float r,float d)
+		public RectF(float left,float up,float right,float down)
 		{
-			left = l;
-			up = u;
-			right = r;
-			down = d;
+			min = new Vector2(left,down);
+			max = new Vector2(right,up);
 		}
 	}
 

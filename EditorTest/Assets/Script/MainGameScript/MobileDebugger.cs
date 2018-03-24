@@ -17,6 +17,8 @@ public class MobileDebugger : MonoBehaviour {
 	{
 		text.text = "";
 		instance = this;
+
+		gameObject.SetActive(false);
 	}
 
 	public void SetKeep(string line, int num)

@@ -9,7 +9,7 @@ public class SpecialMove2 : ObjectBase {
 
 	public override void Initialize()
 	{
-
+		gameObject.SetActive(false);
 	}
 
 	public override void Progress()

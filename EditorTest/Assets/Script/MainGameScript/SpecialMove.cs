@@ -15,6 +15,7 @@ public class SpecialMove : ObjectBase {
 	public override void Initialize()
 	{
 		len = points.Length;
+		gameObject.SetActive(false);
 	}
 
 	public override void Progress()
@@ -32,7 +33,7 @@ public class SpecialMove : ObjectBase {
 		{
 			shot = 0f;
 			GameObjectManager.instance.bulletManager.ObjectActive(points[Random.Range(0,len)].position
-				,50f,3f,0,BulletBase.BulletTeam.Player).SetPenetrate(true).SetAnimation(GameObjectManager.instance.effectManager.spriteContainer.aniSet[2]);
+				,50f,3f,0,false,BulletBase.BulletTeam.Player).SetPenetrate(true).SetAnimation(GameObjectManager.instance.effectManager.spriteContainer.aniSet[2]);
 		}
 	}
 

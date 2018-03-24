@@ -12,16 +12,19 @@ public class BulletLineMarker : MonoBehaviour {
 	public int code;
 	public int frame;
 
+	public bool guided;
+
 	private Vector2 dir;
 	private bool select;
 	private static bool one;
 	private int count = 0;
 
-	public void Init(int c,int f,float a)
+	public void Init(int c,int f,float a,bool g)
 	{
 		code = c;
 		frame = f;
 		angle = a;
+		guided = g;
 
 		tp.rotation = Quaternion.Euler(0,0,angle);
 		ColorUpdate();
@@ -38,6 +41,7 @@ public class BulletLineMarker : MonoBehaviour {
 				EnemyEdit.instance.currMarker = this;
 				select = true;
 				one = true;
+				EnemyEdit.instance.SetPatternInfo();
 				ColorUpdate();
 			}
 
@@ -50,16 +54,18 @@ public class BulletLineMarker : MonoBehaviour {
 				EnemyEdit.instance.currMarker = null;
 				select = false;
 				one = false;
+
+				EnemyEdit.instance.DisablePatternInfo();
 				ColorUpdate();
 			}
 
 		}
-		if(select && Input.GetMouseButton(0) && count == 0)
-		{
-			GetMouseDirection();
-			tp.rotation = Quaternion.Euler(0,0,angle);
-			Progress();
-		}
+		// if(select && Input.GetMouseButton(0) && count == 0)
+		// {
+		// 	GetMouseDirection();
+		// 	SetRotation();
+		// 	Progress();
+		// }
 	}
 
 	public void GetMouseDirection()
@@ -69,9 +75,27 @@ public class BulletLineMarker : MonoBehaviour {
 		angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
 	}
 
+	public void SetRotation()
+	{
+		tp.rotation = Quaternion.Euler(0,0,angle);
+	}
+
+	public void DataSync()
+	{
+		angle = GetBulletInfo().angle;
+		
+		SetRotation();
+		EnemyEdit.instance.SetPatternInfo();
+	}
+
 	public void Progress()
 	{
 		EnemyEdit.instance.currInfo.bullet[frame].bulletInfo[code].angle = angle;
+	}
+
+	public EnemyDatabase.BulletInfo GetBulletInfo()
+	{
+		return EnemyEdit.instance.currInfo.bullet[frame].bulletInfo[code];
 	}
 
 	public void ColorUpdate()

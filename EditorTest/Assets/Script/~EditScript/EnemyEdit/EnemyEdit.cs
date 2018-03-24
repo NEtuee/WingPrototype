@@ -25,6 +25,11 @@ public class EnemyEdit : MonoBehaviour {
 
 	public Text[] shotPointUi;
 
+	public InputField patternShotPoint;
+	public InputField patternSpeed;
+	public InputField patternAngle;
+	public Toggle patternGuided;
+
 	public EnemyFrame currFrame;
 	public int frameCode = -1;
 	public FirePointMarker currPoint;
@@ -61,6 +66,7 @@ public class EnemyEdit : MonoBehaviour {
 			SetCurrInfo(0);
 		}
 
+		DisablePatternInfo();
 		CreateFrames();
 		FirePointUpdate();
 	}
@@ -218,6 +224,7 @@ public class EnemyEdit : MonoBehaviour {
 
 		frameCode = int.Parse(currFrame.name);
 		CreateLineMarker();
+		DisablePatternInfo();
 
 		return frameCode;
 	}
@@ -361,10 +368,10 @@ public class EnemyEdit : MonoBehaviour {
 			return;
 		}
 
-		EnemyDatabase.BulletInfo bi = new EnemyDatabase.BulletInfo(currShotPoint,10,0);
+		EnemyDatabase.BulletInfo bi = new EnemyDatabase.BulletInfo(currShotPoint,10,0,false);
 
 		currFrame.frame.bulletInfo.Add(bi);
-		CreateLineMarker(bi.shotPoint,currFrame.frame.bulletInfo.Count - 1,bi.angle);
+		CreateLineMarker(bi.shotPoint,currFrame.frame.bulletInfo.Count - 1,bi.angle,bi.guided);
 	}
 
 	public void CreateLineMarker(bool delete = true)
@@ -374,16 +381,16 @@ public class EnemyEdit : MonoBehaviour {
 		int count = currFrame.frame.bulletInfo.Count;
 		for(int i = 0; i < count; ++i)
 		{
-			CreateLineMarker(currFrame.frame.bulletInfo[i].shotPoint,i,currFrame.frame.bulletInfo[i].angle);
+			CreateLineMarker(currFrame.frame.bulletInfo[i].shotPoint,i,currFrame.frame.bulletInfo[i].angle,currFrame.frame.bulletInfo[i].guided);
 		}
 	}
 
-	public void CreateLineMarker(int shotCode,int c,float angle)
+	public void CreateLineMarker(int shotCode,int c,float angle,bool guided)
 	{
 		BulletLineMarker mk = Instantiate(LineMarkerOrigin,Vector3.zero,Quaternion.identity).GetComponent<BulletLineMarker>();
 		if(mk == null)
 			Debug.Log("chjec");
-		mk.Init(c,frameCode,angle);
+		mk.Init(c,frameCode,angle,guided);
 
 		mk.transform.SetParent(markers[shotCode].transform);
 		mk.transform.localPosition = Vector3.zero;
@@ -394,6 +401,42 @@ public class EnemyEdit : MonoBehaviour {
 	{
 		BulletScript bs = Instantiate(bulletOrigin,currInfo.shotPoint[bulletInfo.shotPoint],Quaternion.identity).GetComponent<BulletScript>();
 		bs.Init(bulletInfo.angle,bulletInfo.speed);
+	}
+
+	public void SetPatternInfo()
+	{
+		EnablePatternInfo();
+
+		patternShotPoint.text = currMarker.GetBulletInfo().shotPoint.ToString();
+		patternSpeed.text = currMarker.GetBulletInfo().speed.ToString();
+		patternAngle.text = currMarker.GetBulletInfo().angle.ToString();
+		patternGuided.isOn = currMarker.GetBulletInfo().guided;
+	}
+
+	public void SyncPatternInfo()
+	{
+		currMarker.GetBulletInfo().shotPoint = int.Parse(patternShotPoint.text);
+		currMarker.GetBulletInfo().speed = float.Parse(patternSpeed.text);
+		currMarker.GetBulletInfo().angle = float.Parse(patternAngle.text);
+		currMarker.GetBulletInfo().guided = patternGuided.isOn;
+
+		currMarker.DataSync();
+	}
+
+	public void EnablePatternInfo()
+	{
+		patternAngle.interactable = true;
+		patternGuided.interactable = true;
+		patternShotPoint.interactable = true;
+		patternSpeed.interactable = true;
+	}
+
+	public void DisablePatternInfo()
+	{
+		patternAngle.interactable = false;
+		patternGuided.interactable = false;
+		patternShotPoint.interactable = false;
+		patternSpeed.interactable = false;
 	}
 
 	public void TestStart()

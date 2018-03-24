@@ -85,6 +85,8 @@ public class SaveDataInfo {
 		500f, // 1
 		1000f, // 2
 		3000f, // 3
+		5000f, // 4
+		10000f, // 5
 	};
 
     public void IncreaseExp(float value)

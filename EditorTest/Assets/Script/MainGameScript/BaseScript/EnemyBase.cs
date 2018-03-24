@@ -20,6 +20,14 @@ public abstract class EnemyBase : ObjectBase {
 	private int lineCode = 0;
 	private float exp = 10f;
 
+	private float patternRate;
+	private float patternTime = 0f;
+
+	private float fireRate = 0f;
+	protected float fire = 0f;
+
+	private int firePos = 0;
+
 	public override void Initialize()
 	{
 		GetTransform();
@@ -54,6 +62,12 @@ public abstract class EnemyBase : ObjectBase {
 		moveTime = 0f;
 		lineCode = 0;
 
+		patternRate = enemyInfo.patternRate;
+		patternTime = 0f;
+
+		fireRate = 1f / enemyInfo.fps;
+		fire = 0f;
+
 		tp.position = pathInfo.startPoint.point;
 		posOrigin = pathInfo.startPoint;
 		targetPos = pathInfo.lines[lineCode++];
@@ -64,6 +78,8 @@ public abstract class EnemyBase : ObjectBase {
 		pathInfo = p;
 		enemyInfo = e;
 		
+		origin = pos;
+
 		InitValues();
 
 		gameObject.SetActive(true);
@@ -119,7 +135,7 @@ public abstract class EnemyBase : ObjectBase {
 		else
 			moveTime += targetPos.speed * Time.deltaTime;
 
-		tp.position = MathEx.GetEaseFormula(posOrigin,targetPos,moveTime,targetPos.type);
+		tp.position = MathEx.GetEaseFormula(posOrigin,targetPos,moveTime,targetPos.type,origin);
 
 		if(moveTime >= 1f)
 		{
@@ -129,7 +145,7 @@ public abstract class EnemyBase : ObjectBase {
 				return;
 			}
 
-			tp.position = MathEx.GetEaseFormula(posOrigin,targetPos,1f,pathInfo.lines[lineCode].type);
+			tp.position = MathEx.GetEaseFormula(posOrigin,targetPos,1f,pathInfo.lines[lineCode].type,origin);
 			moveTime = 0f;
 			posOrigin = targetPos;
 			targetPos = pathInfo.lines[lineCode++];
@@ -139,7 +155,30 @@ public abstract class EnemyBase : ObjectBase {
 	}
 	public virtual void Shot()
 	{
+		if(patternTime >= patternRate)
+		{
+			fire += Time.deltaTime;
+			if(fire >= fireRate)
+			{
+				int count = enemyInfo.bullet[firePos].bulletInfo.Count;
+				for(int i = 0; i < count; ++i)
+				{
+					GameObjectManager.instance.bulletManager.
+									ObjectActive(enemyInfo,10f,enemyInfo.bullet[firePos].bulletInfo[i],tp.position,enemyInfo.bullet[firePos].bulletInfo[i].guided).
+									SetAnimation(GameObjectManager.instance.effectManager.spriteContainer.aniSet[0]);
+				}
+				++firePos;
+				fire = 0f;
 
+				if(firePos >= enemyInfo.bullet.Length)
+				{
+					firePos = 0;
+					patternTime = 0f;
+				}
+			}
+		}
+		else
+			patternTime += Time.deltaTime;
 	}
 	public void SetExp(float e) {exp = e;}
 }

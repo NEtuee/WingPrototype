@@ -42,6 +42,8 @@ public class PlayerManager : ObjectBase {
 		target.IncreaseSpecial(value);
 	}
 
+	public Vector3 GetDirection(Vector3 pos) {return (target.tp.position - pos).normalized;}
+
 	public void CollisionCheck(BulletBase bullet)
 	{
 		if(target.Collision(bullet))
