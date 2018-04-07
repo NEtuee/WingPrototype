@@ -16,7 +16,7 @@ public class CharacterSelectManager : MonoBehaviour {
 
     public void Start()
     {
-        ButtonPressed(selected);
+        ButtonPressed(SaveDataContainer.instance.saveData.characterSelect);
     }
 
     public void SetInteractive()
@@ -30,17 +30,21 @@ public class CharacterSelectManager : MonoBehaviour {
 
     public void ButtonPressed(int num)
     {
-        SetInteractive();
         selected = num;
+        SaveDataContainer.instance.saveData.characterSelect = selected;
+
+        SetInteractive();
+        CharacterSelect();
+
         selectButtons[selected].interactable = false;
 
         //ChracterSelect();
     }
 
-    public void ChracterSelect()
+    public void CharacterSelect()
     {
         CharacterDatabase.CharacterInfo info = database.data[selected];
-        sprite.sprite = info.portrait;
+        //sprite.sprite = info.portrait;
         nameText.text = info.name;
         explText.text = info.expl;
     }

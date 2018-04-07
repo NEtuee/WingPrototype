@@ -11,8 +11,8 @@ public class SceneLoader : MonoBehaviour {
 	public static SceneLoader instance;
 
 	private float progress = 0f;
-	private int currSceneNum = 0;
-	private int prevSceneNum = 0;
+	private Define.SceneInfo currSceneNum = 0;
+	private Define.SceneInfo prevSceneNum = 0;
 	private bool sceneLoad = false;
 
 	public void Start()
@@ -22,9 +22,9 @@ public class SceneLoader : MonoBehaviour {
 	}
 
 	public bool SceneLoading() {return sceneLoad;}
-	public int GetCurrScene() {return currSceneNum;}
+	public Define.SceneInfo GetCurrScene() {return currSceneNum;}
 
-	public void LoadScene(int level)
+	public void LoadScene(Define.SceneInfo level)
 	{
 		if(sceneLoad)
 			return;
@@ -41,9 +41,11 @@ public class SceneLoader : MonoBehaviour {
 		LoadScene(prevSceneNum);
 	}
 
-	IEnumerator LoadSceneCorou(int lv)
+	IEnumerator LoadSceneCorou(Define.SceneInfo lv)
 	{
-		while(true)
+        currSceneNum = lv;
+
+        while (true)
 		{
 			Vector3 pos = fader.transform.localPosition;
 			pos.x -= fadeSpeed * Time.deltaTime;
@@ -59,7 +61,7 @@ public class SceneLoader : MonoBehaviour {
 			yield return null;
 		}
 
-		AsyncOperation async = SceneManager.LoadSceneAsync(lv);
+		AsyncOperation async = SceneManager.LoadSceneAsync((int)lv);
 		async.allowSceneActivation = false;
 
 		while(!async.isDone)
@@ -73,8 +75,6 @@ public class SceneLoader : MonoBehaviour {
 
 			yield return null;
 		}
-
-		currSceneNum = lv;
 
 		while(true)
 		{

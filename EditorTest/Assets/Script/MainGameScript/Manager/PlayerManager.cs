@@ -46,7 +46,7 @@ public class PlayerManager : ObjectBase {
 
 	public void CollisionCheck(BulletBase bullet)
 	{
-		if(target.Collision(bullet))
+		if(bullet.Collision(target))
 		{
 			target.CollisionCheck(bullet);
 		}

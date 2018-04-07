@@ -7,7 +7,7 @@ public class SceneLoaderRelayer : MonoBehaviour {
 
 	public void LoadScene(int lv)
 	{
-		SceneLoader.instance.LoadScene(lv);
+		SceneLoader.instance.LoadScene((Define.SceneInfo)lv);
 	}
 
 	public void LoadPrevScene()

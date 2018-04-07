@@ -45,18 +45,7 @@ public class BulletBase : ObjectBase {
 	{
 		tp.position += speed * direction * Time.deltaTime;
 
-		if(anime)
-		{
-			aniTime += Time.deltaTime;
-			if(aniTime >= 0.0625)
-			{
-				sprRenderer.sprite = animationSet.sprites[aniCount++];
-				aniTime = 0f;
-
-				if(aniCount > animationSet.aniInfo[0].end)
-					aniCount = 0;
-			}
-		}
+		Animation(0);
 
 		if(lifeTime != -1)
 		{
@@ -65,16 +54,16 @@ public class BulletBase : ObjectBase {
 				DisableBullet();
 		}
 
-		if(tp.position.x > 30f || tp.position.x < -30f || tp.position.y > 20f || tp.position.y < -20f)
+		if(tp.position.x > 20f || tp.position.x < -20f || tp.position.y > 30f || tp.position.y < -30f)
 		{
 			DisableBullet();
 		}
-		else if(tp.position.x > 24f || tp.position.x < -24f || tp.position.y > 14f || tp.position.y < -14f)
+		else if(tp.position.x > 14f || tp.position.x < -14f || tp.position.y > 24f || tp.position.y < -24f)
 		{
 			if(active)
 				DisableBullet();
 		}
-		else if(tp.position.x < 24f && tp.position.x > -24f && tp.position.y < 14f && tp.position.y > -14f && !active)
+		else if(tp.position.x < 14f && tp.position.x > -14f && tp.position.y < 24f && tp.position.y > -24f && !active)
 		{
 			active = true;
 		}
@@ -83,6 +72,32 @@ public class BulletBase : ObjectBase {
 	public override void Release()
 	{
 
+	}
+
+	public bool Animation(int state)
+	{
+		if(anime)
+		{
+			aniTime += Time.deltaTime;
+			if(aniTime >= 0.0625)
+			{
+				sprRenderer.sprite = animationSet.sprites[aniCount++];
+				aniTime = 0f;
+
+				if(aniCount > animationSet.aniInfo[state].end)
+				{
+					if(animationSet.aniInfo[state].loop)
+						aniCount = 0;
+					else
+					{
+						anime = false;
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
 	}
 
 	public virtual void CopyList()
@@ -187,18 +202,30 @@ public class BulletBase : ObjectBase {
 	public BulletBase SetAnimation(SpriteContainer.AnimationSet anim)
 	{
 		animationSet = anim;
+		
+		AnimationInit();
+
+		return this;
+	}
+
+	public void AnimationInit()
+	{
 		aniTime = 0f;
 		aniCount = 0;
 
 		sprRenderer.sprite = animationSet.sprites[aniCount++];
 		anime = true;
-
-		return this;
 	}
 
 	public BulletBase SetPenetrate(bool value)
 	{
 		penetrate = value;
+		return this;
+	}
+
+	public BulletBase SetAttack(float value)
+	{
+		attack = value;
 		return this;
 	}
 

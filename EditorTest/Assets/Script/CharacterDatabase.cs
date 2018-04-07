@@ -13,6 +13,8 @@ public class CharacterDatabase : ScriptableObject
         public Sprite portrait;
         public string name;
         public string expl;
+
+        public GameObject objectSet;
     }
 
     public CharacterInfo[] data;

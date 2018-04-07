@@ -11,9 +11,7 @@ public class UIManager : ObjectBase {
 
 	public Image circulaGague;
 	public Image hpbar;
-	public Image feverbar;
 	public Image specialGague;
-	public Button attackButton;
 	public Button feverButton;
 	public Button specialButton;
 
@@ -26,11 +24,9 @@ public class UIManager : ObjectBase {
 	{
 		circulaGague.fillAmount = PlayerManager.instance.target.GetCurrFire() / PlayerManager.instance.target.GetFire();
 		hpbar.fillAmount = PlayerManager.instance.target.GetCurrHp() / PlayerManager.instance.target.GetHp();
-		feverbar.fillAmount = PlayerManager.instance.target.GetCurrFever() / PlayerManager.instance.target.GetFever();
 		specialGague.fillAmount = PlayerManager.instance.target.GetCurrSpecial() / PlayerManager.instance.target.GetSpecial();
 
 		feverButton.interactable = PlayerManager.instance.target.GetFeverCheck();
-		attackButton.interactable = !PlayerManager.instance.target.GetFeverEnabled();
 		specialButton.interactable = PlayerManager.instance.target.GetSpecialCheck();
 
 		enemyCount.text = EnemyManager.instance.count + " :";
@@ -47,7 +43,6 @@ public class UIManager : ObjectBase {
 		GameObjectManager.instance.PauseSec(2f);
 		PlayerManager.instance.target.ActiveFever();
 		feverButton.interactable = false;
-		attackButton.interactable = false;
 		specialButton.interactable = false;
 	}
 
@@ -56,13 +51,12 @@ public class UIManager : ObjectBase {
 		GameObjectManager.instance.PauseSec(2f);
 		PlayerManager.instance.target.ActiveSpecialMove();
 		feverButton.interactable = false;
-		attackButton.interactable = false;
 		specialButton.interactable = false;
 	}
 
 	public void ChracterLoad(int value)
 	{
-		GameObjectManager.instance.GetComponent<DataManager>().PlayerInfoSave(value);
+		SaveDataContainer.instance.saveData.characterSelect = value;
 		SceneManager.LoadScene(0);
 	}
 

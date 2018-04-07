@@ -27,10 +27,10 @@ public class StageSelectManager : MonoBehaviour {
 		{
 			GameObject obj = new GameObject();
 			StageInfoRelayer re = obj.AddComponent<StageInfoRelayer>();
-
+            Debug.Log(stage.stage);
 			re.Set(world,stage.stage);
 
-			SceneLoader.instance.LoadScene(4);
+			SceneLoader.instance.LoadScene(Define.SceneInfo.StageInfo);
 		}
 	}
 

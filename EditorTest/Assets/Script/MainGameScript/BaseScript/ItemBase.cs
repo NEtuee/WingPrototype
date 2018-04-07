@@ -85,25 +85,25 @@ public class ItemBase : ObjectBase {
 
 	public virtual void EdgeCheck() //화면 끝 체크
 	{
-		if(tp.position.x > 23f && collisionPoint != 2)
+		if(tp.position.x > 13f && collisionPoint != 2)
 		{
 			dir.x *= -1f;
 
 			collisionPoint = 2;
 		}
-		if(tp.position.x < -23f && collisionPoint != 0)
+		if(tp.position.x < -13f && collisionPoint != 0)
 		{
             dir.x *= -1f;
 
 			collisionPoint = 0;
 		}
-		if(tp.position.y > 13f && collisionPoint != 1)
+		if(tp.position.y > 23f && collisionPoint != 1)
 		{
 			dir.y *= -1f;
 
 			collisionPoint = 1;
 		}
-		if(tp.position.y < -13f && collisionPoint != 3)
+		if(tp.position.y < -23f && collisionPoint != 3)
 		{
 			dir.y *= -1f;
 

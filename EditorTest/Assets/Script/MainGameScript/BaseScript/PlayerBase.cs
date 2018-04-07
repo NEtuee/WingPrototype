@@ -81,6 +81,7 @@ public abstract class PlayerBase : ObjectBase {
 	public float GetFire() {return fireRate;}
 
 	public float GetCurrFever() {return fever;}
+	public float GetCurrFeverGague() {return fever / feverGague;}
 	public float GetCurrSpecial() {return special;}
 	public float GetCurrFire() {return fire;}
 

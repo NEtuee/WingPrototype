@@ -6,7 +6,7 @@ public class SetScreen : MonoBehaviour {
 
 	public void Awake()
 	{
-		Screen.SetResolution( Screen.width, (Screen.width * 16) / 9 , true);
+		Screen.SetResolution( Screen.width, (Screen.width * 9) / 16 , true);
 		Destroy(this);
 	}
 }

@@ -26,6 +26,8 @@ public class GameRunningTest : ObjectBase {
 
     public bool dialogActive = false;
 
+    public bool obstacleGen = false;
+
     private float gameTime = 0f;
     private float progressTime = 0f;
 
@@ -39,10 +41,11 @@ public class GameRunningTest : ObjectBase {
     public override void Initialize()
     {
         instance = this;
-        DataManager datam = GetComponent<DataManager>();
+
+        Debug.Log(stage);
 
         LoadData(stageData.text.Split('\n'));
-
+        Debug.Log(SceneLoader.instance.GetCurrScene());
         InitEvent();
     }
 
@@ -84,8 +87,10 @@ public class GameRunningTest : ObjectBase {
 
             if(!testMode)
             {
-				StageClearInfo.instance.SetInfo(true,gameTime,world,stage);
-                SceneLoader.instance.LoadScene(6);
+                Debug.Log("true");
+
+                StageClearInfo.instance.SetInfo(true,gameTime,world,stage);
+                SceneLoader.instance.LoadScene(Define.SceneInfo.Result);
             }
             return;
         }
@@ -95,8 +100,10 @@ public class GameRunningTest : ObjectBase {
             progressCheck = false;
             button.interactable = true;
 
+            Debug.Log("false");
+
 			StageClearInfo.instance.SetInfo(false,gameTime,world,stage);
-            SceneLoader.instance.LoadScene(6);
+            SceneLoader.instance.LoadScene(Define.SceneInfo.Result);
             
             return;
         }
@@ -183,7 +190,9 @@ public class GameRunningTest : ObjectBase {
         MobileDebugger.instance.AddLine(data[1]);
         MobileDebugger.instance.AddLine(data[2]);
         MobileDebugger.instance.AddLine(data[3]);
+
         int dataPos = 0;
+        
         fps = 100f / (float.Parse(data[dataPos++])) / 100f;
 
         while(true)

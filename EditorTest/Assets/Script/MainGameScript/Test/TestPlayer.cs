@@ -72,29 +72,30 @@ public class TestPlayer : PlayerBase {
 #if UNITY_EDITOR
 		if(Input.GetMouseButtonDown(0))
 		{
-			if(Input.mousePosition.x > Screen.width / 3)
-			{
-				if(GetFeverEnabled())
-				{
-					Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				 	pos.z = 0;
-				 	attackObject.transform.position = pos;
-					isAttack = true;
+			// if(Input.mousePosition.x > Screen.width / 3)
+			// {
+			// 	if(GetFeverEnabled())
+			// 	{
+			// 		Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			// 	 	pos.z = 0;
+			// 	 	attackObject.transform.position = pos;
+			// 		isAttack = true;
 
-					attackObject.Active();
-				}
-			}
-			else
+			// 		attackObject.Active();
+			// 	}
+			// }
+			// else
 			{
 				isMove = true;
+				isAttack = true;
 				playerOrigin = tp.position;
 				touchOrigin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			}
 		}
 		else if(Input.GetMouseButton(0) && isMove)
 		{
-			Vector2 pos = new Vector2(playerOrigin.x,playerOrigin.y - (touchOrigin.y - Camera.main.ScreenToWorldPoint(Input.mousePosition).y));
-			pos.y = pos.y > 12.5f ? 12.5f : (pos.y < -12.5f ? -12.5f : pos.y);
+			Vector2 pos = new Vector2(playerOrigin.x - (touchOrigin.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x)
+									,playerOrigin.y - (touchOrigin.y - Camera.main.ScreenToWorldPoint(Input.mousePosition).y));
 
 			//moveDist = pos.y - tp.position.y;
 			//isUp = tp.position.y > pos.y ? true : false;
@@ -108,6 +109,7 @@ public class TestPlayer : PlayerBase {
 		else if(Input.GetMouseButtonUp(0))
 		{
 			isMove = false;
+			isAttack = false;
 			//moveDist = 0f;
 
 			if(GetFeverEnabled())
@@ -123,23 +125,23 @@ public class TestPlayer : PlayerBase {
 
 				if(touchs.phase == TouchPhase.Began)
 				{
-					if(touchs.position.x > Screen.width / 3) //공격
-					{
-						MobileDebugger.instance.AddLine("오른쪽 터치");
-						MobileDebugger.instance.SetKeep("공격 눌림 : " + Input.touchCount,1);
+					// if(touchs.position.x > Screen.width / 3) //공격
+					// {
+					// 	MobileDebugger.instance.AddLine("오른쪽 터치");
+					// 	MobileDebugger.instance.SetKeep("공격 눌림 : " + Input.touchCount,1);
 
-						if(GetFeverEnabled())
-						{
-							atkTouch = touchs;
-							Vector3 pos = Camera.main.ScreenToWorldPoint(touchs.position);
-				 			pos.z = 0;
-				 			attackObject.transform.position = pos;
+					// 	if(GetFeverEnabled())
+					// 	{
+					// 		atkTouch = touchs;
+					// 		Vector3 pos = Camera.main.ScreenToWorldPoint(touchs.position);
+				 	// 		pos.z = 0;
+				 	// 		attackObject.transform.position = pos;
 
-							attackObject.Active();
-							isAttack = true;
-						}
-					}
-					else
+					// 		attackObject.Active();
+					// 		isAttack = true;
+					// 	}
+					// }
+					// else
 					{
 						MobileDebugger.instance.AddLine("왼쪽 터치");
 						MobileDebugger.instance.SetKeep("움직임 눌림 : " + Input.touchCount,2);
@@ -148,6 +150,7 @@ public class TestPlayer : PlayerBase {
 						playerOrigin = tp.position;
 				 		touchOrigin = Camera.main.ScreenToWorldPoint(touchs.position);
 
+						isAttack = true;
 					}
 				}
 				else if(touchs.phase == TouchPhase.Moved)
@@ -174,6 +177,7 @@ public class TestPlayer : PlayerBase {
 					}
 					else if(touchs.fingerId == movementTouch.fingerId)
 					{
+						isAttack = false;
 						MobileDebugger.instance.SetKeep("움직임 안눌림",2);
 						movementTouch.fingerId = -1;
 					}
@@ -192,8 +196,9 @@ public class TestPlayer : PlayerBase {
 
 	public override void Move(Vector2 touchPos)
 	{
-		Vector2 pos = new Vector2(playerOrigin.x,playerOrigin.y - (touchOrigin.y - Camera.main.ScreenToWorldPoint(touchPos).y));
-		pos.y = pos.y > 12.5f ? 12.5f : (pos.y < -12.5f ? -12.5f : pos.y);
+		Vector2 pos = new Vector2(playerOrigin.x - (touchOrigin.x - Camera.main.ScreenToWorldPoint(touchPos).x)
+								,playerOrigin.y - (touchOrigin.y - Camera.main.ScreenToWorldPoint(touchPos).y));
+
 		tp.position = pos;
 	}
 	public override void Attack()
@@ -209,8 +214,8 @@ public class TestPlayer : PlayerBase {
 		// GameObjectManager.instance.bulletManager.ObjectActive(tp.position,40f,1f,5f,BulletBase.BulletTeam.Player);
 		// GameObjectManager.instance.bulletManager.ObjectActive(tp.position,40f,1f,2.5f,BulletBase.BulletTeam.Player);
 		Vector3 pos = tp.position;
-		pos.x += 3f;
-		GameObjectManager.instance.bulletManager.ObjectActive(pos,50f,1f,0f,false,BulletBase.BulletTeam.Player).
+		pos.y += 3f;
+		GameObjectManager.instance.bulletManager.ObjectActive(pos,100f,1f,90f,false,BulletBase.BulletTeam.Player).
 			SetAnimation(GameObjectManager.instance.effectManager.spriteContainer.aniSet[5]).SetRadius(1f);
 		// GameObjectManager.instance.bulletManager.ObjectActive(tp.position,40f,1f,-2.5f,BulletBase.BulletTeam.Player);
 		// GameObjectManager.instance.bulletManager.ObjectActive(tp.position,40f,1f,-5f,BulletBase.BulletTeam.Player);

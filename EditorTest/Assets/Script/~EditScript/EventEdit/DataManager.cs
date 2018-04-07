@@ -15,16 +15,6 @@ public class DataManager : MonoBehaviour {
 	private bool saveCrash = false;
 	private string saveName = "save.txt";
 
-	public int PlayerInfoLoad()
-	{
-		return PlayerPrefs.GetInt("player");
-	}
-
-	public void PlayerInfoSave(int value)
-	{
-		PlayerPrefs.SetInt("player",value);
-	}
-
 #if UNITY_EDITOR
 	public void SaveAllData()
 	{

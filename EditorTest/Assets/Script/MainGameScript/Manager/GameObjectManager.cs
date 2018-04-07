@@ -33,15 +33,12 @@ public class GameObjectManager : MonoBehaviour {
     private ObjectLink frontLink;
     private ObjectLink backLink;
 
-	int data = 0;
-
     private void Start()
     {
-		data = GetComponent<DataManager>().PlayerInfoLoad();
-
-		MobileDebugger.instance.AddLine(data.ToString());
-
-		Instantiate(players[data],Vector3.zero,Quaternion.identity);
+		Instantiate(DatabaseContainer.instance.characterDatabase.
+					data[SaveDataContainer.instance.saveData.characterSelect].objectSet,
+					Vector3.zero,Quaternion.identity);
+		// Instantiate(players[data],Vector3.zero,Quaternion.identity);
 
         FindObjects();
 

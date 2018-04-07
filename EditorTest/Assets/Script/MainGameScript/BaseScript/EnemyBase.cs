@@ -164,7 +164,7 @@ public abstract class EnemyBase : ObjectBase {
 				for(int i = 0; i < count; ++i)
 				{
 					GameObjectManager.instance.bulletManager.
-									ObjectActive(enemyInfo,10f,enemyInfo.bullet[firePos].bulletInfo[i],tp.position,enemyInfo.bullet[firePos].bulletInfo[i].guided).
+									ObjectActive(enemyInfo,1f,enemyInfo.bullet[firePos].bulletInfo[i],tp.position,enemyInfo.bullet[firePos].bulletInfo[i].guided).
 									SetAnimation(GameObjectManager.instance.effectManager.spriteContainer.aniSet[0]);
 				}
 				++firePos;

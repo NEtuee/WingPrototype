@@ -112,7 +112,7 @@ public class EnemyManager : ObjectBase {
 
 				if(!list[j].gameObject.activeSelf)
 					continue;
-				if(list[j].Collision(bullet))
+				if(/*bullet.Collision(list[j]))*/list[j].Collision(bullet))
 				{
 					list[j].CollisionCheck(bullet);
 				}

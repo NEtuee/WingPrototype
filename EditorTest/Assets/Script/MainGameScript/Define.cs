@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class Define {
 
+    public enum SceneInfo
+    {
+        Title,
+        MainMenu,
+        CharacterSelect,
+		Shop,
+        StageSelect,
+        StageInfo,
+        MainStage,
+        Result,
+    };
+
 	[System.Serializable]
 	public class RectF
 	{
