@@ -167,8 +167,12 @@
      <Compile Include="Assets\TouchEffect.cs" />
      <Compile Include="Assets\UIParticlePlacer.cs" />
      <Compile Include="Assets\collTest.cs" />
+     <None Include="Assets\StageData\ScoreTest_script.txt" />
+     <None Include="Assets\StageData\enemyTest_Script.txt" />
      <None Include="Assets\StageData\StageDataForGame.txt" />
+     <None Include="Assets\StageData\enemyTest.txt" />
      <None Include="Assets\StageData\StageDataForGame_Script.txt" />
+     <None Include="Assets\StageData\ScoreTest.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

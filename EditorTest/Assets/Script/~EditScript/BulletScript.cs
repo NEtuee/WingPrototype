@@ -19,8 +19,8 @@ public class BulletScript : MonoBehaviour {
 	{
 		if(!Test.instance.staticEvent)
 		{
-			if(tp.position.x < -25f || tp.position.x > 25f
-				|| tp.position.y < -15f || tp.position.y > 15f)
+			if(tp.position.x < -15f || tp.position.x > 15f
+				|| tp.position.y < -25f || tp.position.y > 25f)
 			{
 				Destroy(gameObject);
 			}

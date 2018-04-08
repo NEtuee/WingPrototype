@@ -48,6 +48,7 @@ public class GameObjectManager : MonoBehaviour {
 		effectManager.CreateObjects(100);
 		EnemyManager.instance.CreateObjects(0,30);
 		EnemyManager.instance.CreateObjects(1,10);
+		EnemyManager.instance.CreateObjects(2,10);
 		//EnemyManager.instance.ObjectActive(0,Vector3.zero,10f);
 		//bulletManager.ObjectActive(Vector2.zero,3f,1f,0f);
     }

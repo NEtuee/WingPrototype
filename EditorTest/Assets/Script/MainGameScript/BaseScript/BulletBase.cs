@@ -109,8 +109,9 @@ public class BulletBase : ObjectBase {
 		}
 		else
 		{
-			scoreTime += Time.deltaTime * 3f;
-			tp.position = MathEx.LinearVector2(scoreStartPos,PlayerManager.instance.target.tp.position,scoreTime);
+			//scoreTime += Time.deltaTime * 3f;
+			scoreTime += 50f * Time.deltaTime / Vector3.Distance(scoreStartPos,PlayerManager.instance.target.tp.position);
+			tp.position = MathEx.EaseOutCubicVector2(scoreStartPos,PlayerManager.instance.target.tp.position,scoreTime);
 
 			if(scoreTime >= 1f)
 			{
