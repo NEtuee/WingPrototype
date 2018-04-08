@@ -17,7 +17,7 @@ public abstract class PlayerBase : ObjectBase {
 	public bool isAttack = false;
 
 	protected Vector2 touchOrigin;
-	protected Vector2 playerOrigin;
+	protected Vector3 playerOrigin;
 
 	protected AttackType attackType;
 
@@ -73,6 +73,14 @@ public abstract class PlayerBase : ObjectBase {
 		// 	if(moveDist <= 0f)
 		// 		moveDist = 0f;
 		// }
+	}
+
+	public virtual void BulletActive()
+	{
+		Vector3 pos = tp.position;
+		pos.y += 3f;
+		GameObjectManager.instance.bulletManager.ObjectActive(this,pos,100f,SaveDataContainer.instance.saveData.GetCurrCharInfo().GetAttackLevel(),90f,false,false,BulletBase.BulletTeam.Player).
+			SetAnimation(GameObjectManager.instance.effectManager.spriteContainer.aniSet[5]).SetRadius(1f);
 	}
 
 	public float GetFever() {return feverGague;}

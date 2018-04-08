@@ -91,6 +91,7 @@ public abstract class EnemyBase : ObjectBase {
 
 		gameObject.SetActive(false);
 	}
+	
 	public virtual void CollisionCheck(BulletBase bullet)
 	{
 		// hp -= bullet.attack;
@@ -164,7 +165,7 @@ public abstract class EnemyBase : ObjectBase {
 				for(int i = 0; i < count; ++i)
 				{
 					GameObjectManager.instance.bulletManager.
-									ObjectActive(enemyInfo,1f,enemyInfo.bullet[firePos].bulletInfo[i],tp.position,enemyInfo.bullet[firePos].bulletInfo[i].guided).
+									ObjectActive(this,enemyInfo,1f,enemyInfo.bullet[firePos].bulletInfo[i],tp.position,enemyInfo.bullet[firePos].bulletInfo[i].guided,enemyInfo.isScoreObj).
 									SetAnimation(GameObjectManager.instance.effectManager.spriteContainer.aniSet[0]);
 				}
 				++firePos;

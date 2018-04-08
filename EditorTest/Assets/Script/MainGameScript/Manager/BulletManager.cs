@@ -154,7 +154,7 @@ public class BulletManager : MonoBehaviour {
 		}
 	}
 
-	public BulletBase ObjectActive(Vector2 pos,float speed,float attack,float angle, bool guided = false,BulletBase.BulletTeam team = BulletBase.BulletTeam.Enemy)
+	public BulletBase ObjectActive(ObjectBase sht,Vector2 pos,float speed,float attack,float angle, bool scObj, bool guided = false,BulletBase.BulletTeam team = BulletBase.BulletTeam.Enemy)
 	{
 		if(disableFront == null)
 		{
@@ -163,7 +163,7 @@ public class BulletManager : MonoBehaviour {
 
 		++bulletCount;
 
-		disableFront.me.SetBullet(pos,speed,attack,angle,guided, team).SetRadius(0.1f);
+		disableFront.me.SetBullet(sht,pos,speed,attack,angle,guided,scObj, team).SetRadius(0.1f);
 
 		ObjectLink save = disableFront.back;
 		disableFront.back = null;
@@ -184,7 +184,7 @@ public class BulletManager : MonoBehaviour {
 		return activeBack.me;
 	}
 
-	public BulletBase ObjectActive(EnemyDatabase.EnemyInfo enemyInfo,float attack, EnemyDatabase.BulletInfo info, Vector2 pos,bool guided, BulletBase.BulletTeam team = BulletBase.BulletTeam.Enemy)
+	public BulletBase ObjectActive(ObjectBase sht, EnemyDatabase.EnemyInfo enemyInfo,float attack, EnemyDatabase.BulletInfo info, Vector2 pos, bool scObj, bool guided, BulletBase.BulletTeam team = BulletBase.BulletTeam.Enemy)
 	{
 		if(disableFront == null)
 		{
@@ -193,7 +193,7 @@ public class BulletManager : MonoBehaviour {
 
 		++bulletCount;
 
-		disableFront.me.SetBullet(pos + enemyInfo.shotPoint[info.shotPoint],info.speed,attack,info.angle,guided,team).SetRadius(0.1f);
+		disableFront.me.SetBullet(sht,pos + enemyInfo.shotPoint[info.shotPoint],info.speed,attack,info.angle,guided,scObj,team).SetRadius(0.1f);
 
 		ObjectLink save = disableFront.back;
 		disableFront.back = null;
@@ -276,7 +276,7 @@ public class BulletManager : MonoBehaviour {
 		{
 			link.me.CopyList();
 
-			if(link.me.gameObject.activeSelf)
+			if(!link.me.IsScoreObject() && link.me.gameObject.activeSelf)
 			{
 				if(link.me.IsEnemyBullet())
 					PlayerManager.instance.CollisionCheck(link.me);

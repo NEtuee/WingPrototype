@@ -87,7 +87,7 @@ public class ShotBow : ObjectBase {
 
 
 		GameObjectManager.instance.bulletManager.ObjectActive
-		(PlayerManager.instance.target.tp.position,dist * 20,dist,angle,false,BulletBase.BulletTeam.Player).
+		(PlayerManager.instance.target,PlayerManager.instance.target.tp.position,dist * 20,dist,angle,false,false,BulletBase.BulletTeam.Player).
 			SetPenetrate(true).SetAnimation(GameObjectManager.instance.effectManager.spriteContainer.aniSet[4]).feverAttack = true;
 
 		CameraControll.instance.Shake(dist / 10,dist / 2);

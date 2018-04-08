@@ -202,10 +202,7 @@ public class TestPlayer2 : PlayerBase {
 
 		fire = 0f;
 
-		Vector3 pos = tp.position;
-		pos.x += 3f;
-		GameObjectManager.instance.bulletManager.ObjectActive(pos,50f,1f,0f,false,BulletBase.BulletTeam.Player).
-			SetAnimation(GameObjectManager.instance.effectManager.spriteContainer.aniSet[5]).SetRadius(1f);
+		BulletActive();
 
 		// GameObjectManager.instance.bulletManager.ObjectActive(tp.position,40f,1f,5f,BulletBase.BulletTeam.Player);
 		// GameObjectManager.instance.bulletManager.ObjectActive(tp.position,40f,1f,2.5f,BulletBase.BulletTeam.Player);

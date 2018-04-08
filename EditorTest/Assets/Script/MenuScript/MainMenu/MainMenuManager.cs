@@ -9,6 +9,7 @@ public class MainMenuManager : MonoBehaviour {
 	public Text userLevel;
 	public Text userName;
 	public Text gold;
+	public Text zem;
 
 	public void Start()
 	{
@@ -20,6 +21,7 @@ public class MainMenuManager : MonoBehaviour {
 		userLevel.text = SaveDataContainer.instance.saveData.level.ToString();
 		userName.text = SaveDataContainer.instance.saveData.userName;
 		gold.text = SaveDataContainer.instance.saveData.gold.ToString();
+		zem.text = SaveDataContainer.instance.saveData.zem.ToString();
 
 		float width = expBar.sprite.texture.width;
 		float per = SaveDataContainer.instance.saveData.GetLevelUpPer();

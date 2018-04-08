@@ -8,6 +8,7 @@ public class StageClearInfo : MonoBehaviour {
 
 	public int obtGold = 0;
 	public float obtExp = 0f;
+	public int obtScore = 0;
 
 	public bool clear = false;
 

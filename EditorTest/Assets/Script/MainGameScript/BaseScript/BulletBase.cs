@@ -24,12 +24,22 @@ public class BulletBase : ObjectBase {
 	public bool penetrate = false;
 	public bool active = false;
 
+	public bool isScoreObj = false;
+
 	public List<ObjectBase> collisionObjects = new List<ObjectBase>();
 	public List<ObjectBase> exitObjects = new List<ObjectBase>();
 
 	public SpriteRenderer sprRenderer;
 
+	public ObjectBase shooter = null;
+
+	protected bool scoreObj = false;
+	protected bool scoreStay = false;
+	
+	protected float scoreTime = 0f;
+
 	protected Vector3 direction;
+	protected Vector3 scoreStartPos;
 
 	public override void Initialize()
 	{
@@ -43,6 +53,23 @@ public class BulletBase : ObjectBase {
 	private int aniCount = 0;
 	public override void Progress()
 	{
+		if(!scoreObj)
+			BulletProgress();
+		else
+			ScoreObjectProgress();
+	}
+
+	public override void Release()
+	{
+
+	}
+
+	public void BulletProgress()
+	{
+		if(shooter.IsDead())
+			SetScoreObject();
+
+
 		tp.position += speed * direction * Time.deltaTime;
 
 		Animation(0);
@@ -69,9 +96,28 @@ public class BulletBase : ObjectBase {
 		}
 	}
 
-	public override void Release()
+	public void ScoreObjectProgress()
 	{
+		if(scoreStay)
+		{
+			scoreTime += Time.deltaTime;
+			if(scoreTime >= 0.5f)
+			{
+				scoreTime = 0f;
+				scoreStay = false;
+			}
+		}
+		else
+		{
+			scoreTime += Time.deltaTime * 3f;
+			tp.position = MathEx.LinearVector2(scoreStartPos,PlayerManager.instance.target.tp.position,scoreTime);
 
+			if(scoreTime >= 1f)
+			{
+				tp.position = PlayerManager.instance.target.tp.position;
+				DisableScoreObject();
+			}
+		}
 	}
 
 	public bool Animation(int state)
@@ -99,6 +145,8 @@ public class BulletBase : ObjectBase {
 
 		return false;
 	}
+
+	public virtual bool IsScoreObject() {return scoreObj;}
 
 	public virtual void CopyList()
 	{
@@ -163,8 +211,10 @@ public class BulletBase : ObjectBase {
 		}
 	}
 
-	public BulletBase SetBullet(Vector2 pos, float s,float a,float ang, bool g ,BulletTeam t = BulletTeam.Enemy) //스프라이트 번호 etc
+	public BulletBase SetBullet(ObjectBase sht, Vector2 pos, float s,float a,float ang, bool g, bool scObj = false, BulletTeam t = BulletTeam.Enemy) //스프라이트 번호 etc
 	{
+		shooter = sht;
+
 		tp.position = pos;
 		speed = s;
 		attack = a;
@@ -177,6 +227,11 @@ public class BulletBase : ObjectBase {
 		guided = g;
 
 		active = false;
+
+		scoreObj = false;
+		scoreStay = true;
+		isScoreObj = scObj;
+		scoreTime = 0f;
 
 		if(guided)
 			direction = PlayerManager.instance.GetDirection(tp.position);
@@ -241,8 +296,24 @@ public class BulletBase : ObjectBase {
 		if(!gameObject.activeSelf)
 			Debug.Log("Check");
 		GameObjectManager.instance.bulletManager.bulletCount--;
-		gameObject.SetActive(false);
 		DeleteExitObjects();
+		gameObject.SetActive(false);
+	}
+
+	public void SetScoreObject()
+	{
+		scoreObj = true;
+		StageClearInfo.instance.obtScore += 100;
+		scoreStartPos = tp.position;
+
+		tp.rotation = Quaternion.identity;
+
+		SetAnimation(GameObjectManager.instance.effectManager.spriteContainer.aniSet[7]);
+	}
+
+	public void DisableScoreObject()
+	{
+		gameObject.SetActive(false);
 	}
 
 	public bool IsEnemyBullet() {return team == BulletTeam.Enemy;}

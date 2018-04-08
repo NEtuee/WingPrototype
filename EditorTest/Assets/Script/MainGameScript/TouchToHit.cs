@@ -19,7 +19,7 @@ public class TouchToHit : BulletBase {
 	public override void KillWish(Vector3 pos)
 	{
 		GameObjectManager.instance.bulletManager.ObjectActive
-		(pos,0,10,0,false,BulletTeam.Player).
+		(PlayerManager.instance.target,pos,0,10,0,false,false,BulletTeam.Player).
 		SetAnimation(GameObjectManager.instance.effectManager.spriteContainer.aniSet[0]).
 		SetRadius(3).
 		SetPenetrate(true).

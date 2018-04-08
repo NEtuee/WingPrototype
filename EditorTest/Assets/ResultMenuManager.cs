@@ -13,7 +13,7 @@ public class ResultMenuManager : MonoBehaviour {
 
 	public void Start()
 	{
-		obtScore.text = "점수 : " + StageClearInfo.instance.obtExp.ToString();
+		obtScore.text = "점수 : " + StageClearInfo.instance.obtScore.ToString();
 		obtExp.text = "경험치 : " + StageClearInfo.instance.obtExp.ToString();
 		obtGold.text = "획득 골드 : " + StageClearInfo.instance.obtGold.ToString();
 		playTime.text = "플레이 타임 : " + StageClearInfo.instance.claerTime;

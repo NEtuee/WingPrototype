@@ -12,6 +12,18 @@ public class TestPlayer : PlayerBase {
 	Touch movementTouch;
 	Touch atkTouch;
 
+	public List<Vector3> movePosList = new List<Vector3>();
+
+	public int moveLimit = 10;
+
+	public float speed = 5f;
+	private float moveTime = 0f;
+	public float time = 0f;
+
+	private Vector3 posOrigin;
+	private Vector3 targetPos;
+
+
 	public override void Initialize()
 	{
 		GetTransform();
@@ -32,6 +44,36 @@ public class TestPlayer : PlayerBase {
 	{
 		TouchCheck();
 		IdleAnimation();
+
+		if(movePosList.Count != 0)
+		{
+			float val = speed * Time.deltaTime / Vector3.Distance(posOrigin,targetPos);
+			time += val;
+
+			if(val >= 1f)
+			{
+				time = 0f;
+
+				posOrigin = targetPos;
+				targetPos = playerOrigin - movePosList[0];
+				tp.position = Vector3.Lerp(posOrigin,targetPos,time);
+
+				movePosList.RemoveAt(0);
+			}
+			else
+				tp.position = Vector3.Lerp(posOrigin,targetPos,time);
+			
+			if(time >= 1f)
+			{
+				time -= 1f;
+
+				posOrigin = targetPos;
+				targetPos = playerOrigin - movePosList[0];
+				tp.position = Vector3.Lerp(posOrigin,targetPos,time);
+
+				movePosList.RemoveAt(0);
+			}
+		}
 
 		if(Input.GetKeyDown(KeyCode.A))
 			SetAttack(true);
@@ -88,19 +130,52 @@ public class TestPlayer : PlayerBase {
 			{
 				isMove = true;
 				isAttack = true;
+				moveTime = 0f;
 				playerOrigin = tp.position;
 				touchOrigin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+				if(movePosList.Count == 0)
+					posOrigin = playerOrigin;
+
 			}
 		}
 		else if(Input.GetMouseButton(0) && isMove)
 		{
-			Vector2 pos = new Vector2(playerOrigin.x - (touchOrigin.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x)
-									,playerOrigin.y - (touchOrigin.y - Camera.main.ScreenToWorldPoint(Input.mousePosition).y));
+			Vector3 vec = new Vector3((touchOrigin.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x),
+											(touchOrigin.y - Camera.main.ScreenToWorldPoint(Input.mousePosition).y));
 
-			//moveDist = pos.y - tp.position.y;
-			//isUp = tp.position.y > pos.y ? true : false;
+			// if(val >= 1f)
+			// {
+			// 	Debug.Log("check");
+			// 	tp.position = playerOrigin - vec;
+			// }
+			//else 
+			if(/*moveTime >= moveUpdateTime &&*/ movePosList.Count < moveLimit)
+			{
+				if(movePosList.Count != 0)
+				{
+					if(movePosList[movePosList.Count - 1] != vec)
+					{
+						movePosList.Add(vec);
+					}
+				}
+				else
+				{
+					movePosList.Add(vec);
+					targetPos = playerOrigin - vec;
+				}
+				//moveTime = 0f;
+			}
 
-			tp.position = pos;
+			moveTime += Time.deltaTime;
+
+			// Vector2 pos = new Vector2(playerOrigin.x - (touchOrigin.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x)
+			// 						,playerOrigin.y - (touchOrigin.y - Camera.main.ScreenToWorldPoint(Input.mousePosition).y));
+
+			// //moveDist = pos.y - tp.position.y;
+			// //isUp = tp.position.y > pos.y ? true : false;
+
+			// tp.position = pos;
 		}
 		else if(Input.GetMouseButton(0) && isAttack && GetFeverEnabled())
 		{
@@ -213,10 +288,7 @@ public class TestPlayer : PlayerBase {
 
 		// GameObjectManager.instance.bulletManager.ObjectActive(tp.position,40f,1f,5f,BulletBase.BulletTeam.Player);
 		// GameObjectManager.instance.bulletManager.ObjectActive(tp.position,40f,1f,2.5f,BulletBase.BulletTeam.Player);
-		Vector3 pos = tp.position;
-		pos.y += 3f;
-		GameObjectManager.instance.bulletManager.ObjectActive(pos,100f,1f,90f,false,BulletBase.BulletTeam.Player).
-			SetAnimation(GameObjectManager.instance.effectManager.spriteContainer.aniSet[5]).SetRadius(1f);
+		BulletActive();
 		// GameObjectManager.instance.bulletManager.ObjectActive(tp.position,40f,1f,-2.5f,BulletBase.BulletTeam.Player);
 		// GameObjectManager.instance.bulletManager.ObjectActive(tp.position,40f,1f,-5f,BulletBase.BulletTeam.Player);
 	}

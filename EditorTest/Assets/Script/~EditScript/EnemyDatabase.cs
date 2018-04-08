@@ -40,6 +40,8 @@ public class EnemyDatabase : ScriptableObject {
 		public int hp;
 		public float fps;
 		public float patternRate;
+		public bool isScoreObj;
+		
 		public Sprite sprite; // test
 		public List<Vector2> shotPoint;
 		public BulletFrameInfo[] bullet = new BulletFrameInfo[12];

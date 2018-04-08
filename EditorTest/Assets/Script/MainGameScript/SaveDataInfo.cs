@@ -173,11 +173,16 @@ public class SaveDataInfo {
 
 	private float[] reqExp = 
 	{
-		500f, // 1
-		1000f, // 2
-		3000f, // 3
-		5000f, // 4
-		10000f, // 5
+		500f, // 2
+		1000f, // 3
+		3000f, // 4
+		5000f, // 5
+		10000f, // 6
+		20000f,
+		35000f,
+		50000f,
+		70000f,
+		100000f,
 	};
 
     public void IncreaseExp(float value)
