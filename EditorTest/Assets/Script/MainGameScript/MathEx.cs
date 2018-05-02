@@ -154,6 +154,18 @@ public class MathEx {
 		return end * 0.5f * (value * value * value + 2) + start;
 	}
 
+//움직임 목록에 포함 안되있는 식들===============================================
+	public static float easeInBack(float start, float end, float value)
+	{
+		end -= start;
+		value /= 1;
+		float s = 1.70158f;
+		return end * (value) * value * ((s + 1) * value - s) + start;
+	}
+//============================================================================
+
+
+
 	public static bool GetRandom(int value) // 1 ~ 100
 	{
 		int random = Random.Range(1,100);

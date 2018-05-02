@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class UIManager : ObjectBase {
+public class UIManager : MonoBehaviour {
 
 	public Text enemyCount;
 	public Text bulletCount;
@@ -15,12 +15,17 @@ public class UIManager : ObjectBase {
 	public Button feverButton;
 	public Button specialButton;
 
-	public override void Initialize()
+	public Transform backGague;
+
+	public float zeroPos = -46.4f;
+	public float speed = 3f;
+
+	public void Initialize()
 	{
 		
 	}
 
-	public override void Progress()
+	public void Progress()
 	{
 		circulaGague.fillAmount = PlayerManager.instance.target.GetCurrFire() / PlayerManager.instance.target.GetFire();
 		hpbar.fillAmount = PlayerManager.instance.target.GetCurrHp() / PlayerManager.instance.target.GetHp();
@@ -31,17 +36,20 @@ public class UIManager : ObjectBase {
 
 		enemyCount.text = EnemyManager.instance.count + " :";
 		bulletCount.text = GameObjectManager.instance.bulletManager.bulletCount + " :";
+
+		float gague = zeroPos + (-zeroPos) * PlayerManager.instance.target.GetCurrFeverGague();
+		backGague.position = new Vector3(0f,Mathf.Lerp(backGague.position.y, gague, speed * Time.deltaTime));
 	}
 
-	public override void Release()
+	public void Release()
 	{
 
 	}
 
 	public void ActiveFever()
 	{
-		GameObjectManager.instance.PauseSec(2f);
-		PlayerManager.instance.target.ActiveFever();
+		//GameObjectManager.instance.PauseSec(2f);
+		PlayerManager.instance.FeverActive();
 		feverButton.interactable = false;
 		specialButton.interactable = false;
 	}

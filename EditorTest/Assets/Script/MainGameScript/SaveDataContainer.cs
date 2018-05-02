@@ -7,7 +7,7 @@ public class SaveDataContainer : MonoBehaviour {
 	public static SaveDataContainer instance;
 	public SaveDataInfo saveData;
 
-	public void Awake()
+	public void Start()
 	{
 		instance = this;
 		

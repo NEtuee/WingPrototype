@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EffectManager : MonoBehaviour {
 
+	public static EffectManager instance;
+
 	public GameObject origin;
 	public SpriteContainer spriteContainer;
 
@@ -37,6 +39,8 @@ public class EffectManager : MonoBehaviour {
 
 	public void CreateObjects(int count)
 	{
+		instance = this;
+
 		ObjectLink prev = null;
 		for(int i = 0; i < count; ++i)
 		{
@@ -154,7 +158,42 @@ public class EffectManager : MonoBehaviour {
 		}
 	}
 
-	public void ObjectActive(Vector2 pos,SpriteContainer.AnimationSet ani)
+	public void ValueInit(SpriteAnimation target)
+	{
+		target.tp.localRotation = Quaternion.identity;
+	}
+
+	public void ObjectActive(Vector2 pos,int ani, float sp = 0.0625f, float angle = -999f)
+	{
+		if(disableFront == null)
+		{
+			return;
+		}
+
+		disableFront.me.SetAnimation(pos,DatabaseContainer.instance.spriteDatabase.aniSet[ani]);
+		ValueInit(disableFront.me);
+		disableFront.me.speed = sp;
+
+		ObjectLink save = disableFront.back;
+		disableFront.back = null;
+		if(angle != -999f)
+			disableFront.me.tp.localRotation = Quaternion.Euler(0f,0f,angle);
+
+		if(activeFront == null)
+		{
+			activeFront = disableFront;
+			activeBack = activeFront;
+		}
+		else
+		{
+			activeBack.back = disableFront;
+			activeBack = disableFront;
+		}
+
+		disableFront = save;
+	}
+
+	public void ObjectActive(Vector2 pos,SpriteContainer.AnimationSet ani, float sp = 0.0625f, float angle = -999f)
 	{
 		if(disableFront == null)
 		{
@@ -162,9 +201,14 @@ public class EffectManager : MonoBehaviour {
 		}
 
 		disableFront.me.SetAnimation(pos,ani);
+		ValueInit(disableFront.me);
+		disableFront.me.speed = sp;
 
 		ObjectLink save = disableFront.back;
 		disableFront.back = null;
+
+		if(angle != -999f)
+			disableFront.me.tp.localRotation = Quaternion.Euler(0f,0f,angle);
 
 		if(activeFront == null)
 		{

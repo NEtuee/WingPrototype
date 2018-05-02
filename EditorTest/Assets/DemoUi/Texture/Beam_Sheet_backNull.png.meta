@@ -1,0 +1,700 @@
+fileFormatVersion: 2
+guid: a9b52bbabf0ba8a48b14af9ed6fa9508
+timeCreated: 1524399521
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Beam_Sheet_backNull_0
+    21300002: Beam_Sheet_backNull_1
+    21300004: Beam_Sheet_backNull_2
+    21300006: Beam_Sheet_backNull_3
+    21300008: Beam_Sheet_backNull_4
+    21300010: Beam_Sheet_backNull_5
+    21300012: Beam_Sheet_backNull_6
+    21300014: Beam_Sheet_backNull_7
+    21300016: Beam_Sheet_backNull_8
+    21300018: Beam_Sheet_backNull_9
+    21300020: Beam_Sheet_backNull_10
+    21300022: Beam_Sheet_backNull_11
+    21300024: Beam_Sheet_backNull_12
+    21300026: Beam_Sheet_backNull_13
+    21300028: Beam_Sheet_backNull_14
+    21300030: Beam_Sheet_backNull_15
+    21300032: Beam_Sheet_backNull_16
+    21300034: Beam_Sheet_backNull_17
+    21300036: Beam_Sheet_backNull_18
+    21300038: Beam_Sheet_backNull_19
+    21300040: Beam_Sheet_backNull_20
+    21300042: Beam_Sheet_backNull_21
+    21300044: Beam_Sheet_backNull_22
+    21300046: Beam_Sheet_backNull_23
+    21300048: Beam_Sheet_backNull_24
+    21300050: Beam_Sheet_backNull_25
+    21300052: Beam_Sheet_backNull_26
+    21300054: Beam_Sheet_backNull_27
+    21300056: Beam_Sheet_backNull_28
+    21300058: Beam_Sheet_backNull_29
+    21300060: Beam_Sheet_backNull_30
+    21300062: Beam_Sheet_backNull_31
+    21300064: Beam_Sheet_backNull_32
+    21300066: Beam_Sheet_backNull_33
+    21300068: Beam_Sheet_backNull_34
+    21300070: Beam_Sheet_backNull_35
+    21300072: Beam_Sheet_backNull_36
+    21300074: Beam_Sheet_backNull_37
+    21300076: Beam_Sheet_backNull_38
+    21300078: Beam_Sheet_backNull_39
+    21300080: Beam_Sheet_backNull_40
+    21300082: Beam_Sheet_backNull_41
+    21300084: Beam_Sheet_backNull_42
+    21300086: Beam_Sheet_backNull_43
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4860
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_1
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 4860
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_2
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 4860
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_3
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 4860
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_4
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 4860
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_5
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 4860
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_6
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 4860
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_7
+      rect:
+        serializedVersion: 2
+        x: 7560
+        y: 4860
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_8
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 4860
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_9
+      rect:
+        serializedVersion: 2
+        x: 9720
+        y: 4860
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_10
+      rect:
+        serializedVersion: 2
+        x: 10800
+        y: 4860
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3240
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_12
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 3240
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_13
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 3240
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_14
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 3240
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_15
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 3240
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_16
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 3240
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_17
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 3240
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_18
+      rect:
+        serializedVersion: 2
+        x: 7560
+        y: 3240
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_19
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 3240
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_20
+      rect:
+        serializedVersion: 2
+        x: 9720
+        y: 3240
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_21
+      rect:
+        serializedVersion: 2
+        x: 10800
+        y: 3240
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1620
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_23
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 1620
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_24
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 1620
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_25
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 1620
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_26
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 1620
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_27
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 1620
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_28
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 1620
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_29
+      rect:
+        serializedVersion: 2
+        x: 7560
+        y: 1620
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_30
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 1620
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_31
+      rect:
+        serializedVersion: 2
+        x: 9720
+        y: 1620
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_32
+      rect:
+        serializedVersion: 2
+        x: 10800
+        y: 1620
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_34
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 0
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_35
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 0
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_36
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 0
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_37
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 0
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_38
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 0
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_39
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 0
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_40
+      rect:
+        serializedVersion: 2
+        x: 7560
+        y: 0
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_41
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 0
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_42
+      rect:
+        serializedVersion: 2
+        x: 9720
+        y: 0
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Beam_Sheet_backNull_43
+      rect:
+        serializedVersion: 2
+        x: 10800
+        y: 0
+        width: 1080
+        height: 1620
+      alignment: 9
+      pivot: {x: 0.508, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

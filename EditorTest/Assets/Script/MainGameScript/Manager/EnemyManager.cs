@@ -25,7 +25,7 @@ public class EnemyManager : ObjectBase {
 
 	public override void Progress()
 	{
-		if(GameRunningTest.instance.IsStaticEvent() || GameRunningTest.instance.dialogActive)
+		if(GameRunningTest.instance.IsStaticEvent() || GameRunningTest.instance.dialogActive || GameRunningTest.instance.directStop)
 		{
 			return;
 		}
@@ -44,6 +44,8 @@ public class EnemyManager : ObjectBase {
 		List<EnemyBase> list;
 
 		int len = keys.Length;
+		bool near = PlayerManager.instance.target.GetNearEnemy() == null;
+		
 		for(int i = 0; i < len; ++i)
 		{
 			list = enemyLists[keys[i]];
@@ -52,7 +54,35 @@ public class EnemyManager : ObjectBase {
 			for(int j = 0; j < c; ++j)
 			{
 				if(list[j].progressCheck && list[j].gameObject.activeSelf)
+				{
 					list[j].Progress();
+
+					if(near)
+					{
+						if(PlayerManager.instance.target.GetNearEnemy() == null)
+						{
+							PlayerManager.instance.target.SetNearEnemy(list[j]);
+						}
+						else	
+						{
+							float listEnemyDist = Vector3.Distance(PlayerManager.instance.target.tp.position,list[j].tp.position);
+							float nearDist = Vector3.Distance(PlayerManager.instance.target.tp.position,
+														PlayerManager.instance.target.GetNearEnemy().tp.position);
+
+							if(listEnemyDist < nearDist)
+							{
+								PlayerManager.instance.target.SetNearEnemy(list[j]);
+								PlayerManager.instance.target.SetNearDist(listEnemyDist);
+							}
+							else
+							{
+								PlayerManager.instance.target.SetNearDist(nearDist);
+							}
+						}
+					}
+
+
+				}
 			}
 		}
 	}

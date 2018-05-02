@@ -35,11 +35,17 @@ public class BulletBase : ObjectBase {
 
 	protected bool scoreObj = false;
 	protected bool scoreStay = false;
+
+	protected bool rotationLock = false;
 	
 	protected float scoreTime = 0f;
+	protected float angleAccel = 0f;
+	protected float accel = 0f;
 
 	protected Vector3 direction;
 	protected Vector3 scoreStartPos;
+
+	private float prevAngle = 0f;
 
 	public override void Initialize()
 	{
@@ -66,9 +72,40 @@ public class BulletBase : ObjectBase {
 
 	public void BulletProgress()
 	{
-		if(shooter.IsDead())
-			SetScoreObject();
+		if(shooter != null)
+			if(shooter.IsDead())
+				SetScoreObject();
 
+		if(guided && team == BulletTeam.Player)
+		{
+			if(PlayerManager.instance.target.GetNearEnemy() != null)
+			{
+				direction = (PlayerManager.instance.target.GetNearEnemy().tp.position - tp.position).normalized;
+
+				if(!rotationLock)
+				{
+					angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+					tp.localRotation = Quaternion.Euler(new Vector3(0f,0f,angle));
+				}
+			}
+		}
+
+		if(team == BulletTeam.Enemy)
+		{
+			angle += angleAccel * Time.deltaTime;
+			speed += accel * Time.deltaTime;
+
+			if(prevAngle != angle)
+			{
+				prevAngle = angle;
+				direction = new Vector3(Mathf.Cos((angle * Mathf.Deg2Rad)),Mathf.Sin((angle * Mathf.Deg2Rad)));	
+
+				if(!rotationLock)
+				{
+					tp.localRotation = Quaternion.Euler(new Vector3(0f,0f,angle));
+				}
+			}
+		}
 
 		tp.position += speed * direction * Time.deltaTime;
 
@@ -110,8 +147,8 @@ public class BulletBase : ObjectBase {
 		else
 		{
 			//scoreTime += Time.deltaTime * 3f;
-			scoreTime += 50f * Time.deltaTime / Vector3.Distance(scoreStartPos,PlayerManager.instance.target.tp.position);
-			tp.position = MathEx.EaseOutCubicVector2(scoreStartPos,PlayerManager.instance.target.tp.position,scoreTime);
+			scoreTime += 20f * Time.deltaTime / Vector3.Distance(scoreStartPos,PlayerManager.instance.target.tp.position);
+			tp.position = Vector3.Lerp(scoreStartPos,PlayerManager.instance.target.tp.position,scoreTime);
 
 			if(scoreTime >= 1f)
 			{
@@ -220,6 +257,7 @@ public class BulletBase : ObjectBase {
 		speed = s;
 		attack = a;
 		angle = ang;
+		prevAngle = angle;
 		team = t;
 
 		feverAttack = false;
@@ -234,8 +272,20 @@ public class BulletBase : ObjectBase {
 		isScoreObj = scObj;
 		scoreTime = 0f;
 
+		rotationLock = false;
+
+		angleAccel = 0f;
+		accel = 0f;
+
 		if(guided)
-			direction = PlayerManager.instance.GetDirection(tp.position);
+		{
+			if(team == BulletTeam.Enemy)
+				direction = PlayerManager.instance.GetDirection(tp.position);
+			else
+			{
+				direction = new Vector3(Mathf.Cos((angle * Mathf.Deg2Rad)),Mathf.Sin((angle * Mathf.Deg2Rad)));
+			}
+		}
 		else
 			direction = new Vector3(Mathf.Cos((angle * Mathf.Deg2Rad)),Mathf.Sin((angle * Mathf.Deg2Rad)));
 
@@ -251,16 +301,24 @@ public class BulletBase : ObjectBase {
 	public BulletBase SetRadius(float value)
 	{
 		GetColliderInfo().SetRadius(value);
-
 		return this;
 	}
 
-	public BulletBase SetAnimation(SpriteContainer.AnimationSet anim)
+	public BulletBase SetAnimation(SpriteContainer.AnimationSet anim,bool ani = true)
 	{
 		animationSet = anim;
+		anime = ani;
 		
 		AnimationInit();
+		return this;
+	}
 
+	public BulletBase SetAnimation(int anim,bool ani = true)
+	{
+		animationSet = DatabaseContainer.instance.spriteDatabase.aniSet[anim];
+		anime = ani;
+		
+		AnimationInit();
 		return this;
 	}
 
@@ -270,7 +328,6 @@ public class BulletBase : ObjectBase {
 		aniCount = 0;
 
 		sprRenderer.sprite = animationSet.sprites[aniCount++];
-		anime = true;
 	}
 
 	public BulletBase SetPenetrate(bool value)
@@ -288,15 +345,37 @@ public class BulletBase : ObjectBase {
 	public BulletBase SetLifeTime(float value = -1)
 	{
 		lifeTime = value;
+		return this;
+	}
+
+	public BulletBase SetRotationLock(bool value)
+	{
+		rotationLock = value;
+		tp.localRotation = Quaternion.Euler(new Vector3(0f,0f,0f));
+		return this;
+	}
+
+	public BulletBase SetAngleAccel(float value)
+	{
+		angleAccel = value;
+		return this;
+	}
+
+	public BulletBase SetAccel(float value)
+	{
+		accel = value;
 
 		return this;
 	}
+
+	public float GetAngleAccel() {return angleAccel;}
+	public float GetAccel() {return accel;}
 
 	public void DisableBullet()
 	{
 		if(!gameObject.activeSelf)
 			Debug.Log("Check");
-		GameObjectManager.instance.bulletManager.bulletCount--;
+		BulletManager.instance.bulletCount--;
 		DeleteExitObjects();
 		gameObject.SetActive(false);
 	}
@@ -309,7 +388,7 @@ public class BulletBase : ObjectBase {
 
 		tp.rotation = Quaternion.identity;
 
-		SetAnimation(GameObjectManager.instance.effectManager.spriteContainer.aniSet[7]);
+		SetAnimation(DatabaseContainer.instance.spriteDatabase.aniSet[2]);
 	}
 
 	public void DisableScoreObject()

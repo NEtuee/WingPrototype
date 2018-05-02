@@ -47,22 +47,34 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\BackgroundScroll.cs" />
+     <Compile Include="Assets\BulletPlayer.cs" />
      <Compile Include="Assets\CanvasCamSet.cs" />
+     <Compile Include="Assets\CircleObject.cs" />
      <Compile Include="Assets\DatabaseContainer.cs" />
      <Compile Include="Assets\DialogScript.cs" />
      <Compile Include="Assets\DialogTest.cs" />
+     <Compile Include="Assets\Explosion.cs" />
+     <Compile Include="Assets\FakeHpScript.cs" />
      <Compile Include="Assets\FeverBackGague.cs" />
      <Compile Include="Assets\LavaGenerator.cs" />
      <Compile Include="Assets\NameChecker.cs" />
+     <Compile Include="Assets\PatternMover.cs" />
      <Compile Include="Assets\Resize.cs" />
      <Compile Include="Assets\ResultMenuManager.cs" />
+     <Compile Include="Assets\Script\BulletTestScripts\DiffrentSpeed.cs" />
+     <Compile Include="Assets\Script\BulletTestScripts\OptionalSprial.cs" />
+     <Compile Include="Assets\Script\BulletTestScripts\Spiral.cs" />
+     <Compile Include="Assets\Script\BulletTestScripts\Spread.cs" />
+     <Compile Include="Assets\Script\BulletTestScripts\TwistOptionalSprial.cs" />
      <Compile Include="Assets\Script\CharacterDatabase.cs" />
      <Compile Include="Assets\Script\FPSCounter.cs" />
      <Compile Include="Assets\Script\ItemEffectScript\Effect_Test.cs" />
      <Compile Include="Assets\Script\MainGameScript\AttackButton.cs" />
      <Compile Include="Assets\Script\MainGameScript\BaseScript\BulletBase.cs" />
      <Compile Include="Assets\Script\MainGameScript\BaseScript\ButtonPressing.cs" />
+     <Compile Include="Assets\Script\MainGameScript\BaseScript\DirectBase.cs" />
      <Compile Include="Assets\Script\MainGameScript\BaseScript\EnemyBase.cs" />
+     <Compile Include="Assets\Script\MainGameScript\BaseScript\FeverBase.cs" />
      <Compile Include="Assets\Script\MainGameScript\BaseScript\GoldBase.cs" />
      <Compile Include="Assets\Script\MainGameScript\BaseScript\ItemBase.cs" />
      <Compile Include="Assets\Script\MainGameScript\BaseScript\ItemEffectBase.cs" />
@@ -72,6 +84,7 @@
      <Compile Include="Assets\Script\MainGameScript\CameraControll.cs" />
      <Compile Include="Assets\Script\MainGameScript\Define.cs" />
      <Compile Include="Assets\Script\MainGameScript\DontDestroy.cs" />
+     <Compile Include="Assets\Script\MainGameScript\GlobalDamage.cs" />
      <Compile Include="Assets\Script\MainGameScript\Manager\BulletManager.cs" />
      <Compile Include="Assets\Script\MainGameScript\Manager\EffectManager.cs" />
      <Compile Include="Assets\Script\MainGameScript\Manager\EnemyManager.cs" />
@@ -101,8 +114,13 @@
      <Compile Include="Assets\Script\MainGameScript\Test\GameStaticEvent.cs" />
      <Compile Include="Assets\Script\MainGameScript\Test\GameTestEvent.cs" />
      <Compile Include="Assets\Script\MainGameScript\Test\GameWaitExtinc.cs" />
+     <Compile Include="Assets\Script\MainGameScript\Test\HammerDirect.cs" />
+     <Compile Include="Assets\Script\MainGameScript\Test\TesetFeverAttack2.cs" />
      <Compile Include="Assets\Script\MainGameScript\Test\TestEnemy.cs" />
      <Compile Include="Assets\Script\MainGameScript\Test\TestEnemy2.cs" />
+     <Compile Include="Assets\Script\MainGameScript\Test\TestFeverAttack.cs" />
+     <Compile Include="Assets\Script\MainGameScript\Test\TestFeverDirect.cs" />
+     <Compile Include="Assets\Script\MainGameScript\Test\TestFeverEndDirect.cs" />
      <Compile Include="Assets\Script\MainGameScript\Test\TestPlayer.cs" />
      <Compile Include="Assets\Script\MainGameScript\Test\TestPlayer2.cs" />
      <Compile Include="Assets\Script\MainGameScript\Test\TestPlayer3.cs" />
@@ -195,7 +213,7 @@
  <HintPath>E:/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
  <Reference Include="System.Windows.Forms">
- <HintPath>C:/Users/LeeUmin/Desktop/Github/WingPrototype/EditorTest/Assets/~Plugins/System.Windows.Forms.dll</HintPath>
+ <HintPath>C:/Users/LeeUmin/Desktop/일요일까지/WingPrototype_180419/EditorTest/Assets/~Plugins/System.Windows.Forms.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

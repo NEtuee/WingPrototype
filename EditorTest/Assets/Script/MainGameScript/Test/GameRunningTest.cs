@@ -28,6 +28,8 @@ public class GameRunningTest : ObjectBase {
 
     public bool obstacleGen = false;
 
+    public bool directStop = false;
+
     private float gameTime = 0f;
     private float progressTime = 0f;
 
@@ -42,10 +44,8 @@ public class GameRunningTest : ObjectBase {
     {
         instance = this;
 
-        Debug.Log(stage);
-
         LoadData(stageData.text.Split('\n'));
-        Debug.Log(SceneLoader.instance.GetCurrScene());
+
         InitEvent();
     }
 
@@ -87,8 +87,6 @@ public class GameRunningTest : ObjectBase {
 
             if(!testMode)
             {
-                Debug.Log("true");
-
                 StageClearInfo.instance.SetInfo(true,gameTime,world,stage);
                 SceneLoader.instance.LoadScene(Define.SceneInfo.Result);
             }
@@ -99,8 +97,6 @@ public class GameRunningTest : ObjectBase {
         {
             progressCheck = false;
             button.interactable = true;
-
-            Debug.Log("false");
 
 			StageClearInfo.instance.SetInfo(false,gameTime,world,stage);
             SceneLoader.instance.LoadScene(Define.SceneInfo.Result);
@@ -117,6 +113,9 @@ public class GameRunningTest : ObjectBase {
         }
 
         if(dialogActive)
+            return;
+
+        if(directStop)
             return;
 
         gameTime += delta;

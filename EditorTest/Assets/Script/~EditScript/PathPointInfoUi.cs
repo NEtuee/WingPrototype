@@ -83,6 +83,17 @@ public class PathPointInfoUi : MonoBehaviour {
 			movementType.interactable = true;
 	}
 
+	public void ChangePointPosition()
+	{
+		line.point = new Vector2(float.Parse(posX.text),float.Parse(posY.text));
+
+		PathEdit.instance.SetPointMarkerToPath();
+		PathEdit.instance.SetLineRenderer();
+		PathEdit.instance.SetPosMarker();
+
+		ValueUpdate();
+	}
+
 	public void ChangeSpeed()
 	{
 		line.speed = float.Parse(speed.text == "" ? "0" : speed.text);

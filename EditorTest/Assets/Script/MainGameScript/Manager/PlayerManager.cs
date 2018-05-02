@@ -31,6 +31,30 @@ public class PlayerManager : ObjectBase {
 		target.Progress();
 	}
 
+	public void FeverDirectProgress()
+	{
+		target.feverDirect.Progress();
+	}
+
+	public void FeverActive()
+	{
+		target.feverDirect.Initialize();
+		// target.feverBase.Initialize();
+		// target.feverBase.feverEndDirect.Initialize();
+
+		//=================================================check
+		BulletManager.instance.ChangeScoreObjects();
+
+		target.ActiveFever();
+	}
+
+	public void ActiveGlobalDamage(float time)
+	{
+		target.globalDamage.Active(10f,true,time,true);
+	}
+
+	public bool IsFever() {return target.GetFeverEnabled();}
+
 	public bool PlayerIsDead() {return target.IsDead();}
 
 	public void SetAttack(bool value) {target.SetAttack(value);}

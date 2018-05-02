@@ -1,14 +1,13 @@
-character : 0
-level : 6
-exp : 1410
-username : fdsa
-gold : 63700
+character : 3
+level : 5
+exp : 5180
+username : wdwd
+gold : 44500
 zem : 0
 clearTime : 
-0 , 0 , 0 , 28 , 52
-0 , 1 , 0 , 2 , 48
-0 , 2 , 0 , 28 , 48
-0 , 3 , 0 , 28 , 51
+0 , 2 , 1 , 8 , 25
+0 , 0 , 0 , 28 , 47
+0 , 1 , 0 , 2 , 49
 )
 charInfo : 
 3, 3

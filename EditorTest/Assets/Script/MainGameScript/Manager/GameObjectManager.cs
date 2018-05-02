@@ -8,6 +8,7 @@ public class GameObjectManager : MonoBehaviour {
 
 	public GameObject[] players;
 
+	public UIManager uIManager;
 	public BulletManager bulletManager;
 	public EffectManager effectManager;
 
@@ -15,6 +16,7 @@ public class GameObjectManager : MonoBehaviour {
 
     public int objectCount = 0;
 
+	public bool gamePause_Master = false;
 	public bool gamePause = false;
 	public float pauseTime = 0f;
 
@@ -49,24 +51,50 @@ public class GameObjectManager : MonoBehaviour {
 		EnemyManager.instance.CreateObjects(0,30);
 		EnemyManager.instance.CreateObjects(1,10);
 		EnemyManager.instance.CreateObjects(2,10);
+		uIManager.Initialize();
 		//EnemyManager.instance.ObjectActive(0,Vector3.zero,10f);
 		//bulletManager.ObjectActive(Vector2.zero,3f,1f,0f);
     }
 
     private void Update()
     {
-		if(Input.GetKeyDown(KeyCode.Z))
+		if(Input.GetKey(KeyCode.Z))
 		{
-			//EnemyManager.instance.ObjectActive(0,Vector3.zero,10f);
+			return;
 		}
 
+		if(gamePause_Master)
+			return;
+
+		if(PlayerManager.instance.target.feverDirect.IsProgressing())
+		{
+			PlayerManager.instance.FeverDirectProgress();
+		}
+		else if(PlayerManager.instance.IsFever())
+		{
+			PlayerManager.instance.target.MoveCenter();
+			
+			effectManager.Progress();
+			
+			PlayerManager.instance.target.feverBase.Progress();
+		}
+		else if(PlayerManager.instance.target.feverBase.feverEndDirect.IsProgressing())
+		{
+			PlayerManager.instance.target.feverBase.feverEndDirect.Progress();
+		}
+
+		uIManager.Progress();
+
 		if(gamePause)
+			return;
+
+		if(pauseTime != 0f)
 		{
 			pauseTime -= Time.deltaTime;
 			if(pauseTime <= 0)
 			{
 				pauseTime = 0f;
-				gamePause = false;
+				//gamePause = false;
 			}
 			else
 				return;
@@ -84,13 +112,17 @@ public class GameObjectManager : MonoBehaviour {
 
 		Progress();
 
-		if(GameRunningTest.instance.IsStaticEvent() && GameRunningTest.instance.dialogActive)
+		if(GameRunningTest.instance.IsStaticEvent() || GameRunningTest.instance.dialogActive)
 		{
 			return;
 		}
 
-		PlayerManager.instance.PlayerProgress();
-		bulletManager.Progress();
+		if(!GameRunningTest.instance.directStop)
+		{
+			PlayerManager.instance.PlayerProgress();
+			bulletManager.Progress();
+		}
+
 		effectManager.Progress();
 		//EnemyManager.instance.Progress();
 		bulletManager.CollisionCheck();
@@ -234,8 +266,15 @@ public class GameObjectManager : MonoBehaviour {
 
 	public void PauseSec(float time)
 	{
-		gamePause = true;
+	//	gamePause = true;
 		pauseTime = time;
 	}
+
+	public void GamePause(bool value){gamePause = value;}
+	public void GamePause(){gamePause = true;}
+	public void GameContinue(){gamePause = false;}
+	public void GamePause_Master(bool value){gamePause_Master = value;}
+	public void GamePause_Master(){gamePause_Master = true;}
+	public void GameContinue_Master(){gamePause_Master = false;}
 
 }

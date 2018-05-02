@@ -37,14 +37,12 @@ public class ResultMenuManager : MonoBehaviour {
 			{
 				if(stageSave.TimeCompare(min,sec,rest))
 				{
-					Debug.Log("check");
 					stageSave.min = min;
 					stageSave.sec = sec;
 					stageSave.rest = rest;
 				}
 			}
 
-            Debug.Log(StageClearInfo.instance.obtExp);
             SaveDataContainer.instance.saveData.IncreaseExp(StageClearInfo.instance.obtExp);
             SaveDataContainer.instance.saveData.IncreaseGold(StageClearInfo.instance.obtGold);
         }

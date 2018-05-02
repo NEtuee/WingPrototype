@@ -391,7 +391,6 @@ public class SaveDataInfo {
 					StageSaveInfo stSave = new StageSaveInfo();
 					stSave.StringToData(dataArray[i++]);
 
-					Debug.Log (dataArray [i]);
 					stageSave.Add(stSave);
 				}
 			}
@@ -403,7 +402,6 @@ public class SaveDataInfo {
 					CharacterStatSaveInfo chSave = new CharacterStatSaveInfo();
 					chSave.StringToData(dataArray[i++]);
 
-					Debug.Log (dataArray [i]);
 					charSave.Add(chSave);
 				}
 			}

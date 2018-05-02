@@ -11,4 +11,5 @@ public class DatabaseContainer : MonoBehaviour {
 	public EnemyDatabase enemyDatabase;
 	public WorldDatabase worldDatabase;
 	public PathDatabase pathDatabase;
+	public SpriteContainer spriteDatabase;
 }

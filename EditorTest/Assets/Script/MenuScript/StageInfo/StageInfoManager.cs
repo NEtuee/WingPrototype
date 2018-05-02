@@ -18,7 +18,6 @@ public class StageInfoManager : MonoBehaviour {
 
 	public void Set(int w,int s)
 	{
-        Debug.Log(s);
 		world = w;
 		stage = s;
 	}
@@ -37,13 +36,11 @@ public class StageInfoManager : MonoBehaviour {
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log(SceneLoader.instance.GetCurrScene());
         if(SceneLoader.instance.GetCurrScene() == Define.SceneInfo.MainStage)
 		{
 			GameRunningTest manager = GameObject.Find("GameObjectManager").GetComponent<GameRunningTest>();
 			manager.stageData = worldDatabase.data[world].stageData[stage].stageEventData;
 			manager.stageScript = worldDatabase.data[world].stageData[stage].stageDialog;
-            Debug.Log(stage);
 			manager.stage = stage;
 			manager.world = world;
 		}

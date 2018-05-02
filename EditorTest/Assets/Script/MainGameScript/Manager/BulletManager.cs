@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour {
 
+	public static BulletManager instance;
+
 	public BulletBase origin;
 	public int bulletCount = 0;
 
@@ -37,6 +39,11 @@ public class BulletManager : MonoBehaviour {
 
 	public void CreateObjects(int count)
 	{
+		instance = this;
+
+		if(instance == null)
+			Debug.Log("check");
+
 		ObjectLink prev = null;
 		for(int i = 0; i < count; ++i)
 		{
@@ -137,7 +144,8 @@ public class BulletManager : MonoBehaviour {
 
 		while(true)
 		{
-			link.me.DisableBullet();
+			//if(!link.me.IsScoreObject())
+				link.me.DisableBullet();
 			ObjectLink save = link;
 			
 			link = link.back;
@@ -149,6 +157,166 @@ public class BulletManager : MonoBehaviour {
 			{
 				activeFront = null;
 				activeBack = null;
+				break;
+			}
+		}
+	}
+
+	public void ChangeScoreObjects()
+	{
+		ObjectLink link = activeFront;
+
+		if(link == null)
+			return;
+
+		while(true)
+		{
+			if(link.me.IsTeam(BulletBase.BulletTeam.Enemy))
+				link.me.SetScoreObject();
+			ObjectLink save = link;
+			
+			link = link.back;
+
+			//save.back = disableFront;
+			//disableFront = save;
+
+			if(link == null)
+			{
+				break;
+			}
+		}
+	}
+
+	public void InitAngle(float value)
+	{
+		ObjectLink link = activeFront;
+
+		if(link == null)
+		{
+			return;
+		}
+		while(true)
+		{
+			if(link.me.IsTeam(BulletBase.BulletTeam.Enemy))
+				link.me.angle = value;
+
+			ObjectLink save = link;
+			
+			link = link.back;
+
+			//save.back = disableFront;
+			//disableFront = save;
+
+			if(link == null)
+			{
+				break;
+			}
+		}
+	}
+
+	public void ReverseAngleAccel()
+	{
+		ObjectLink link = activeFront;
+
+		if(link == null)
+		{
+			return;
+		}
+		while(true)
+		{
+			if(link.me.IsTeam(BulletBase.BulletTeam.Enemy))
+				link.me.SetAngleAccel(link.me.GetAngleAccel() * -1f);
+
+			ObjectLink save = link;
+			
+			link = link.back;
+
+			//save.back = disableFront;
+			//disableFront = save;
+
+			if(link == null)
+			{
+				break;
+			}
+		}
+	}
+
+	public void InitAngleAccel(float value = 0f)
+	{
+		ObjectLink link = activeFront;
+
+		if(link == null)
+		{
+			return;
+		}
+		while(true)
+		{
+			if(link.me.IsTeam(BulletBase.BulletTeam.Enemy))
+				link.me.SetAngleAccel(value);
+
+			ObjectLink save = link;
+			
+			link = link.back;
+
+			//save.back = disableFront;
+			//disableFront = save;
+
+			if(link == null)
+			{
+				break;
+			}
+		}
+	}
+
+	public void InitAccel(float value = 0f)
+	{
+		ObjectLink link = activeFront;
+
+		if(link == null)
+		{
+			return;
+		}
+		while(true)
+		{
+			if(link.me.IsTeam(BulletBase.BulletTeam.Enemy))
+				link.me.SetAccel(value);
+
+			ObjectLink save = link;
+			
+			link = link.back;
+
+			//save.back = disableFront;
+			//disableFront = save;
+
+			if(link == null)
+			{
+				break;
+			}
+		}
+	}
+
+	public void InitSpeed(float value = 0f)
+	{
+		ObjectLink link = activeFront;
+
+		if(link == null)
+		{
+			return;
+		}
+		while(true)
+		{
+			if(link.me.IsTeam(BulletBase.BulletTeam.Enemy))
+				link.me.speed = value;
+
+			ObjectLink save = link;
+			
+			link = link.back;
+
+			//save.back = disableFront;
+			//disableFront = save;
+
+			if(link == null)
+			{
 				break;
 			}
 		}
@@ -282,8 +450,8 @@ public class BulletManager : MonoBehaviour {
 					PlayerManager.instance.CollisionCheck(link.me);
 				else if(link.me.IsPlayerBullet())
 				{
-					EnemyManager.instance.CollisionCheck(link.me);
-					ItemManager.instance.CollisionCheck(link.me);
+//					EnemyManager.instance.CollisionCheck(link.me);
+					//ItemManager.instance.CollisionCheck(link.me);
 				}
 
 				link.me.DeleteExitObjects();

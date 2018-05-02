@@ -16,6 +16,7 @@ public class NameChecker : MonoBehaviour {
 	{
 		if(SaveDataContainer.instance.saveData.userName == "")
 		{
+            container = SaveDataContainer.instance;
 			nameChecking = true;
 			nameInput.SetActive(true);
 		}

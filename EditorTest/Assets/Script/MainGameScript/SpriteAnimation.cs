@@ -7,6 +7,8 @@ public class SpriteAnimation : ObjectBase {
     public SpriteContainer.AnimationSet animationSet;
     public SpriteRenderer sprRenderer;
 
+
+    public float speed = 0.0625f;
     private float aniTime = 0f;
 	private int aniCount = 0;
 
@@ -20,7 +22,7 @@ public class SpriteAnimation : ObjectBase {
     public override void Progress()
     {
         aniTime += Time.deltaTime;
-		if(aniTime >= 0.0625)
+		if(aniTime >= speed)
 		{
 			sprRenderer.sprite = animationSet.sprites[aniCount++];
 			aniTime = 0f;
