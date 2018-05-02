@@ -1,0 +1,6 @@
+﻿상단바 window
+spriteEditor
+spriteAnimeEditor
+
+테스트는 저장 후 나온 파일을
+하이라키에 있는 gameobject의 spriteAnimation 컴포넌트에 드래그, 드롭 후 실행
