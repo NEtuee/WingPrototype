@@ -14,43 +14,43 @@ public class MathEx {
 		End,
 	}
 #region EaseFormula
-	// public static Vector2 GetEaseFormula(PathDatabase.LineInfo start, PathDatabase.LineInfo end, float time, EaseType type, Vector2 spawn = new Vector2())
-	// {
-	// 	if(type == EaseType.Linear)
-	// 	{
-	// 		return LinearVector2(start.point + spawn,end.point + spawn,time);
-	// 	}
-	// 	else if(type == EaseType.BezierCurve)
-	// 	{
-	// 		return GetPointOnBezierCurve(start.point + spawn,start.bezierPoint[1] + spawn,end.bezierPoint[0] + spawn,end.point + spawn,time);
-	// 	}
-	// 	else if(type == EaseType.EaseInQuad)
-	// 	{
-	// 		return EaseInQuadVector2(start.point + spawn,end.point + spawn,time);
-	// 	}
-	// 	else if(type == EaseType.EaseOutQuad)
-	// 	{
-	// 		return EaseOutQuadVector2(start.point + spawn,end.point + spawn,time);
-	// 	}
-	// 	else if(type == EaseType.EaseInOutQuad)
-	// 	{
-	// 		return EaseInOutQuadVector2(start.point + spawn,end.point + spawn,time);
-	// 	}
-	// 	else if(type == EaseType.EaseInCubic)
-	// 	{
-	// 		return EaseInCubicVector2(start.point + spawn,end.point + spawn,time);
-	// 	}
-	// 	else if(type == EaseType.EaseOutCubic)
-	// 	{
-	// 		return EaseOutCubicVector2(start.point + spawn,end.point + spawn,time);
-	// 	}
-	// 	else if(type == EaseType.EaseInOutCubic)
-	// 	{
-	// 		return EaseInOutCubicVector2(start.point + spawn,end.point + spawn,time);
-	// 	}
+	public static Vector2 GetEaseFormula(PathDatabase.LineInfo start, PathDatabase.LineInfo end, float time, EaseType type, Vector2 spawn = new Vector2())
+	{
+		if(type == EaseType.Linear)
+		{
+			return LinearVector2(start.point + spawn,end.point + spawn,time);
+		}
+		else if(type == EaseType.BezierCurve)
+		{
+			return GetPointOnBezierCurve(start.point + spawn,start.bezierPoint[1] + spawn,end.bezierPoint[0] + spawn,end.point + spawn,time);
+		}
+		else if(type == EaseType.EaseInQuad)
+		{
+			return EaseInQuadVector2(start.point + spawn,end.point + spawn,time);
+		}
+		else if(type == EaseType.EaseOutQuad)
+		{
+			return EaseOutQuadVector2(start.point + spawn,end.point + spawn,time);
+		}
+		else if(type == EaseType.EaseInOutQuad)
+		{
+			return EaseInOutQuadVector2(start.point + spawn,end.point + spawn,time);
+		}
+		else if(type == EaseType.EaseInCubic)
+		{
+			return EaseInCubicVector2(start.point + spawn,end.point + spawn,time);
+		}
+		else if(type == EaseType.EaseOutCubic)
+		{
+			return EaseOutCubicVector2(start.point + spawn,end.point + spawn,time);
+		}
+		else if(type == EaseType.EaseInOutCubic)
+		{
+			return EaseInOutCubicVector2(start.point + spawn,end.point + spawn,time);
+		}
 
-	// 	return new Vector2();
-	// }
+		return new Vector2();
+	}
 
 	public static Vector2 LinearVector2(Vector2 start, Vector2 end ,float time)
 	{
@@ -252,15 +252,15 @@ public class MathEx {
 
 	public static bool IntersectRectCircle(Define.RectF circleBound, Define.RectF rectBound, Define.RectF rect)
 	{
-		int zone = GetRectZone(circleBound.min,rect);
+		int zone = GetRectZone(circleBound.min,rectBound);
 
 		if(zone == 1)
 		{
-			return rect.min.y - circleBound.max.x <= circleBound.min.y;
+			return rectBound.min.y - circleBound.max.x <= circleBound.min.y;
 		}
 		else if(zone == 3)
 		{
-			return rect.min.x - circleBound.max.x <= circleBound.min.x;
+			return rectBound.min.x - circleBound.max.x <= circleBound.min.x;
 		}
 		else if(zone == 4)
 		{
@@ -268,11 +268,11 @@ public class MathEx {
 		}
 		else if(zone == 5)
 		{
-			return rect.max.x + circleBound.max.x >= circleBound.min.x;
+			return rectBound.max.x + circleBound.max.x >= circleBound.min.x;
 		}
 		else if(zone == 7)
 		{
-			return rect.max.y + circleBound.max.x >= circleBound.min.y;
+			return rectBound.max.y + circleBound.max.x >= circleBound.min.y;
 		}
 		else
 		{
@@ -371,6 +371,16 @@ public class MathEx {
     	return nZone;
 	}
 #endregion
+
+	public static Define.RectF RectTransformToRect(RectTransform rectTp,Define.RectF rect)
+	{
+		rect.min.x = (rectTp.anchoredPosition.x - rectTp.sizeDelta.x * .5f);
+		rect.min.y = (rectTp.anchoredPosition.y - rectTp.sizeDelta.y * .5f);
+		rect.max.x = (rectTp.anchoredPosition.x + rectTp.sizeDelta.x * .5f);
+		rect.max.y = (rectTp.anchoredPosition.y + rectTp.sizeDelta.y * .5f);
+
+		return rect;
+	}
 
 	public static void Vector2Mul(ref Vector2 one,Vector2 two) {one.x *= two.x; one.y *= two.y;}
 

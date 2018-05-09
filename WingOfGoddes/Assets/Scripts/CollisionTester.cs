@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CollisionTester : ObjectBase {
 
-	public ColliderBase tester;
-
 	public override void Initialize()
 	{
 		SetTransform();
@@ -14,10 +12,7 @@ public class CollisionTester : ObjectBase {
 
 	public override void Progress(float deltaTime)
 	{
-		if(Collision(tester))
-		{
-			Debug.Log("check");
-		}
+		BulletManager.instance.CollisionCheck(this,Define.BulletTeam.Enemy);
 	}
 
 	public override void Release()

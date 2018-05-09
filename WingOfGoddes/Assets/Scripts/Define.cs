@@ -22,6 +22,13 @@ public class Define {
 		Box
 	}
 
+	public enum BulletTeam
+	{
+		Player,
+		Enemy,
+	}
+
+
 	[System.Serializable]
 	public class RectF
 	{

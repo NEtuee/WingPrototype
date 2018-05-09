@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBase : MonoBehaviour {
+public class PlayerBase : ObjectBase {
 
-	// Use this for initialization
-	void Start () {
+	public override void Initialize()
+	{
+
+	}
+
+	public override void Progress(float deltaTime)
+	{
+
+	}
+
+	public override void Release()
+	{
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+	public ObjectBase GetNearEnemy() {return this;}
 }

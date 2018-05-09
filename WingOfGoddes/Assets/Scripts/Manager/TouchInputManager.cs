@@ -72,7 +72,7 @@ public class TouchInputManager : LinkProgressManagerBase<TouchInputManager> {
 		Proportion(screenRatio);
 	}
 
-	public override void Progress()
+	public override void Progress(float deltaTime = 0f)
 	{
 		TouchCheck();
 	}

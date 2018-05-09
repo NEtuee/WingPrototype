@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour {
+public class PlayerManager : SingletonBase<PlayerManager> {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	public PlayerBase target;
+
+	public Vector3 GetDirection(Vector3 pos)
+	{
+		return new Vector3();
 	}
 }

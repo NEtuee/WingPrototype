@@ -6,9 +6,13 @@ public class GameObjectManager : LinkProgressManagerBase<GameObjectManager> {
 
 	public int objectCount = 0;
 
+	
+
 	public TouchInputManager touchInputManager;
 
-	private ObjectLink<ObjectBase> frontLink;
+	public BulletManager bulletManager;
+
+	private ObjectArrayLink<ObjectBase> frontLink;
 
 	private float deltaTime = 0f;
 
@@ -17,19 +21,26 @@ public class GameObjectManager : LinkProgressManagerBase<GameObjectManager> {
 		Initialize();
 
 		touchInputManager.Initialize();
-		touchInputManager.GetTouchInfo("Test").SetBeganCallBack(Test);
-		touchInputManager.GetTouchInfo("Two").SetBeganCallBack(Test);
+		bulletManager.Initialize();
 	}
-
-	public void Test() {Debug.Log("check");}
 
 	public void Update()
 	{
 		deltaTime = Time.deltaTime;
-
 		touchInputManager.Progress();
 
 		Progress();
+
+		if(Input.GetMouseButtonDown(0))
+		{
+			bulletManager.ObjectActive(null,Vector2.zero,5f,1f,180f,false).SetPenetrate(true);
+		}
+
+		bulletManager.Progress(deltaTime);
+
+
+
+		bulletManager.DeleteAllExitObjects();
 	}
 
 	public override void Initialize()
@@ -38,10 +49,10 @@ public class GameObjectManager : LinkProgressManagerBase<GameObjectManager> {
 
 		FindObjects();
 	}
-	public override void Progress()
+	public override void Progress(float deltaTime = 0f)
     {
-        ObjectLink<ObjectBase> link = frontLink;
-		ObjectLink<ObjectBase> _front = link;
+        ObjectArrayLink<ObjectBase> link = frontLink;
+		ObjectArrayLink<ObjectBase> _front = link;
 
 		if(link == null)
 			return;
@@ -56,7 +67,7 @@ public class GameObjectManager : LinkProgressManagerBase<GameObjectManager> {
                     continue;
 
 				if(link.me[i].ProgressCheck())
-					link.me[i].Progress(deltaTime);
+					link.me[i].Progress(this.deltaTime);
 				
 				if(link.me[i].IsDestroy())
 				{
@@ -102,7 +113,7 @@ public class GameObjectManager : LinkProgressManagerBase<GameObjectManager> {
 		objectCount = 0;
 
 		Transform[] objs = GameObject.FindObjectsOfType(typeof(Transform)) as Transform[];
-        ObjectLink<ObjectBase> old = new ObjectLink<ObjectBase>();
+        ObjectArrayLink<ObjectBase> old = new ObjectArrayLink<ObjectBase>();
 		ObjectBase[] bases;
 
 		for(int i = 0; i < objs.Length; ++i)
@@ -111,7 +122,7 @@ public class GameObjectManager : LinkProgressManagerBase<GameObjectManager> {
 
 			if(bases.Length > 0)
 			{
-				ObjectLink<ObjectBase> link = new ObjectLink<ObjectBase>(bases);
+				ObjectArrayLink<ObjectBase> link = new ObjectArrayLink<ObjectBase>(bases);
 				for(int j = 0; j < bases.Length; ++j)
 				{
 					bases[j].Initialize();

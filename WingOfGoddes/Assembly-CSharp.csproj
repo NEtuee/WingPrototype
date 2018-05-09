@@ -39,15 +39,33 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>E:/Unity_5.6.0f3/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>C:/Program Files/Unity_5.6.0f3/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>E:/Unity_5.6.0f3/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>C:/Program Files/Unity_5.6.0f3/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Assets\Anima2D\Scripts\Bone2D.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\Control.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\EditorUpdaterProxy.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\Ik2D.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\IkCCD2D.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\IkGroup.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\IkLimb2D.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\IkSolver2D.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\IkSolver2DCCD.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\IkSolver2DLimb.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\MathUtils.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\Pose.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\PoseManager.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\SpriteMesh.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\SpriteMeshAnimation.cs" />
+     <Compile Include="Assets\Assets\Anima2D\Scripts\SpriteMeshInstance.cs" />
      <Compile Include="Assets\Scripts\Base\AnimationInfo.cs" />
+     <Compile Include="Assets\Scripts\Base\BulletBase.cs" />
      <Compile Include="Assets\Scripts\Base\ColliderBase.cs" />
+     <Compile Include="Assets\Scripts\Base\KillWishBase.cs" />
      <Compile Include="Assets\Scripts\Base\LinkProgressManagerBase.cs" />
      <Compile Include="Assets\Scripts\Base\ObjectBase.cs" />
      <Compile Include="Assets\Scripts\Base\PlayerBase.cs" />
@@ -56,6 +74,8 @@
      <Compile Include="Assets\Scripts\Base\SpriteAnimeInfo.cs" />
      <Compile Include="Assets\Scripts\CircleCollider.cs" />
      <Compile Include="Assets\Scripts\CollisionTester.cs" />
+     <Compile Include="Assets\Scripts\Database\BulletDatabase.cs" />
+     <Compile Include="Assets\Scripts\Database\PathDatabase.cs" />
      <Compile Include="Assets\Scripts\Database\SpriteDatabase.cs" />
      <Compile Include="Assets\Scripts\Define.cs" />
      <Compile Include="Assets\Scripts\Manager\BulletManager.cs" />
@@ -70,29 +90,49 @@
      <Compile Include="Assets\Scripts\Manager\TouchInputManager.cs" />
      <Compile Include="Assets\Scripts\MathEx.cs" />
      <Compile Include="Assets\Scripts\RectCollider.cs" />
+     <Compile Include="Assets\Scripts\~InGameEditor\CamControll.cs" />
+     <Compile Include="Assets\Scripts\~InGameEditor\EditorBase.cs" />
+     <Compile Include="Assets\Scripts\~InGameEditor\EditorMaster.cs" />
+     <Compile Include="Assets\Scripts\~InGameEditor\EventEditor\EditorEventBase.cs" />
+     <Compile Include="Assets\Scripts\~InGameEditor\EventEditor\EventEditor.cs" />
+     <Compile Include="Assets\Scripts\~InGameEditor\MarkerBase.cs" />
+     <Compile Include="Assets\Scripts\~InGameEditor\PathEditor\BezierMarker.cs" />
+     <Compile Include="Assets\Scripts\~InGameEditor\PathEditor\LineInfoMarker.cs" />
+     <Compile Include="Assets\Scripts\~InGameEditor\PathEditor\PathEditor.cs" />
+     <Compile Include="Assets\Scripts\~InGameEditor\PatternEditor.cs" />
+     <Compile Include="Assets\Scripts\~InGameEditor\PatternPresetEditor.cs" />
+     <None Include="Assets\Assets\Anima2D\Version.txt" />
+     <None Include="Assets\Assets\Anima2D\Licenses.txt" />
+     <None Include="Assets\Assets\Anima2D\Readme.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>E:/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>E:/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>C:/Program Files/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
- <HintPath>E:/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+ <HintPath>C:/Program Files/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>E:/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/TestRunner/nunit.framework.dll</HintPath>
+ <HintPath>C:/Program Files/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/TestRunner/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>E:/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>C:/Program Files/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
- <HintPath>E:/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ <HintPath>C:/Program Files/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
- <HintPath>E:/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ <HintPath>C:/Program Files/Unity_5.6.0f3/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
  <Reference Include="System.Windows.Forms">
- <HintPath>C:/Users/LeeUmin/Downloads/WingOfGoddes/Assets/~Plugins/System.Windows.Forms.dll</HintPath>
+ <HintPath>C:/Users/309-8/Downloads/WingOfGoddes/Assets/~Plugins/System.Windows.Forms.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+ <HintPath>C:/Program Files/Unity_5.6.0f3/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Common">
+ <HintPath>C:/Program Files/Unity_5.6.0f3/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

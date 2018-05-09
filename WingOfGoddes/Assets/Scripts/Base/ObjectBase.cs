@@ -15,6 +15,9 @@ public abstract class ObjectBase : MonoBehaviour {
 	protected bool isDead = false;
 	protected bool isImmortal = false;
 
+	protected List<ObjectBase> collisionObjects = new List<ObjectBase>();
+	protected List<ObjectBase> exitObjects = new List<ObjectBase>();
+
 	public abstract void Initialize();
 	public abstract void Progress(float deltaTime);
 	public abstract void Release();
@@ -49,6 +52,9 @@ public abstract class ObjectBase : MonoBehaviour {
 		return null;
 	}
 
+	public Transform GetTransform(){return tp;}
+	public Vector3 GetPosition(){return tp.position;}
+
 	public void IncreaseHP(float value) {MathEx.Increaser(ref hp,maxHp,value);}
 	public void DecreaseHP(float value) 
 	{
@@ -57,6 +63,86 @@ public abstract class ObjectBase : MonoBehaviour {
 		MathEx.Decreaser(ref hp,maxHp,value);
 		if(hp <= 0)
 			SetDead(true);
+	}
+
+	public virtual void CollisionEnter(ObjectBase obj){}
+	public virtual void CollisionStay(ObjectBase obj){}
+	public virtual void CollisionExit(ObjectBase obj){}
+
+	public virtual void CopyList()
+	{
+		exitObjects.Clear();
+		for(int i = 0; i < collisionObjects.Count; ++i)
+		{
+			exitObjects.Add(collisionObjects[i]);
+		}
+	}
+
+	public virtual void DeleteObjectInCollisionList(ObjectBase obj)
+	{
+		for(int i = 0; i < collisionObjects.Count; ++i)
+		{
+			if(collisionObjects[i] == obj)
+			{
+				collisionObjects.RemoveAt(i);
+			}
+		}
+	}
+
+	public virtual void DeleteCollisionList()
+	{
+		collisionObjects.Clear();
+	}
+
+	public virtual void DeleteExitObjects()
+	{
+		for(int i = 0; i < exitObjects.Count; ++i)
+		{
+			//충돌 후
+			CollisionExit(exitObjects[i]);
+			//exitObjects[i].CollisionExit(this);
+			collisionObjects.Remove(exitObjects[i]);
+		}
+	}
+
+	public virtual int CollisionActive(ObjectBase obj)
+	{
+		for(int i = 0; i < collisionObjects.Count; ++i)
+		{
+			if(collisionObjects[i] == obj)
+			{
+				//충돌중
+				CollisionStay(obj);
+				exitObjects.Remove(obj);
+
+				return 1;
+			}
+		}
+
+		//최초 충돌
+		CollisionEnter(obj);
+		collisionObjects.Add(obj);
+
+		return 0;
+	}
+
+	public virtual bool CollisionCheck(ObjectBase obj)
+	{
+		if(obj.gameObject.activeSelf)
+		{
+			CopyList();
+			obj.CopyList();
+
+			if(Collision(obj))
+			{
+				CollisionActive(obj);
+				//obj.CollisionActive(this);
+
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public virtual bool Collision(ColliderBase obj)
@@ -82,40 +168,16 @@ public abstract class ObjectBase : MonoBehaviour {
 			}
 			else
 			{
-				return MathEx.IntersectRectCircle(me.GetCollisinoInfo(obj.transform.position),obj.GetCollisinoInfo(tp.position),obj.GetBound());
+				return MathEx.IntersectRectCircle(me.GetCollisinoInfo(tp.position),obj.GetCollisinoInfo(obj.transform.position),obj.GetBound());
 			}
 		}
 	}
 
 	public virtual bool Collision(ObjectBase obj)
 	{
-		//ColliderBase me = GetColliderBase();
 		ColliderBase other = obj.GetColliderBase();
 
 		return Collision(other);
-	// 	if(me.GetColliderType() == other.GetColliderType())
-	// 	{
-	// 		if(me.GetColliderType() == Define.ColliderType.Box)
-	// 		{
-	// 			return MathEx.IntersectRect(me.GetCollisinoInfo(tp.position),other.GetCollisinoInfo(obj.tp.position));
-	// 		}
-	// 		else
-	// 		{
-	// 			return MathEx.IntersectCircle(me.GetCollisinoInfo(tp.position),other.GetCollisinoInfo(obj.tp.position));
-	// 		}
-	// 	}
-	// 	else
-	// 	{
-	// 		if(me.GetColliderType() == Define.ColliderType.Box)
-	// 		{
-	// 			return MathEx.IntersectRectCircle(other.GetCollisinoInfo(obj.tp.position),me.GetCollisinoInfo(tp.position),me.GetBound());
-	// 		}
-	// 		else
-	// 		{
-	// 			return MathEx.IntersectRectCircle(me.GetCollisinoInfo(obj.tp.position),other.GetCollisinoInfo(tp.position),other.GetBound());
-	// 		}
-	// 	}
-	// }
 	}
 
 }
