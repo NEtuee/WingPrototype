@@ -16,10 +16,10 @@ public class CamControll : MonoBehaviour {
 	void Awake()
 	{
 		float height = 2 * cam.orthographicSize;
-		float width = height * cam.aspect;
+		float width = height * 0.5625f;
 
-		Vector3[] points = {new Vector3(-height / 2f,width / 2f,1f),new Vector3(height / 2f,width / 2f,1f)
-							,new Vector3(height / 2f, -width / 2f,1f),new Vector3( -height / 2f, - width / 2f,1f)};
+		Vector3[] points = {new Vector3(-width / 2f,height / 2f,1f),new Vector3(width / 2f,height / 2f,1f)
+							,new Vector3(width / 2f, -height / 2f,1f),new Vector3( -width / 2f, - height / 2f,1f)};
 
 		lineRenderer.SetPositions(points);
 	}

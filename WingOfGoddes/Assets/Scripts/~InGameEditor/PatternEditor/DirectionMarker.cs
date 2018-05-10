@@ -2,20 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LineInfoMarker : MarkerBase {
+public class DirectionMarker : MarkerBase {
 
-	public static LineInfoMarker select = null;
+	public static DirectionMarker select = null;
 
-	public GameObject bezierMakrer;
-	public PathDatabase.LineInfo info;
-	public BezierMarker[] markers;
-
-	public void Set(PathDatabase.LineInfo i)
-	{
-		info = i;
-		transform.position = info.point;
-
-	}
+	public float originAngle = 0f;
+	public float clickAngle = 0f;
+	public float currAngle = 0f;
 
 	public override void Progress(Sync[] s)
 	{
@@ -27,30 +20,30 @@ public class LineInfoMarker : MarkerBase {
 				if(select == null)
 				{
 					isMove = true;
+
+					AngleSetUp();
+
 					clickPos = mousePos;
-					originPos = transform.position;
 					select = this;
 					ColorCheck(true);
-
-					s[0]();
 				}
 				else if(select == this)
 				{
+					AngleSetUp();
+
 					clickPos = mousePos;
-					originPos = transform.position;
 				}
 				else
 				{
 					select.ColorCheck(false);
 					select.isMove = false;
 
+					AngleSetUp();
+
 					isMove = true;
 					clickPos = mousePos;
-					originPos = transform.position;
 					select = this;
 					ColorCheck(true);
-
-					s[0]();
 				}
 			}
 		}
@@ -71,11 +64,21 @@ public class LineInfoMarker : MarkerBase {
 			}
 			if(isMove)
 			{
-				transform.position = originPos + (mousePos - clickPos);
+				GetCurrAngle();
 
-				info.point = transform.position;
-				s[1]();
-				s[2]();
+				float angle = originAngle - (clickAngle - currAngle);
+
+				if(Input.GetKey(KeyCode.LeftShift))
+				{
+					int factor = 10;
+					if(Input.GetKey(KeyCode.LeftControl))
+						factor = 30;
+					
+					angle = (float)((int)angle / factor) * (float)factor;
+				}
+
+				transform.rotation = Quaternion.Euler(0f,0f,angle);
+				ExtraFunc();
 			}
 		}
 
@@ -89,11 +92,29 @@ public class LineInfoMarker : MarkerBase {
 				{
 					ColorCheck(false);
 					select = null;
-
-					s[0]();
 				}
 			}
 		}
+	}
 
+	public virtual void ExtraFunc(){}
+
+	public void AngleSetUp()
+	{
+		originAngle = transform.localEulerAngles.z;
+
+		GetCurrAngle();
+		clickAngle = currAngle;
+	}
+
+	public void GetCurrAngle()
+	{
+		Vector2 pos = transform.position;
+		Vector2 dir = GetMousePosition() - pos;
+		dir = dir.normalized;
+
+		currAngle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
+
+		currAngle = currAngle < 0f ? currAngle + 360f : currAngle;
 	}
 }

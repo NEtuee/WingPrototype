@@ -54,7 +54,7 @@ public class PathEditor : EditorBase {
 	{
 		for(int i = 0; i < lineinfoMarkerList.Count; ++i)
 		{
-			lineinfoMarkerList[i].Progress(new MarkerBase.Sync[]{() => PointInfoUISync(),() => LineRendererSync()});
+			lineinfoMarkerList[i].Progress(new MarkerBase.Sync[]{() => PointInfoUISync(),() => LineRendererSync(),() => PositionUISync()});
 		}
 
 		if(picking)
@@ -100,6 +100,9 @@ public class PathEditor : EditorBase {
 	{
 		LineInfoMarker.select.info.point.x = float.Parse(posXUI.text);
 		LineInfoMarker.select.info.point.y = float.Parse(posYUI.text);
+
+		LineInfoMarker.select.transform.position = LineInfoMarker.select.info.point;
+		LineRendererSync();
 	}
 
 	public void SpeedSync()
@@ -210,6 +213,7 @@ public class PathEditor : EditorBase {
 	public void AddLineInfoMarker(PathDatabase.LineInfo info)
 	{
 		LineInfoMarker marker = Instantiate(lineInfoMarkerBase).GetComponent<LineInfoMarker>();
+		marker.transform.SetParent(this.transform);
 		marker.Set(info);
 
 		lineinfoMarkerList.Add(marker);
@@ -234,6 +238,12 @@ public class PathEditor : EditorBase {
 		posXUI.interactable = value;
 		posYUI.interactable = value;
 		movementTypeUI.interactable = value;
+	}
+
+	public void PositionUISync()
+	{
+		posXUI.text = LineInfoMarker.select.info.point.x.ToString();
+		posYUI.text = LineInfoMarker.select.info.point.y.ToString();
 	}
 
 	public void PointInfoUISync()

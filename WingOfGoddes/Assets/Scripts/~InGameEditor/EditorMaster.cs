@@ -21,7 +21,7 @@ public class EditorMaster : MonoBehaviour {
 
 	public void Awake()
 	{
-		EventSwap(currEditor);
+		EventSwap((int)currEditor);
 	}
 
 	public void Save()
@@ -29,9 +29,9 @@ public class EditorMaster : MonoBehaviour {
 		editors[(int)currEditor].SaveData();
 	}
 
-	public void EventSwap(EditorEnum editor)
+	public void EventSwap(int editor)
 	{
-		currEditor = editor;
+		currEditor = (EditorEnum)editor;
 
 		for(int i = 0; i < editors.Length; ++i)
 		{

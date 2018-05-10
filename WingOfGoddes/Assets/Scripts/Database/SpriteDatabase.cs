@@ -27,16 +27,49 @@ public class SpriteDatabase : ScriptableObject {
         public SpriteListWithKey(string k) { key = k; }
     }
 
+    [System.Serializable]
+    public class SpriteIndexInfo
+    {
+        public int group = 0;
+        public int set = 0;
+        public int index = -1;
+
+        public SpriteIndexInfo(){}
+        public SpriteIndexInfo(int g, int s,int i) {group = g; set = s; index = i;}
+    }
     //public List<SpriteSet> spriteSet = new List<SpriteSet>();
 
     public List<SpriteListWithKey> spriteSet = new List<SpriteListWithKey>();
 
     public Sprite GetSprite(int group, int set, int index)
     {
-        return spriteSet[group].spriteSet[set].sprites[index];
+        // if(spriteSet.Count > group)
+        // {
+        //     if(spriteSet[group].spriteSet.Count > set)
+        //     {
+        //         if(spriteSet[group].spriteSet[set].sprites.Length > index)
+        //         {
+                    return spriteSet[group].spriteSet[set].sprites[index];
+        //         }
+        //     }
+        // }
+
+        // return null;
+    }
+
+    public Sprite GetSprite(SpriteIndexInfo info)
+    {
+        if(info.index == -1)
+            return null;
+
+        return spriteSet[info.group].spriteSet[info.set].sprites[info.index];
     }
 
 #if UNITY_EDITOR
+    public void SaveDirty()
+    {
+        EditorUtility.SetDirty(this);
+    }
     public int AddSpriteGroup(string groupName)
     {
         if(groupName == "")
@@ -136,6 +169,27 @@ public class SpriteDatabase : ScriptableObject {
         }
 
         return list.ToArray();
+    }
+
+    public string[] GetSpriteNames(int group, int index)
+    {
+        List<SpriteSet> list = FindListFromIndex(group);
+
+        if(list != null)
+        {
+            List<string> st = new List<string>();
+            if(list.Count > index)
+            {
+                for(int i = 0; i < list[index].sprites.Length; ++i)
+                {
+                    st.Add(list[index].sprites[i].name);
+                }
+
+                return st.ToArray();
+            }
+        }
+
+        return null;
     }
 
     public Sprite[] GetSprites(int group, int index)

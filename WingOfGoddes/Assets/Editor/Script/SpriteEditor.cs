@@ -166,6 +166,8 @@ public class SpriteEditor : EditorWindow
                             list[selectSpriteSetIndex].sprites[i] = objects[i] as Sprite;
                         }
                     }
+
+                    spriteDatabase.SaveDirty();
                 }
                 else
                 {

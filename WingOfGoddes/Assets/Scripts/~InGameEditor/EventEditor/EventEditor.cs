@@ -348,7 +348,7 @@ public class EventEditor : EditorBase {
         if(Frame.select == null)
             return;
         Frame.select.AddEvent(new TestEvent());
-        
+
         FrameSync();
         EventListSync();
     }
@@ -502,6 +502,10 @@ public class EventEditor : EditorBase {
 
     public void FpsSync()
     {
+        if(frameInput.text == "")
+        {
+            frameInput.text = "12";
+        }
         framePerSec = int.Parse(frameInput.text);
     }
 
