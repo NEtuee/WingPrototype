@@ -99,6 +99,22 @@ public class DirectionMarker : MarkerBase {
 
 	public virtual void ExtraFunc(){}
 
+	public override void ColorCheck(bool select)
+	{
+		if(select)
+		{
+			Color c = Color.green;
+			c.a = 0.2f;
+			spriteRenderer.color = c;
+		}
+		else
+		{
+			Color c = Color.white;
+			c.a = 0.2f;
+			spriteRenderer.color = c;
+		}
+	}
+
 	public void AngleSetUp()
 	{
 		originAngle = transform.localEulerAngles.z;
