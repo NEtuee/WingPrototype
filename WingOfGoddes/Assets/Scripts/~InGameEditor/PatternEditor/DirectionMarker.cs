@@ -6,6 +6,8 @@ public class DirectionMarker : MarkerBase {
 
 	public static DirectionMarker select = null;
 
+	public PatternFrameInfo.Preset info;
+
 	public float originAngle = 0f;
 	public float clickAngle = 0f;
 	public float currAngle = 0f;
@@ -78,6 +80,7 @@ public class DirectionMarker : MarkerBase {
 				}
 
 				transform.rotation = Quaternion.Euler(0f,0f,angle);
+				info.extraAngle = angle > 180 ? angle - 360f : angle;
 				ExtraFunc();
 			}
 		}

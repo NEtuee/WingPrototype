@@ -382,6 +382,16 @@ public class MathEx {
 		return rect;
 	}
 
+	public static Define.RectF RectTransformNormalToRect(RectTransform rectTp,Define.RectF rect)
+	{
+		rect.min.x = (rectTp.position.x - rectTp.sizeDelta.x * .5f);
+		rect.min.y = (rectTp.position.y - rectTp.sizeDelta.y * .5f);
+		rect.max.x = (rectTp.position.x + rectTp.sizeDelta.x * .5f);
+		rect.max.y = (rectTp.position.y + rectTp.sizeDelta.y * .5f);
+
+		return rect;
+	}
+
 	public static void Vector2Mul(ref Vector2 one,Vector2 two) {one.x *= two.x; one.y *= two.y;}
 
 	public static void Increaser(ref float value,float max,float inc) {value = (value + inc) >= max ? max : (value + inc);}

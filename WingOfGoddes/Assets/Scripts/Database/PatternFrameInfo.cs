@@ -1,12 +1,19 @@
 ﻿using System.Collections.Generic;
 
+[System.Serializable]
 public class PatternFrameInfo {
 	
-	public int frame;
-	public float extraSpeed = 1f;
-	public float extraAngle = 0f;
+	[System.Serializable]
+	public class Preset
+	{
+		public int preset = 0;
+		public float extraSpeed = 1f;
+		public float extraAngle = 0f;
+	}
 
-	public List<int> presets = new List<int>();
+	public int frame;
+
+	public List<Preset> presets = new List<Preset>();
 
 	public PatternFrameInfo (int f) {frame = f;}
 }
