@@ -1,0 +1,272 @@
+-debug
+-target:library
+-nowarn:0169
+-langversion:4
+-out:Temp/Assembly-CSharp.dll
+-unsafe
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/nunit.framework.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll"
+-r:"Assets/~Plugins/System.Windows.Forms.dll"
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
+-define:UNITY_5_3_OR_NEWER
+-define:UNITY_5_4_OR_NEWER
+-define:UNITY_5_5_OR_NEWER
+-define:UNITY_5_6_OR_NEWER
+-define:UNITY_5_6_0
+-define:UNITY_5_6
+-define:UNITY_5
+-define:UNITY_ANALYTICS
+-define:ENABLE_AUDIO
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_DUCK_TYPING
+-define:ENABLE_GENERICS
+-define:ENABLE_PVR_GI
+-define:ENABLE_MICROPHONE
+-define:ENABLE_MULTIPLE_DISPLAYS
+-define:ENABLE_PHYSICS
+-define:ENABLE_RUNTIME_NAVMESH_BUILDING
+-define:ENABLE_SPRITERENDERER_FLIPPING
+-define:ENABLE_SPRITES
+-define:ENABLE_TERRAIN
+-define:ENABLE_RAKNET
+-define:ENABLE_UNET
+-define:ENABLE_LZMA
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_WEBCAM
+-define:ENABLE_WWW
+-define:ENABLE_CLOUD_SERVICES_COLLAB
+-define:ENABLE_CLOUD_SERVICES_ADS
+-define:ENABLE_CLOUD_HUB
+-define:ENABLE_CLOUD_PROJECT_ID
+-define:ENABLE_CLOUD_SERVICES_UNET
+-define:ENABLE_CLOUD_SERVICES_BUILD
+-define:ENABLE_CLOUD_LICENSE
+-define:ENABLE_EDITOR_METRICS
+-define:ENABLE_EDITOR_METRICS_CACHING
+-define:ENABLE_NATIVE_ARRAY
+-define:INCLUDE_DYNAMIC_GI
+-define:INCLUDE_GI
+-define:PLATFORM_SUPPORTS_MONO
+-define:RENDER_SOFTWARE_CURSOR
+-define:INCLUDE_PUBNUB
+-define:ENABLE_PLAYMODE_TESTS_RUNNER
+-define:ENABLE_SCRIPTING_NEW_CSHARP_COMPILER
+-define:ENABLE_VIDEO
+-define:UNITY_STANDALONE_WIN
+-define:UNITY_STANDALONE
+-define:ENABLE_SUBSTANCE
+-define:ENABLE_RUNTIME_GI
+-define:ENABLE_MOVIES
+-define:ENABLE_NETWORK
+-define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+-define:ENABLE_UNITYWEBREQUEST
+-define:ENABLE_CLOUD_SERVICES
+-define:ENABLE_CLOUD_SERVICES_ANALYTICS
+-define:ENABLE_CLOUD_SERVICES_PURCHASING
+-define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
+-define:ENABLE_EVENT_QUEUE
+-define:ENABLE_CLUSTERINPUT
+-define:ENABLE_VR
+-define:ENABLE_WEBSOCKET_HOST
+-define:ENABLE_MONO
+-define:NET_2_0
+-define:ENABLE_PROFILER
+-define:DEBUG
+-define:TRACE
+-define:UNITY_ASSERTIONS
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_64
+-define:UNITY_EDITOR_WIN
+-define:ENABLE_NATIVE_ARRAY_CHECKS
+-define:UNITY_TEAM_LICENSE
+-define:CROSS_PLATFORM_INPUT
+Assets/Anima2D/Examples/Scripts/CharacterMotion.cs
+Assets/Anima2D/Examples/Scripts/Follow.cs
+Assets/Anima2D/Examples/Scripts/SkinnedMeshCombiner.cs
+Assets/Anima2D/Examples/Scripts/SpringBone.cs
+Assets/Anima2D/Examples/Scripts/SpringCollider.cs
+Assets/Anima2D/Examples/Scripts/SpringManager.cs
+Assets/Anima2D/Examples/Scripts/SpriteCycle.cs
+Assets/Anima2D/Examples/Scripts/SpriteCycleParallax.cs
+Assets/Anima2D/Scripts/Bone2D.cs
+Assets/Anima2D/Scripts/Control.cs
+Assets/Anima2D/Scripts/EditorUpdaterProxy.cs
+Assets/Anima2D/Scripts/Ik2D.cs
+Assets/Anima2D/Scripts/IkCCD2D.cs
+Assets/Anima2D/Scripts/IkGroup.cs
+Assets/Anima2D/Scripts/IkLimb2D.cs
+Assets/Anima2D/Scripts/IkSolver2D.cs
+Assets/Anima2D/Scripts/IkSolver2DCCD.cs
+Assets/Anima2D/Scripts/IkSolver2DLimb.cs
+Assets/Anima2D/Scripts/MathUtils.cs
+Assets/Anima2D/Scripts/Pose.cs
+Assets/Anima2D/Scripts/PoseManager.cs
+Assets/Anima2D/Scripts/SpriteMesh.cs
+Assets/Anima2D/Scripts/SpriteMeshAnimation.cs
+Assets/Anima2D/Scripts/SpriteMeshInstance.cs
+Assets/BackgroundScroll.cs
+Assets/BulletPlayer.cs
+"Assets/CH_Script/Standard Assets/2D/Scripts/Camera2DFollow.cs"
+"Assets/CH_Script/Standard Assets/CrossPlatformInput/Scripts/AxisTouchButton.cs"
+"Assets/CH_Script/Standard Assets/CrossPlatformInput/Scripts/ButtonHandler.cs"
+"Assets/CH_Script/Standard Assets/CrossPlatformInput/Scripts/CrossPlatformInputManager.cs"
+"Assets/CH_Script/Standard Assets/CrossPlatformInput/Scripts/InputAxisScrollbar.cs"
+"Assets/CH_Script/Standard Assets/CrossPlatformInput/Scripts/Joystick.cs"
+"Assets/CH_Script/Standard Assets/CrossPlatformInput/Scripts/MobileControlRig.cs"
+"Assets/CH_Script/Standard Assets/CrossPlatformInput/Scripts/PlatformSpecific/MobileInput.cs"
+"Assets/CH_Script/Standard Assets/CrossPlatformInput/Scripts/PlatformSpecific/StandaloneInput.cs"
+"Assets/CH_Script/Standard Assets/CrossPlatformInput/Scripts/TiltInput.cs"
+"Assets/CH_Script/Standard Assets/CrossPlatformInput/Scripts/TouchPad.cs"
+"Assets/CH_Script/Standard Assets/CrossPlatformInput/Scripts/VirtualInput.cs"
+Assets/CH_Script/Tutorial/Scripts/PlayerInput.cs
+Assets/CH_Script/Tutorial/Scripts/PlayerMovement.cs
+Assets/CanvasCamSet.cs
+Assets/CircleObject.cs
+Assets/DatabaseContainer.cs
+Assets/DialogScript.cs
+Assets/DialogTest.cs
+Assets/Explosion.cs
+Assets/FakeHpScript.cs
+Assets/FeverBackGague.cs
+Assets/LavaGenerator.cs
+Assets/NameChecker.cs
+Assets/PatternMover.cs
+Assets/Resize.cs
+Assets/ResultMenuManager.cs
+Assets/Script/BulletTestScripts/DiffrentSpeed.cs
+Assets/Script/BulletTestScripts/OptionalSprial.cs
+Assets/Script/BulletTestScripts/Spiral.cs
+Assets/Script/BulletTestScripts/Spread.cs
+Assets/Script/BulletTestScripts/TwistOptionalSprial.cs
+Assets/Script/CharacterDatabase.cs
+Assets/Script/FPSCounter.cs
+Assets/Script/ItemEffectScript/Effect_Test.cs
+Assets/Script/MainGameScript/AttackButton.cs
+Assets/Script/MainGameScript/BaseScript/BulletBase.cs
+Assets/Script/MainGameScript/BaseScript/ButtonPressing.cs
+Assets/Script/MainGameScript/BaseScript/DirectBase.cs
+Assets/Script/MainGameScript/BaseScript/EnemyBase.cs
+Assets/Script/MainGameScript/BaseScript/FeverBase.cs
+Assets/Script/MainGameScript/BaseScript/GoldBase.cs
+Assets/Script/MainGameScript/BaseScript/ItemBase.cs
+Assets/Script/MainGameScript/BaseScript/ItemEffectBase.cs
+Assets/Script/MainGameScript/BaseScript/ObjectBase.cs
+Assets/Script/MainGameScript/BaseScript/PathFindEnemyBase.cs
+Assets/Script/MainGameScript/BaseScript/PlayerBase.cs
+Assets/Script/MainGameScript/CameraControll.cs
+Assets/Script/MainGameScript/Define.cs
+Assets/Script/MainGameScript/DontDestroy.cs
+Assets/Script/MainGameScript/GlobalDamage.cs
+Assets/Script/MainGameScript/Manager/BulletManager.cs
+Assets/Script/MainGameScript/Manager/EffectManager.cs
+Assets/Script/MainGameScript/Manager/EnemyManager.cs
+Assets/Script/MainGameScript/Manager/GameObjectManager.cs
+Assets/Script/MainGameScript/Manager/GoldManager.cs
+Assets/Script/MainGameScript/Manager/ItemManager.cs
+Assets/Script/MainGameScript/Manager/PlayerManager.cs
+Assets/Script/MainGameScript/Manager/SoundManager.cs
+Assets/Script/MainGameScript/MathEx.cs
+Assets/Script/MainGameScript/MobileDebugger.cs
+Assets/Script/MainGameScript/ObjectCreater.cs
+Assets/Script/MainGameScript/ObstacleScript.cs
+Assets/Script/MainGameScript/PenetrateBullet.cs
+Assets/Script/MainGameScript/SaveDataContainer.cs
+Assets/Script/MainGameScript/SaveDataInfo.cs
+Assets/Script/MainGameScript/SceneLoader.cs
+Assets/Script/MainGameScript/SceneLoaderRelayer.cs
+Assets/Script/MainGameScript/ShotBow.cs
+Assets/Script/MainGameScript/SimpleCircleCollider.cs
+Assets/Script/MainGameScript/SpecialMove.cs
+Assets/Script/MainGameScript/SpecialMove2.cs
+Assets/Script/MainGameScript/SpriteAnimation.cs
+Assets/Script/MainGameScript/Test/GameDialog.cs
+Assets/Script/MainGameScript/Test/GameEnemySpawnEvent.cs
+Assets/Script/MainGameScript/Test/GameEventBase.cs
+Assets/Script/MainGameScript/Test/GameRunningTest.cs
+Assets/Script/MainGameScript/Test/GameStaticEvent.cs
+Assets/Script/MainGameScript/Test/GameTestEvent.cs
+Assets/Script/MainGameScript/Test/GameWaitExtinc.cs
+Assets/Script/MainGameScript/Test/HammerDirect.cs
+Assets/Script/MainGameScript/Test/TesetFeverAttack2.cs
+Assets/Script/MainGameScript/Test/TestEnemy.cs
+Assets/Script/MainGameScript/Test/TestEnemy2.cs
+Assets/Script/MainGameScript/Test/TestFeverAttack.cs
+Assets/Script/MainGameScript/Test/TestFeverDirect.cs
+Assets/Script/MainGameScript/Test/TestFeverEndDirect.cs
+Assets/Script/MainGameScript/Test/TestPlayer.cs
+Assets/Script/MainGameScript/Test/TestPlayer2.cs
+Assets/Script/MainGameScript/Test/TestPlayer3.cs
+Assets/Script/MainGameScript/Test/TestPlayer4.cs
+Assets/Script/MainGameScript/TouchToHit.cs
+Assets/Script/MainGameScript/TrailCollider.cs
+Assets/Script/MainGameScript/UIManager.cs
+Assets/Script/MainGameScript/WheelAttack.cs
+Assets/Script/MenuScript/ChracterSelect/CharacterSelectManager.cs
+Assets/Script/MenuScript/MainMenu/MainMenuManager.cs
+Assets/Script/MenuScript/StageInfo/StageInfoManager.cs
+Assets/Script/MenuScript/StageSelect/StageInfoRelayer.cs
+Assets/Script/MenuScript/StageSelect/StageObject.cs
+Assets/Script/MenuScript/StageSelect/StageSelectManager.cs
+Assets/Script/ParticleSystemChecker.cs
+Assets/Script/SpriteContainer.cs
+Assets/Script/StageClearInfo.cs
+Assets/Script/StageTrapScript/LavaPillar.cs
+Assets/Script/StageTrapScript/StageTrapBase.cs
+Assets/Script/WorldDatabase.cs
+"Assets/Script/~EditScript/BulletLineMarker.cs"
+"Assets/Script/~EditScript/BulletScript.cs"
+"Assets/Script/~EditScript/CamControll.cs"
+"Assets/Script/~EditScript/CreateEnemyInfo.cs"
+"Assets/Script/~EditScript/EditorMenu.cs"
+"Assets/Script/~EditScript/EditorScript.cs"
+"Assets/Script/~EditScript/EnemyBaseScript.cs"
+"Assets/Script/~EditScript/EnemyDatabase.cs"
+"Assets/Script/~EditScript/EnemyEdit/EnemyEdit.cs"
+"Assets/Script/~EditScript/EnemyEdit/EnemyFrame.cs"
+"Assets/Script/~EditScript/EnemyEdit/FirePointMarker.cs"
+"Assets/Script/~EditScript/EventEdit/DataManager.cs"
+"Assets/Script/~EditScript/EventEdit/Database/ObjectDatabase.cs"
+"Assets/Script/~EditScript/EventEdit/EventData/DialogEvent.cs"
+"Assets/Script/~EditScript/EventEdit/EventData/EnemyCreateEvent.cs"
+"Assets/Script/~EditScript/EventEdit/EventData/EventBase.cs"
+"Assets/Script/~EditScript/EventEdit/EventData/ObjectCreateEvent.cs"
+"Assets/Script/~EditScript/EventEdit/EventData/StaticEvent.cs"
+"Assets/Script/~EditScript/EventEdit/EventData/TestEvent.cs"
+"Assets/Script/~EditScript/EventEdit/EventData/WaitExtinc.cs"
+"Assets/Script/~EditScript/EventEdit/FrameScript.cs"
+"Assets/Script/~EditScript/EventEdit/Marker/EnemySpawner.cs"
+"Assets/Script/~EditScript/EventEdit/Marker/MarkerBase.cs"
+"Assets/Script/~EditScript/EventEdit/Marker/Positioner.cs"
+"Assets/Script/~EditScript/EventEdit/SlideScript.cs"
+"Assets/Script/~EditScript/EventEdit/Test.cs"
+"Assets/Script/~EditScript/PathEdit/AddEventManager.cs"
+"Assets/Script/~EditScript/PathEdit/CreateObjInfo.cs"
+"Assets/Script/~EditScript/PathEdit/EventInfoManager.cs"
+"Assets/Script/~EditScript/PathEdit/InitEventList.cs"
+"Assets/Script/~EditScript/PathEdit/MovePath.cs"
+"Assets/Script/~EditScript/PathEdit/OnOffMenu.cs"
+"Assets/Script/~EditScript/PathEdit/PathDatabase.cs"
+"Assets/Script/~EditScript/PathEdit/PathEdit.cs"
+"Assets/Script/~EditScript/PathEdit/PointMarker.cs"
+"Assets/Script/~EditScript/PathPointInfoUi.cs"
+Assets/SetScreen.cs
+Assets/ShopManager.cs
+Assets/SimpleRectCollider.cs
+Assets/TextEditScript.cs
+Assets/TitleManager.cs
+Assets/TouchEffect.cs
+Assets/UIParticlePlacer.cs
+Assets/collTest.cs
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\System.Runtime.Serialization.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\System.Xml.Linq.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\UnityScript.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\UnityScript.Lang.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\Boo.Lang.dll"
+-sdk:2.0
