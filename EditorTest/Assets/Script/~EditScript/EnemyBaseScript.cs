@@ -83,13 +83,14 @@ public class EnemyBaseScript : MonoBehaviour {
 			{
 				fireTime = 0f;
 				int count = bullet[currFrame].bulletInfo.Count;
+
 				for(int i = 0; i < count; ++i)
 				{
 					CreateBullet(bullet[currFrame].bulletInfo[i]);
 				}
 				++currFrame;
 
-				if(currFrame == 12)
+				if(currFrame == bullet.Length)
 				{
 					fireTime = fireRate;
 					patternTime = 0f;
@@ -105,7 +106,7 @@ public class EnemyBaseScript : MonoBehaviour {
 	{
 		Vector2 pos = tp.position;
 		BulletScript bs = Instantiate(Test.instance.bulletBase,shotPoints[bulletInfo.shotPoint] + pos,Quaternion.identity).GetComponent<BulletScript>();
-		bs.Init(bulletInfo.angle,bulletInfo.speed);
+		bs.Init(bulletInfo.angle,bulletInfo.speed,bulletInfo.angleAccel,bulletInfo.speedAccel);
 	}
 
 	public void Movement()

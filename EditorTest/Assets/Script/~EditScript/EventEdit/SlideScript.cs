@@ -12,6 +12,8 @@ public class SlideScript : MonoBehaviour {
 	private FrameScript[] frames;
 	private bool running = false;
 
+	private Button selectButton = null;
+
 	public void Init(Test.Container con)
 	{
 		select = null;
@@ -86,6 +88,21 @@ public class SlideScript : MonoBehaviour {
 		return -1;
 	}
 
+	public void DeleteEvent()
+	{
+		if(selectButton != null)
+		{
+			if(select.DeleteEvent(int.Parse(selectButton.name)))
+			{
+				EventListUpdate();
+			}
+		}
+		else
+		{
+			Debug.Log("event does not select");
+		}
+	}
+
 	public void Pick(int code)
 	{
 		if(code == -1)
@@ -119,17 +136,40 @@ public class SlideScript : MonoBehaviour {
 	{
 		DisableEventList();
 		int count = select.GetFrame().events.Count;
+		selectButton = null;
+
 		for(int i = 0; i < count; ++i)
 		{
 			Test.instance.eventList[i].transform.GetComponentInChildren<Text>().text = ((Test.Events)select.GetFrame().events[i].code).ToString();
 			
 			Test.instance.eventList[i].onClick.RemoveAllListeners();
 			int j = i;
-			Test.instance.eventList[i].onClick.AddListener(delegate{ButtonClicked(j);});
+			Test.instance.eventList[i].onClick.AddListener(() => {ButtonClicked(j); ButtonSelect(j);});
+			Test.instance.eventList[i].interactable = true;
 
 			Test.instance.eventList[i].gameObject.SetActive(true);
 		}
 		
+	}
+
+	public void ButtonSelect(int index)
+	{
+		if(selectButton != null)
+		{
+			selectButton.interactable = true;
+
+			selectButton = Test.instance.eventList[index];
+			selectButton.interactable = false;
+		}
+		else
+		{
+			selectButton = Test.instance.eventList[index];
+			selectButton.interactable = false;
+		}
+		// for(int i = 0; i < Test.instance.eventList.Length; ++i)
+		// {
+		// 	Test.instance.eventList[i].			
+		// }
 	}
 
 	public bool IsSelect() {return select != null;}

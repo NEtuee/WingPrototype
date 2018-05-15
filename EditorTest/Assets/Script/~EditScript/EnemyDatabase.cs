@@ -14,6 +14,8 @@ public class EnemyDatabase : ScriptableObject {
 		public int shotPoint;
 		public float speed;
 		public float angle;
+		public float angleAccel;
+		public float speedAccel;
 		public bool guided;
 
 		public BulletInfo(){}

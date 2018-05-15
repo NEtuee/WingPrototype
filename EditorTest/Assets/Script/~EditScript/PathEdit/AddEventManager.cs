@@ -28,7 +28,6 @@ public class AddEventManager : MonoBehaviour {
 			return new ObjectCreateEvent(info.code,info.pos,info.angle,frameCode);
 		case Test.Events.EnemyCreate:
 			string[] s = infoManager.GetCreateEnemyInfo().Split('/');
-			Debug.Log(infoManager.GetCreateEnemyInfo());
 			return new EnemyCreateEvent(frameCode,int.Parse(s[0]),int.Parse(s[1]));
 		case Test.Events.Dialog:
 			return new DialogEvent();

@@ -28,12 +28,14 @@ public class EnemyEdit : MonoBehaviour {
 	public InputField patternShotPoint;
 	public InputField patternSpeed;
 	public InputField patternAngle;
+	public InputField patternAngleAccel;
+	public InputField patternSpeedAccel;
 	public Toggle patternGuided;
 
 	public EnemyFrame currFrame;
 	public int frameCode = -1;
 	public FirePointMarker currPoint;
-	public BulletLineMarker currMarker;
+	public BulletLineMarker currMarker = null;
 	
 	public EnemyDatabase database;
 
@@ -105,12 +107,12 @@ public class EnemyEdit : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.LeftArrow))
 			{
 				if(frameCode == 0)
-					frameCode = 12;
+					frameCode = frames.Count;
 				Pick(frames[--frameCode]);
 			}
 			else if(Input.GetKeyDown(KeyCode.RightArrow))
 			{
-				if(frameCode == 11)
+				if(frameCode == frames.Count - 1)
 					frameCode = -1;
 
 				Pick(frames[++frameCode]);
@@ -121,6 +123,12 @@ public class EnemyEdit : MonoBehaviour {
 	public void EnemyInfoSelect(int code)
 	{
 		SetCurrInfo(code);
+
+		DeleteAllFrame();
+		CreateFrames();
+
+		FrameSync();
+
 		DeleteAllMarker();
 		FirePointUpdate();
 	}
@@ -142,7 +150,6 @@ public class EnemyEdit : MonoBehaviour {
 		currInfo = i;
 		SetInGameSprite();
 		InfoUiUpdate();
-		FrameSync();
 		DeleteAllLineMarker();
 		Pick(currFrame);
 	}
@@ -152,7 +159,6 @@ public class EnemyEdit : MonoBehaviour {
 		currInfo = database.data[code];
 		SetInGameSprite();
 		InfoUiUpdate();
-		FrameSync();
 		DeleteAllLineMarker();
 		frameCode = Pick(currFrame);
 	}
@@ -180,7 +186,7 @@ public class EnemyEdit : MonoBehaviour {
 
 	public void CreateFrames()
 	{
-		for(int i = 0; i < 12; ++i)
+		for(int i = 0; i < currInfo.bullet.Length; ++i)
 		{
 			GameObject tp = Instantiate(frameOrigin,Vector3.zero,Quaternion.identity) as GameObject;
 			tp.name = i.ToString();
@@ -188,6 +194,16 @@ public class EnemyEdit : MonoBehaviour {
 			tp.transform.localPosition = new Vector3(-110f + i * 20f,0f,0f);
 			frames.Add(tp.GetComponent<EnemyFrame>().Init(currInfo.bullet[i]));
 		}
+	}
+
+	public void DeleteAllFrame()
+	{
+		for(int i = 0; i < frames.Count; ++i)
+		{
+			Destroy(frames[i].gameObject);
+		}
+
+		frames.Clear();
 	}
 
 	public void FrameSync()
@@ -400,7 +416,7 @@ public class EnemyEdit : MonoBehaviour {
 	public void CreateBullet(EnemyDatabase.BulletInfo bulletInfo)
 	{
 		BulletScript bs = Instantiate(bulletOrigin,currInfo.shotPoint[bulletInfo.shotPoint],Quaternion.identity).GetComponent<BulletScript>();
-		bs.Init(bulletInfo.angle,bulletInfo.speed);
+		bs.Init(bulletInfo.angle,bulletInfo.speed,bulletInfo.angleAccel,bulletInfo.speedAccel);
 	}
 
 	public void SetPatternInfo()
@@ -410,6 +426,9 @@ public class EnemyEdit : MonoBehaviour {
 		patternShotPoint.text = currMarker.GetBulletInfo().shotPoint.ToString();
 		patternSpeed.text = currMarker.GetBulletInfo().speed.ToString();
 		patternAngle.text = currMarker.GetBulletInfo().angle.ToString();
+		patternAngleAccel.text = currMarker.GetBulletInfo().angleAccel.ToString();
+		patternSpeedAccel.text = currMarker.GetBulletInfo().speedAccel.ToString();
+
 		patternGuided.isOn = currMarker.GetBulletInfo().guided;
 	}
 
@@ -418,6 +437,9 @@ public class EnemyEdit : MonoBehaviour {
 		currMarker.GetBulletInfo().shotPoint = int.Parse(patternShotPoint.text);
 		currMarker.GetBulletInfo().speed = float.Parse(patternSpeed.text);
 		currMarker.GetBulletInfo().angle = float.Parse(patternAngle.text);
+		currMarker.GetBulletInfo().angleAccel = float.Parse(patternAngleAccel.text);
+		currMarker.GetBulletInfo().speedAccel = float.Parse(patternSpeedAccel.text);
+
 		currMarker.GetBulletInfo().guided = patternGuided.isOn;
 
 		currMarker.DataSync();
@@ -429,6 +451,8 @@ public class EnemyEdit : MonoBehaviour {
 		patternGuided.interactable = true;
 		patternShotPoint.interactable = true;
 		patternSpeed.interactable = true;
+		patternAngleAccel.interactable = true;
+		patternSpeedAccel.interactable = true;
 	}
 
 	public void DisablePatternInfo()
@@ -437,6 +461,8 @@ public class EnemyEdit : MonoBehaviour {
 		patternGuided.interactable = false;
 		patternShotPoint.interactable = false;
 		patternSpeed.interactable = false;
+		patternAngleAccel.interactable = false;
+		patternSpeedAccel.interactable = false;
 	}
 
 	public void TestStart()

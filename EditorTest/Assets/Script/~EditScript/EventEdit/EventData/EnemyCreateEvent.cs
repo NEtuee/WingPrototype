@@ -59,6 +59,11 @@ public class EnemyCreateEvent : EventBase {
 		marker.path = Test.instance.path.data[pathCode];
 		marker.Init(frameCode);
 	}
+
+	public override void DeleteEvent()
+	{
+		GameObject.Destroy(marker.gameObject);
+	}
 	
 	public EnemyCreateEvent(int fc)
 	{

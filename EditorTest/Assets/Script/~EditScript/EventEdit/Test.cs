@@ -128,10 +128,10 @@ public class Test : MonoBehaviour {
 		//if(!DataLoad())
 			CreateNew(12,true);
 		height = 2 * Camera.main.orthographicSize;
-		width = height * Camera.main.aspect;
+		width = height * 0.5625f;;
 
-		Vector3[] points = {new Vector3(-height / 2f,width / 2f,1f),new Vector3(height / 2f,width / 2f,1f)
-							,new Vector3(height / 2f, -width / 2f,1f),new Vector3( -height / 2f, - width / 2f,1f)};
+		Vector3[] points = {new Vector3(-width / 2f,height / 2f,1f),new Vector3(width / 2f,height / 2f,1f)
+							,new Vector3(width / 2f, -height / 2f,1f),new Vector3( -width / 2f, - height / 2f,1f)};
 
 		screenEdge.SetPositions(points);
 

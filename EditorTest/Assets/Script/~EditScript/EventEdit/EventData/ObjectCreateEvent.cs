@@ -46,6 +46,11 @@ public class ObjectCreateEvent : EventBase {
 		MarkerUpdate();
 	}
 
+	public override void DeleteEvent()
+	{
+		GameObject.Destroy(marker.gameObject);
+	}
+
 	public void MarkerUpdate()
 	{
 		marker.tp.position = pos;

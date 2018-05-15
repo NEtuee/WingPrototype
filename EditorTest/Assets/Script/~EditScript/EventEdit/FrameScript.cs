@@ -66,6 +66,19 @@ public class FrameScript : MonoBehaviour {
 		}
 	}
 
+	public bool DeleteEvent(int index)
+	{
+		if(frame.events.Count > index)
+		{
+			frame.events[index].ButtonRelease();
+			frame.events[index].DeleteEvent();
+			frame.events.RemoveAt(index);
+
+			return true;
+		}
+
+		return false;
+	}
 	public void AddEvent(EventBase eventBase)
 	{
 		frame.events.Add(eventBase);

@@ -173,7 +173,7 @@ public class BulletManager : MonoBehaviour {
 		{
 			if(link.me.IsTeam(BulletBase.BulletTeam.Enemy))
 				link.me.SetScoreObject();
-			ObjectLink save = link;
+//			ObjectLink save = link;
 			
 			link = link.back;
 
@@ -200,7 +200,7 @@ public class BulletManager : MonoBehaviour {
 			if(link.me.IsTeam(BulletBase.BulletTeam.Enemy))
 				link.me.angle = value;
 
-			ObjectLink save = link;
+//			ObjectLink save = link;
 			
 			link = link.back;
 
@@ -227,7 +227,7 @@ public class BulletManager : MonoBehaviour {
 			if(link.me.IsTeam(BulletBase.BulletTeam.Enemy))
 				link.me.SetAngleAccel(link.me.GetAngleAccel() * -1f);
 
-			ObjectLink save = link;
+//			ObjectLink save = link;
 			
 			link = link.back;
 
@@ -254,7 +254,7 @@ public class BulletManager : MonoBehaviour {
 			if(link.me.IsTeam(BulletBase.BulletTeam.Enemy))
 				link.me.SetAngleAccel(value);
 
-			ObjectLink save = link;
+//			ObjectLink save = link;
 			
 			link = link.back;
 
@@ -281,7 +281,7 @@ public class BulletManager : MonoBehaviour {
 			if(link.me.IsTeam(BulletBase.BulletTeam.Enemy))
 				link.me.SetAccel(value);
 
-			ObjectLink save = link;
+//			ObjectLink save = link;
 			
 			link = link.back;
 
@@ -308,7 +308,7 @@ public class BulletManager : MonoBehaviour {
 			if(link.me.IsTeam(BulletBase.BulletTeam.Enemy))
 				link.me.speed = value;
 
-			ObjectLink save = link;
+//			ObjectLink save = link;
 			
 			link = link.back;
 

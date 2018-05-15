@@ -20,6 +20,8 @@ public abstract class EventBase
 	{
 //		Debug.Log("release");
 	}
+
+	public virtual void DeleteEvent(){}
 	public abstract string DataToString();
 	public abstract string DataToStringForGame();
 	public abstract void StringToData(string s);
